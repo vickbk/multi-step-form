@@ -1,4 +1,4 @@
-import { HeadingCtx } from "@/contexts/HeadingCtx";
+import { HeadingCtx } from "@/shared/contexts/HeadingCtx";
 import { forwardRef, useContext, type HTMLAttributes } from "react";
 
 export const Heading = forwardRef<

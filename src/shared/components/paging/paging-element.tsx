@@ -1,4 +1,4 @@
-import { SROnly } from "@/components/SROnly";
+import { SROnly } from "@/shared/components/SROnly";
 import { useEffect } from "react";
 import { Icon } from "../bi-icon";
 import { PagingGapHolding } from "./page-holding";

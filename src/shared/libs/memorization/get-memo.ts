@@ -1,4 +1,4 @@
-import { name } from "../../../package.json";
+import { name } from "../../../../package.json";
 import type { MemoObject } from "./memo-types";
 export default function getMemo() {
   const item = localStorage.getItem(memoName);

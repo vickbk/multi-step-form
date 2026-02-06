@@ -1,4 +1,4 @@
-import { joinClasses } from "@/libs/classname-helper";
+import { joinClasses } from "@/shared/libs/classname-helper";
 
 describe("classname helper", () => {
   it("Joins class names from an array", () => {

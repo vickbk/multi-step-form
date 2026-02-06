@@ -1,5 +1,5 @@
 import "bootstrap-icons/font/bootstrap-icons.css";
-import { ColorsHelper } from "./components/ColorsHelper";
+import { ColorsHelper } from "./shared/components/ColorsHelper";
 import "./styles/global.css";
 import "./styles/scss/global.scss";
 
