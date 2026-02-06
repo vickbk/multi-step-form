@@ -1,0 +1,1 @@
+pnpm add tailwindcss @tailwindcss/vite sass-embedded vitest @testing-library/react @testing-library/jest-dom @testing-library/user-event jsdom -D&pnpm i bootstrap-icons

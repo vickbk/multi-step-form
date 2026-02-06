@@ -1,0 +1,121 @@
+@use "../functions/" as f;
+@use "../globals/states" as s;
+@use "sass:map";
+@use "sass:list";
+
+$colorsMap: (
+  // primary
+  purple-600: 238 40% 52%,
+  pink-400: 358 79% 66%,
+  purple-200: 239 57% 85%,
+  pink-200: 357 100% 86%,
+  grey-800: 212 24% 26%,
+  grey-500: 211 10% 45%,
+  grey-100: 223 19% 93%,
+  grey-50: 228 33% 97%,
+  white: 0 100% 100%,
+  background: var(--background),
+  foreground: var(--foreground),
+  secondary: var(--secondary)
+);
+
+$primary-color: map.get($colorsMap, grey-50);
+$link-color: map.get($colorsMap, purple-600);
+$text-color: map.get($colorsMap, grey-500);
+$accent-color: map.get($colorsMap, purple-600);
+
+$exluded-variables: background foreground secondary;
+
+:root {
+  & {
+    @each $name, $color in $colorsMap {
+      @if not list.index($exluded-variables, $name) {
+        --#{""+$name}: #{$color};
+      }
+    }
+  }
+  --background: #{$primary-color};
+  --foreground: #{$text-color};
+  --accent-color: #{$accent-color};
+  --link-color: #{$link-color};
+  --secondary: var(--neutral-500);
+
+  // @media (prefers-color-scheme: dark) {
+  //   --background: #{$text-color};
+  //   --foreground: #{$primary-color};
+  //   --secondary: var(--neutral-500);
+  // }
+  // &[theme="dark"],
+  // *[theme="dark"] {
+  //   --background: #{$text-color};
+  //   --foreground: #{$primary-color};
+  //   --secondary: var(--neutral-400);
+  // }
+  // &[theme="light"],
+  // *[theme="light"] {
+  //   --background: #{$primary-color};
+  //   --foreground: #{$text-color};
+  //   --accent-color: #{$accent-color};
+  //   --link-color: #{$link-color};
+  //   --secondary: var(--neutral-500);
+  // }
+  --outstand: var(--element-bg);
+}
+
+@mixin active-colors($suffix) {
+  .active-#{$suffix}.active-#{$suffix} {
+    @include s.active-state {
+      @content;
+    }
+  }
+}
+
+@each $name, $color in $colorsMap {
+  .#{"" + $name},
+  .hv-#{"" + $name}:hover,
+  .a-#{"" + $name}:active,
+  .a-#{"" + $name}:focus {
+    background-color: hsl(var(--#{"" + $name}) / var(--bg-accent, 1));
+    transition: background-color ease-in-out 0.3s;
+  }
+  @include active-colors(#{"" + $name}) {
+    background-color: hsl(var(--#{"" + $name}) / var(--bg-accent, 1));
+    transition: background-color ease-in-out 0.3s;
+  }
+
+  .c-#{"" + $name}.c-#{"" + $name},
+  .hv-c-#{"" + $name}:hover,
+  .a-c-#{"" + $name}:active,
+  .a-c-#{"" + $name}:focus {
+    color: hsl(var(--#{"" + $name}) / var(--txt-accent, 1));
+    transition: color ease-in-out 0.3s;
+  }
+  @include active-colors(#{"c-" + $name}) {
+    color: hsl(var(--#{"" + $name}) / var(--txt-accent, 1));
+    transition: color ease-in-out 0.3s;
+  }
+
+  .b-#{"" + $name}.b-#{"" + $name},
+  .hv-b-#{"" + $name}.hv-b-#{"" + $name}:hover,
+  .a-b-#{"" + $name}.a-b-#{"" + $name}:active,
+  .a-b-#{"" + $name}.a-b-#{"" + $name}:focus {
+    border-color: hsl(var(--#{"" + $name}) / 1);
+    transition: border ease-in-out 0.3s;
+  }
+  @include active-colors(#{"b-" + $name}) {
+    border-color: hsl(var(--#{"" + $name}) / 1);
+    transition: border ease-in-out 0.3s;
+  }
+
+  .out-#{"" + $name},
+  .hv-out-#{"" + $name}:hover,
+  .a-out-#{"" + $name}:active,
+  .a-out-#{"" + $name}:focus {
+    outline-color: hsl(var(--#{"" + $name}) / 1);
+    transition: outline ease-in-out 0.3s;
+  }
+  @include active-colors(#{"out-" + $name}) {
+    outline-color: hsl(var(--#{"" + $name}) / 1);
+    transition: outline ease-in-out 0.3s;
+  }
+}
