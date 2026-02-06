@@ -1,1 +1,1 @@
-pnpm add tailwindcss @tailwindcss/vite sass-embedded vitest @testing-library/react @testing-library/jest-dom @testing-library/user-event jsdom -D&pnpm i bootstrap-icons
+pnpm add tailwindcss @tailwindcss/vite sass-embedded vitest @testing-library/react @testing-library/jest-dom @testing-library/user-event jsdom vite-tsconfig-paths -D&pnpm i bootstrap-icons
