@@ -1,8 +1,8 @@
+import { SROnly } from "@/components/SROnly";
 import { useEffect } from "react";
-import { PagingButton } from "./paging-button";
-import { SROnly } from "@/components/shared/SROnly";
-import { PagingGapHolding } from "./page-holding";
 import { Icon } from "../bi-icon";
+import { PagingGapHolding } from "./page-holding";
+import { PagingButton } from "./paging-button";
 
 export const Paging = ({
   page,

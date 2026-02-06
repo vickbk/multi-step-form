@@ -4,24 +4,24 @@
 @use "sass:list";
 
 $colorsMap: (
-  // primary
-  purple-600: 238 40% 52%,
-  pink-400: 358 79% 66%,
-  purple-200: 239 57% 85%,
-  pink-200: 357 100% 86%,
-  grey-800: 212 24% 26%,
-  grey-500: 211 10% 45%,
-  grey-100: 223 19% 93%,
-  grey-50: 228 33% 97%,
+  blue-950: 213 96% 18%,
+  purple-600: 243 100% 62%,
+  blue-300: 228 100% 84%,
+  blue-200: 206 94% 87%,
+  red-500: 354 84% 57%,
+  grey-500: 231 11% 63%,
+  purple-200: 229 24% 87%,
+  blue-100: 218 100% 97%,
+  blue-50: 231 100% 99%,
   white: 0 100% 100%,
   background: var(--background),
   foreground: var(--foreground),
-  secondary: var(--secondary)
+  secondary: var(--secondary),
 );
 
-$primary-color: map.get($colorsMap, grey-50);
+$primary-color: map.get($colorsMap, blue-50);
 $link-color: map.get($colorsMap, purple-600);
-$text-color: map.get($colorsMap, grey-500);
+$text-color: map.get($colorsMap, blue-950);
 $accent-color: map.get($colorsMap, purple-600);
 
 $exluded-variables: background foreground secondary;

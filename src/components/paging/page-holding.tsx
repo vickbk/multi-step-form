@@ -1,5 +1,5 @@
-import { CustomDetails } from "@/components/shared/CustomDetails";
-import { SROnly } from "@/components/shared/SROnly";
+import { CustomDetails } from "@/components/CustomDetails";
+import { SROnly } from "@/components/SROnly";
 import { PagingButton } from "./paging-button";
 
 export const PagingGapHolding = ({
