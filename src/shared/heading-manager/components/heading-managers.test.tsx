@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react";
+import { checkHeadingOrder } from "../library/check-heading-order";
 import { drawRegion } from "../library/region-drawer";
 import { Article, Heading, Main, Section } from "./heading-managers";
 describe("Heading Level Manager", () => {
@@ -105,9 +106,11 @@ describe("Heading Level Manager", () => {
         </Section>
       </Main>,
     );
-    const main = await screen.findByRole("main");
-    drawRegion(main);
     const heading4 = await screen.findByRole("heading", { name: "Heading 4" });
     expect(heading4.tagName).toBe("H4");
+
+    const main = await screen.findByRole("main");
+    const region = drawRegion(main);
+    expect(checkHeadingOrder(region)).toBe(false);
   });
 });
