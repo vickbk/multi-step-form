@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react";
+import { drawRegion } from "../library/region-drawer";
 import { Article, Heading, Main, Section } from "./heading-managers";
 describe("Heading Level Manager", () => {
   test("should render h1 if heading rendered out of heading context", async () => {
@@ -75,6 +76,18 @@ describe("Heading Level Manager", () => {
     expect(headings[6].tagName).toBe("H6");
   });
 
+  test("should render same level headers in the same region", () => {
+    const { container } = render(
+      <Section>
+        <Heading>Heading 1</Heading>
+        <Heading>Heading 2</Heading>
+        <Heading>Heading 3</Heading>
+      </Section>,
+    );
+    const { headings } = drawRegion(container);
+    expect(headings.every((h) => h === headings[0])).toBe(true);
+  });
+
   test("should detect a skipped heading level", async () => {
     render(
       <Main pageHasH1={false}>
@@ -92,6 +105,8 @@ describe("Heading Level Manager", () => {
         </Section>
       </Main>,
     );
+    const main = await screen.findByRole("main");
+    drawRegion(main);
     const heading4 = await screen.findByRole("heading", { name: "Heading 4" });
     expect(heading4.tagName).toBe("H4");
   });
