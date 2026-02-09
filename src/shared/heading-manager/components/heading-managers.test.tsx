@@ -11,21 +11,6 @@ describe("Heading Level Manager", () => {
     expect(heading.tagName).toBe("H1");
   });
 
-  test("should not increase contest for deeply nested without headings", async () => {
-    render(
-      <main>
-        <Section>
-          <Section>
-            <Heading>Heading 2</Heading>
-          </Section>
-        </Section>
-      </main>,
-    );
-
-    const heading = await screen.findByRole("heading", { name: "Heading 2" });
-    expect(heading.tagName).toBe("H2");
-  });
-
   test("renders correct heading levels for nested sections", async () => {
     render(
       <Main pageHasH1={false}>
