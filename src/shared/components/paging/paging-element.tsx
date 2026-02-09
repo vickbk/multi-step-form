@@ -21,7 +21,7 @@ export const Paging = ({
     <ol className="p-4 gap-4 col-span-full flex flex-wrap justify-center items-center relative">
       {page !== 0 && (
         <PagingButton onClickFunction={() => updateFunction(page - 1)}>
-          <SROnly>Go to previous page</SROnly> <Icon name="chevron-left" />
+          <SROnly>Go to previous page</SROnly> <Icon className="chevron-left" />
         </PagingButton>
       )}
       <PagingButton
@@ -54,7 +54,7 @@ export const Paging = ({
       </PagingButton>
       {page < totalPages - 1 && (
         <PagingButton onClickFunction={() => updateFunction(page + 1)}>
-          <SROnly>Go to next page</SROnly> <Icon name="chevron-right" />
+          <SROnly>Go to next page</SROnly> <Icon className="chevron-right" />
         </PagingButton>
       )}
     </ol>

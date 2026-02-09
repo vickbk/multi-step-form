@@ -1,5 +1,6 @@
-import { HeadingCtx } from "@/shared/contexts/HeadingCtx";
+import { HeadingCtx } from "@/shared/heading-manager/hooks/HeadingCtx";
 import { forwardRef, useContext, type HTMLAttributes } from "react";
+import { useHeading } from "../hooks/use-heading";
 
 export const Heading = forwardRef<
   HTMLHeadingElement,
@@ -33,20 +34,20 @@ export const Main = forwardRef<
   HTMLElement,
   { pageHasH1?: boolean } & HTMLAttributes<HTMLElement>
 >(({ pageHasH1 = true, children, ...props }, ref) => {
-  const level = useContext(HeadingCtx);
+  const level = useHeading(pageHasH1);
   return (
     <main {...props} ref={ref}>
-      <HeadingCtx value={pageHasH1 ? level + 1 : level}>{children}</HeadingCtx>
+      <HeadingCtx value={level}>{children}</HeadingCtx>
     </main>
   );
 });
 
 export const Section = forwardRef<HTMLElement, HTMLAttributes<HTMLElement>>(
   ({ children, ...props }, ref) => {
-    const level = useContext(HeadingCtx);
+    const level = useHeading();
     return (
       <section {...props} ref={ref}>
-        <HeadingCtx value={level + 1}>{children}</HeadingCtx>
+        <HeadingCtx value={level}>{children}</HeadingCtx>
       </section>
     );
   },
@@ -54,10 +55,10 @@ export const Section = forwardRef<HTMLElement, HTMLAttributes<HTMLElement>>(
 
 export const Article = forwardRef<HTMLElement, HTMLAttributes<HTMLElement>>(
   ({ children, ...props }, ref) => {
-    const level = useContext(HeadingCtx);
+    const level = useHeading();
     return (
       <article {...props} ref={ref}>
-        <HeadingCtx value={level + 1}>{children}</HeadingCtx>
+        <HeadingCtx value={level}>{children}</HeadingCtx>
       </article>
     );
   },
@@ -65,10 +66,10 @@ export const Article = forwardRef<HTMLElement, HTMLAttributes<HTMLElement>>(
 
 export const Header = forwardRef<HTMLElement, HTMLAttributes<HTMLElement>>(
   ({ children, ...props }, ref) => {
-    const level = useContext(HeadingCtx);
+    const level = useHeading();
     return (
       <header {...props} ref={ref}>
-        <HeadingCtx value={level + 1}>{children}</HeadingCtx>
+        <HeadingCtx value={level}>{children}</HeadingCtx>
       </header>
     );
   },

@@ -1,4 +1,4 @@
-import { HeadingCtx } from "./HeadingCtx";
+import { HeadingCtx } from "../heading-manager";
 
 export const ContextProvider = ({
   children,
