@@ -1,7 +1,7 @@
-import { StepHeader } from "./step-header";
+import { Heading } from "@/shared/heading-manager/components/heading-managers";
 
 export const StepSection = ({
-  header,
+  header: { title, description },
   children,
 }: {
   header: Record<"title" | "description", string>;
@@ -9,7 +9,10 @@ export const StepSection = ({
 }) => {
   return (
     <fieldset>
-      <StepHeader {...header} />
+      <legend>
+        <Heading>{title}</Heading>
+        <p>{description}</p>
+      </legend>
       {children}
     </fieldset>
   );
