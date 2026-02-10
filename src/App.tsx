@@ -1,5 +1,5 @@
 import "bootstrap-icons/font/bootstrap-icons.css";
-import { ContextProvider } from "./shared/components/context-provider";
+import { ContextProvider } from "./features/layout/context-provider";
 import "./shared/styles/global.css";
 import "./shared/styles/scss/global.scss";
 
