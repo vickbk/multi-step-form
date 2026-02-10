@@ -4,10 +4,10 @@ export const AddsOnSummary = () => {
   return (
     <SummaryHolder>
       {[["add", "value"]].map(([label, value]) => (
-        <div>
-          <span>{label}</span>
-          <span>{value}</span>
-        </div>
+        <dl key={label}>
+          <dt>{label}</dt>
+          <dd>{value}</dd>
+        </dl>
       ))}
     </SummaryHolder>
   );

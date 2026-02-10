@@ -8,10 +8,10 @@ export const PersonelInfoSummary = () => {
         ["email", "test@example.com"],
         ["Telephone", "+123-456-7890"],
       ].map(([label, value]) => (
-        <div>
-          <span>{label}</span>
-          <span>{value}</span>
-        </div>
+        <dl key={label}>
+          <dt>{label}</dt>
+          <dd>{value}</dd>
+        </dl>
       ))}
     </SummaryHolder>
   );
