@@ -1,4 +1,4 @@
-import { StepHeader } from "./step-header";
+import { StepSection } from "./step-section";
 
 export const PersonalInfo = () => {
   const inputs = [
@@ -22,17 +22,19 @@ export const PersonalInfo = () => {
     },
   ];
   return (
-    <fieldset>
-      <StepHeader
-        title="Personal Info"
-        description="Please provide your name, email address, and phone number."
-      />
+    <StepSection
+      header={{
+        title: "Personal Info",
+        description:
+          "Please provide your name, email address, and phone number.",
+      }}
+    >
       {inputs.map(({ name, label, placeholder, type }) => (
         <label key={label}>
           {label}
           <input type={type} placeholder={placeholder} name={name} />
         </label>
       ))}
-    </fieldset>
+    </StepSection>
   );
 };
