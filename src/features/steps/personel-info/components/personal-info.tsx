@@ -1,4 +1,4 @@
-import { StepSection } from "../../steps/components/step-section";
+import { StepSection } from "../../components/step-section";
 
 export const PersonalInfo = () => {
   const inputs = [

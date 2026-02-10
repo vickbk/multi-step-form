@@ -1,4 +1,4 @@
-import { StepSection } from "../../steps/components/step-section";
+import { StepSection } from "../../components/step-section";
 import { PlanOptionSwitch } from "./plan-option-switch";
 import { PlanOptions } from "./plan-options";
 
