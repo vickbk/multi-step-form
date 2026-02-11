@@ -20,7 +20,7 @@ body {
   color: hsl(var(--foreground));
   font-family: var(--ff-sans);
   line-height: 1.6;
-  @apply min-h-screen grid grid-rows-[auto_1fr] px-4 transition-colors duration-300;
+  @apply min-h-screen grid grid-rows-[auto_1fr] transition-colors duration-300;
 }
 
 button {
