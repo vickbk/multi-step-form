@@ -1,6 +1,6 @@
 import "bootstrap-icons/font/bootstrap-icons.css";
-import { ContextProvider } from "./features/layout/components/context-provider";
-import { MultiStepForm } from "./features/layout/components/multi-step-form";
+import { ContextProvider } from "./app/components/context-provider";
+import { MultiStepForm } from "./app/components/multi-step-form";
 import {
   Heading,
   Main,
