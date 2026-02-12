@@ -1,6 +1,6 @@
 import { joinClasses } from "@/shared/libs";
 
-export const FormSteps = ({ step: current }: { step: number }) => {
+export const FormSteps = ({ step: current, setStep }: { step: number, setStep: React.Dispatch<React.SetStateAction<number>> }) => {
   return (
     <ul className="mx-auto py-8 flex gap-4 justify-center">
       {[
@@ -17,7 +17,7 @@ export const FormSteps = ({ step: current }: { step: number }) => {
                 ? "c-foreground background b-background"
                 : "c-background",
             ])}
-            type="button"
+            type="button" onClick={() => setStep(step - 1)}
           >
             {step} <span className="absolute inset-0"></span>
           </button>
