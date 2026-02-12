@@ -46,7 +46,7 @@ export const AddsOn = ({ show = false }: { show: boolean }) => {
             <span className="font-semibold c-blue-950 text-xl">{label}</span>
             <span>{description}</span>
           </span>
-          <span className="c-purple-600 font-medium">+{price}/yr</span>
+          <span className="c-purple-600 font-medium ml-auto">+{price}/yr</span>
         </label>
       ))}
     </StepSection>

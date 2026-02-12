@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 .add-on {
-  @apply flex justify-between gap-4 items-center 
+  @apply flex gap-4 items-center 
   p-4 outline rounded-lg 
   cursor-pointer;
   &,
@@ -9,9 +9,13 @@
     outline-color: hsl(var(--grey-500));
   }
   &:has(.add-on__input:checked) {
+    background-color: hsl(var(--background) / 0.4);
+  }
+  &:hover,
+  &:focus-within,
+  &:has(.add-on__input:checked) {
     @apply outline-2;
     outline-color: hsl(var(--purple-600));
-    background-color: hsl(var(--background) / 0.4);
   }
   .add-on__input {
     @apply sr-only;
@@ -23,6 +27,6 @@
   .add-on__icon {
     @apply outline 
     flex items-center 
-    px-1 aspect-square rounded-md;
+    px-1 md:px-0 aspect-square rounded-md;
   }
 }
