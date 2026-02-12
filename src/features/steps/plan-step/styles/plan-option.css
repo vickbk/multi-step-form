@@ -11,8 +11,9 @@
   outline-color: hsl(var(--grey-500));
   &:hover,
   &:focus,
-  &:has(*:checked),
-  &:focus-within {
+  &:focus-within,
+  &:has(input:checked) {
+    @apply outline-2;
     outline-color: hsl(var(--purple-600));
     background-color: hsl(var(--background) / 0.4);
   }
