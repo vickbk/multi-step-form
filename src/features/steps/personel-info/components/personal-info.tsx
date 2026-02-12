@@ -9,13 +9,13 @@ export const PersonalInfo = () => {
       name: "name",
     },
     {
-      label: "Email",
+      label: "Email Address",
       type: "email",
       placeholder: "e.g. stephenking@lorem.com",
       name: "email",
     },
     {
-      label: "Phone",
+      label: "Phone Number",
       type: "tel",
       placeholder: "e.g. +1 234 567 890",
       name: "phone",
@@ -23,7 +23,6 @@ export const PersonalInfo = () => {
   ];
   return (
     <StepSection
-      show
       header={{
         title: "Personal Info",
         description:

@@ -8,10 +8,10 @@ import { NavigationBar } from "./navigation-bar";
 export const FieldSection = () => {
   return (
     <>
-      <div className="mx-4 p-8 white rounded-2xl">
+      <div className="mx-4 mb-6 p-8 white rounded-2xl">
         <PersonalInfo />
-        <AddsOn />
         <PlanSection />
+        <AddsOn />
         <Summary />
         <FinalStep />
       </div>
