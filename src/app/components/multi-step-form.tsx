@@ -13,7 +13,7 @@ export const MultiStepForm = () => {
         <FormSteps {...stepController} />
       </SideBar>
       <FieldSection {...stepController} />
-      <NavigationBar {...stepController} />
+      {stepController.step <= 3 && <NavigationBar {...stepController} />}
     </Article>
   );
 };
