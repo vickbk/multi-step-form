@@ -1,6 +1,6 @@
 import { StepSection } from "../../components/step-section";
 
-export const PersonalInfo = () => {
+export const PersonalInfo = ({ show = false }: { show: boolean }) => {
   const inputs = [
     {
       label: "Name",
@@ -23,6 +23,7 @@ export const PersonalInfo = () => {
   ];
   return (
     <StepSection
+      show={show}
       header={{
         title: "Personal Info",
         description:

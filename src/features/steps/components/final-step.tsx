@@ -2,9 +2,9 @@ import { default as thanksImage } from "@/assets/images/icon-thank-you.svg";
 import { SROnly } from "@/shared/components/SROnly";
 import { Heading } from "@/shared/heading-manager/components/heading-managers";
 
-export const FinalStep = () => {
+export const FinalStep = ({ show = false }: { show: boolean }) => {
   return (
-    <article className="hidden">
+    <article className={!show ? "hidden" : ""}>
       <img src={thanksImage} alt="" />
       <Heading>
         Thank you <SROnly>for your subscription</SROnly>

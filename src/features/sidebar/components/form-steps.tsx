@@ -1,6 +1,6 @@
 import { joinClasses } from "@/shared/libs";
 
-export const FormSteps = () => {
+export const FormSteps = ({ step: current }: { step: number }) => {
   return (
     <ul className="mx-auto py-8 flex gap-4 justify-center">
       {[
@@ -13,7 +13,7 @@ export const FormSteps = () => {
           <button
             className={joinClasses([
               "aspect-square px-4 border-2 rounded-full",
-              step === 1
+              step === current + 1
                 ? "c-foreground background b-background"
                 : "c-background",
             ])}
