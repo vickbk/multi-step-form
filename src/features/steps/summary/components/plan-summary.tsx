@@ -12,7 +12,7 @@ export const PlanSummary = ({
         $90/yr
       </dd>
       <dd>
-        <button type="button" className="underline" onClick={() => setStep(1)}>
+        <button type="button" className="change-btn" onClick={() => setStep(1)}>
           Change <SROnly> your plan</SROnly>
         </button>
       </dd>

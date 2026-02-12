@@ -1,4 +1,5 @@
 import { StepSection } from "../../components/step-section";
+import "../styles/summary.css";
 import { AddsOnSummary } from "./adds-on-summary";
 import { PersonelInfoSummary } from "./personel-info-summary";
 import { PlanSummary } from "./plan-summary";

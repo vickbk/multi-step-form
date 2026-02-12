@@ -22,7 +22,7 @@ export const SummaryHolder = ({
       {!custom && (
         <button
           type="button"
-          className="underline"
+          className="change-btn"
           onClick={() => setStep(changeIndex)}
         >
           Change
