@@ -1,15 +1,21 @@
 import { joinClasses } from "@/shared/libs";
 
-export const FormSteps = ({ step: current, setStep }: { step: number, setStep: React.Dispatch<React.SetStateAction<number>> }) => {
+export const FormSteps = ({
+  step: current,
+  setStep,
+}: {
+  step: number;
+  setStep: React.Dispatch<React.SetStateAction<number>>;
+}) => {
   return (
-    <ul className="mx-auto py-8 flex gap-4 justify-center">
+    <ul className="mx-auto py-8 md:p-8 flex gap-4 justify-center md:grid grid-cols-1 uppercase min-w-75 md:mx-0 md:justify-start">
       {[
         { step: 1, label: "Your Info" },
         { step: 2, label: "Select Plan" },
         { step: 3, label: "Add-Ons" },
         { step: 4, label: "Summary" },
       ].map(({ step, label }) => (
-        <li className="relative" key={step}>
+        <li className="relative flex gap-4" key={step}>
           <button
             className={joinClasses([
               "aspect-square px-4 border-2 rounded-full",
@@ -17,13 +23,14 @@ export const FormSteps = ({ step: current, setStep }: { step: number, setStep: R
                 ? "c-foreground background b-background"
                 : "c-background",
             ])}
-            type="button" onClick={() => setStep(step - 1)}
+            type="button"
+            onClick={() => setStep(step - 1)}
           >
             {step} <span className="absolute inset-0"></span>
           </button>
-          <dl className="sr-only">
-            <dt>Step {step}</dt>
-            <dd>{label}</dd>
+          <dl className="sr-only md:not-sr-only">
+            <dt className="c-grey-500">Step {step}</dt>
+            <dd className="font-bold c-white">{label}</dd>
           </dl>
         </li>
       ))}

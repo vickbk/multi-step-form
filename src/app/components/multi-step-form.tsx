@@ -8,7 +8,7 @@ import { NavigationBar } from "./navigation-bar";
 export const MultiStepForm = () => {
   const stepController = useSteps();
   return (
-    <Article className="flex flex-col justify-between min-h-screen tracking-normal">
+    <Article className="flex flex-col md:grid grid-cols-[auto_1fr] grid-rows-[1fr_auto] justify-between min-h-screen tracking-normal">
       <SideBar>
         <FormSteps {...stepController} />
       </SideBar>
