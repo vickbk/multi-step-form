@@ -1,3 +1,4 @@
+import { getRandomElement, joinClasses } from "@/shared/libs";
 import { StepSection } from "../../components/step-section";
 
 export const PersonalInfo = ({ show = false }: { show: boolean }) => {
@@ -31,13 +32,23 @@ export const PersonalInfo = ({ show = false }: { show: boolean }) => {
       }}
     >
       {inputs.map(({ name, label, placeholder, type }) => (
-        <label className="grid text-xl gap-1 c-blue-950" key={label}>
-          {label}
+        <label
+          className="grid grid-cols-[auto_1fr] items-center text-xl gap-1 c-blue-950"
+          key={label}
+        >
+          {label}{" "}
+          {getRandomElement([true, false]) && (
+            <span className="text-right c-red-500">This field is required</span>
+          )}
           <input
-            className="outline out-grey-500 p-2 px-4 rounded-md font-medium"
+            className={joinClasses([
+              getRandomElement([true, false]) ? "out-red-500" : "out-grey-500",
+              "col-span-full outline p-2 px-4 rounded-md font-medium active-out-purple-600",
+            ])}
             type={type}
             placeholder={placeholder}
             name={name}
+            required
           />
         </label>
       ))}

@@ -1,0 +1,16 @@
+@import "tailwindcss";
+
+.next-button {
+  @apply p-4 px-6 rounded-md 
+  font-semibold text-xl 
+  ml-auto;
+  --accent: 1;
+  background-color: hsl(var(--blue-950) / var(--accent));
+  color: hsl(var(--white));
+
+  &:hover,
+  &:focus,
+  &:active {
+    --accent: 0.8;
+  }
+}

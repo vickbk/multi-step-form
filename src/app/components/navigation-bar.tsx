@@ -1,5 +1,6 @@
 import { SROnly } from "@/shared/components/SROnly";
 import { joinClasses } from "@/shared/libs";
+import "../styles/navigation-bar.css";
 
 export const NavigationBar = ({
   step,
@@ -9,7 +10,7 @@ export const NavigationBar = ({
   setStep: (num: number) => void;
 }) => {
   return (
-    <div className="mt-6 flex p-4 justify-between white w-full md:max-w-lg mx-auto md:px-12">
+    <div className="mt-6 flex p-4 justify-between white w-full md:max-w-lg mx-auto md:px-8">
       <button
         className={joinClasses([
           "c-grey-500 font-semibold",
@@ -22,10 +23,7 @@ export const NavigationBar = ({
       </button>
 
       <button
-        className={joinClasses([
-          "p-4 px-6 rounded-md blue-950 c-background font-semibold text-xl ml-auto",
-          step === 3 && "hidden",
-        ])}
+        className={joinClasses(["next-button", step === 3 && "hidden"])}
         type="button"
         onClick={() => setStep(step + 1)}
       >
