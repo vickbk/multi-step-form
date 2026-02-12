@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+.plan-option {
+  @apply flex md:grid gap-4 md:gap-12 
+    capitalize 
+    items-start 
+    p-4 
+    outline rounded-lg 
+    cursor-pointer;
+
+  outline-color: hsl(var(--grey-500));
+  &:hover,
+  &:focus,
+  &:has(*:checked),
+  &:focus-within {
+    outline-color: hsl(var(--purple-600));
+    background-color: hsl(var(--background) / 0.4);
+  }
+}

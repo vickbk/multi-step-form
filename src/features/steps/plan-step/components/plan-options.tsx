@@ -2,6 +2,7 @@ import { default as AdvancedIcon } from "@/assets/images/icon-advanced.svg";
 import { default as ArcadeIcon } from "@/assets/images/icon-arcade.svg";
 import { default as ProIcon } from "@/assets/images/icon-pro.svg";
 import { SROnly } from "@/shared/components/SROnly";
+import "../styles/plan-option.css";
 
 export const PlanOptions = () => {
   const options = [
@@ -25,13 +26,10 @@ export const PlanOptions = () => {
     },
   ];
   return (
-    <fieldset className="grid gap-4">
+    <fieldset className="grid gap-4 md:grid-cols-3">
       <legend className="sr-only">Plan Options</legend>
       {options.map(({ name, price, discount, icon }) => (
-        <label
-          className="flex gap-4 capitalize items-start p-4 outline rounded-lg out-grey-500 cursor-pointer"
-          key={name}
-        >
+        <label className="plan-option" key={name}>
           <input className="sr-only" type="radio" name="plan" value={name} />
           <img src={icon} alt="" />
           <span className="grid">
