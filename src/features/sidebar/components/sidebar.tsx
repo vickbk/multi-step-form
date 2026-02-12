@@ -5,7 +5,7 @@ import { FormSteps } from "./form-steps";
 export const SideBar = () => {
   return (
     <div className="relative">
-      <picture className="absolute -z-10">
+      <picture className="absolute -z-10 w-full">
         <source media="(min-width: 1024px)" srcSet={desktopImg} />
         <img src={mobileImg} alt="sidebar" className="w-full h-auto" />
       </picture>

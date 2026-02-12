@@ -4,7 +4,7 @@ import { Heading } from "@/shared/heading-manager/components/heading-managers";
 
 export const FinalStep = () => {
   return (
-    <article>
+    <article className="hidden">
       <img src={thanksImage} alt="" />
       <Heading>
         Thank you <SROnly>for your subscription</SROnly>

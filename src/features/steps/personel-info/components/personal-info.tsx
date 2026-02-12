@@ -23,6 +23,7 @@ export const PersonalInfo = () => {
   ];
   return (
     <StepSection
+      show
       header={{
         title: "Personal Info",
         description:
