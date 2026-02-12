@@ -4,7 +4,7 @@ import { FieldSection } from "./fields-section";
 
 export const MultiStepForm = () => {
   return (
-    <Article>
+    <Article className="flex flex-col justify-between">
       <SideBar />
       <FieldSection />
     </Article>

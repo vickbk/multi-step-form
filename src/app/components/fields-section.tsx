@@ -7,13 +7,16 @@ import { NavigationBar } from "./navigation-bar";
 
 export const FieldSection = () => {
   return (
-    <div>
-      <PersonalInfo />
-      <AddsOn />
-      <PlanSection />
-      <Summary />
+    <>
+      <div className="mx-4 p-8 white rounded-2xl">
+        <PersonalInfo />
+        <AddsOn />
+        <PlanSection />
+        <Summary />
+        <FinalStep />
+      </div>
+
       <NavigationBar />
-      <FinalStep />
-    </div>
+    </>
   );
 };

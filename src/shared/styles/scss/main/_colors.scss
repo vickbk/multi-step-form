@@ -19,7 +19,7 @@ $colorsMap: (
   secondary: var(--secondary),
 );
 
-$primary-color: map.get($colorsMap, blue-50);
+$primary-color: map.get($colorsMap, blue-100);
 $link-color: map.get($colorsMap, purple-600);
 $text-color: map.get($colorsMap, blue-950);
 $accent-color: map.get($colorsMap, purple-600);
