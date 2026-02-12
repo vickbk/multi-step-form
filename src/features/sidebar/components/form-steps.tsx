@@ -8,7 +8,7 @@ export const FormSteps = ({
   setStep: React.Dispatch<React.SetStateAction<number>>;
 }) => {
   return (
-    <ul className="mx-auto py-8 md:p-8 flex gap-4 justify-center md:grid grid-cols-1 uppercase min-w-75 md:mx-0 md:justify-start">
+    <ul className="mx-auto py-8 md:p-8 flex gap-4 justify-center md:grid grid-cols-1 uppercase min-w-75 md:mx-0 md:justify-start md:absolute md:top-0">
       {[
         { step: 1, label: "Your Info" },
         { step: 2, label: "Select Plan" },

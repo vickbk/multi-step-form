@@ -5,7 +5,7 @@ import type { ReactNode } from "react";
 export const SideBar = ({ children }: { children: ReactNode }) => {
   return (
     <div className="relative row-span-full">
-      <picture className="absolute -z-10 w-full">
+      <picture className="absolute md:static -z-10 md:z-0 w-full">
         <source media="(min-width: 767px)" srcSet={desktopImg} />
         <img src={mobileImg} alt="sidebar" className="w-full h-auto" />
       </picture>

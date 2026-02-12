@@ -2,13 +2,14 @@ import { FormSteps } from "@/features/sidebar/components/form-steps";
 import { SideBar } from "@/features/sidebar/components/sidebar";
 import { Article } from "@/shared/heading-manager/components/heading-managers";
 import { useSteps } from "../hooks/use-steps";
+import "../styles/multi-step-form.css";
 import { FieldSection } from "./fields-section";
 import { NavigationBar } from "./navigation-bar";
 
 export const MultiStepForm = () => {
   const stepController = useSteps();
   return (
-    <Article className="flex flex-col md:grid grid-cols-[auto_1fr] grid-rows-[1fr_auto] justify-between min-h-screen tracking-normal">
+    <Article className="multi-step-form">
       <SideBar>
         <FormSteps {...stepController} />
       </SideBar>

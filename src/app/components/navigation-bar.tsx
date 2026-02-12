@@ -9,7 +9,7 @@ export const NavigationBar = ({
   setStep: (num: number) => void;
 }) => {
   return (
-    <div className="mt-6 flex p-4 justify-between white">
+    <div className="mt-6 flex p-4 justify-between white w-full md:max-w-lg mx-auto md:px-12">
       <button
         className={joinClasses([
           "c-grey-500 font-semibold",

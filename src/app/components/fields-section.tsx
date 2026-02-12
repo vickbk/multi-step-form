@@ -13,7 +13,7 @@ export const FieldSection = ({
 }) => {
   return (
     <>
-      <div className="mx-4 mb-auto p-8 white rounded-2xl">
+      <div className="mx-4 mb-auto p-8 white rounded-2xl md:max-w-lg">
         <PersonalInfo show={step === 0} />
         <PlanSection show={step === 1} />
         <AddsOn show={step === 2} />
