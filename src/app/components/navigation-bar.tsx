@@ -30,10 +30,7 @@ export const NavigationBar = ({
         Next Step
       </button>
       <button
-        className={joinClasses([
-          "p-4 px-6 rounded-md purple-600 c-background text-xl ml-auto",
-          step !== 3 && "hidden",
-        ])}
+        className={joinClasses(["submit-btn", step !== 3 && "hidden"])}
         type="submit"
       >
         Confirm
