@@ -12,9 +12,11 @@ export const Summary = ({ show = false }: { show: boolean }) => {
         description: "Double-check everything looks OK before confirming.",
       }}
     >
-      <PersonelInfoSummary />
-      <PlanSummary />
-      <AddsOnSummary />
+      <div>
+        <PersonelInfoSummary />
+        <PlanSummary />
+        <AddsOnSummary />
+      </div>
     </StepSection>
   );
 };

@@ -8,9 +8,9 @@ export const PersonelInfoSummary = () => {
         ["email", "test@example.com"],
         ["Telephone", "+123-456-7890"],
       ].map(([label, value]) => (
-        <dl key={label}>
-          <dt>{label}</dt>
-          <dd>{value}</dd>
+        <dl className="flex gap-2 justify-between" key={label}>
+          <dt>{label}: </dt>
+          <dd className="c-blue-950">{value}</dd>
         </dl>
       ))}
     </SummaryHolder>

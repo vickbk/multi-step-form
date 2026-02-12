@@ -6,7 +6,7 @@ import { FieldSection } from "./fields-section";
 import { NavigationBar } from "./navigation-bar";
 
 export const MultiStepForm = () => {
-  const [step, setStep] = useState(0);
+  const [step, setStep] = useState(3);
   return (
     <Article className="flex flex-col justify-between min-h-screen tracking-normal">
       <SideBar>
