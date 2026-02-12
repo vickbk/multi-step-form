@@ -31,9 +31,14 @@ export const PersonalInfo = () => {
       }}
     >
       {inputs.map(({ name, label, placeholder, type }) => (
-        <label key={label}>
+        <label className="grid text-xl gap-1 c-blue-950" key={label}>
           {label}
-          <input type={type} placeholder={placeholder} name={name} />
+          <input
+            className="outline out-grey-500 p-2 px-4 rounded-md font-medium"
+            type={type}
+            placeholder={placeholder}
+            name={name}
+          />
         </label>
       ))}
     </StepSection>

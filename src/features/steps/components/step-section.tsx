@@ -11,10 +11,10 @@ export const StepSection = ({
   show?: boolean;
 }) => {
   return (
-    <fieldset className={joinClasses([!show && "hidden"])}>
-      <legend>
-        <Heading>{title}</Heading>
-        <p>{description}</p>
+    <fieldset className={joinClasses([!show && "hidden", "grid gap-4"])}>
+      <legend className="mb-4">
+        <Heading className="text-4xl font-bold">{title}</Heading>
+        <p className="text-xl c-grey-500 mt-4">{description}</p>
       </legend>
       {children}
     </fieldset>
