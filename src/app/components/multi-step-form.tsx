@@ -12,7 +12,7 @@ export const MultiStepForm = () => {
       <SideBar>
         <FormSteps {...stepController} />
       </SideBar>
-      <FieldSection step={stepController.step} />
+      <FieldSection {...stepController} />
       <NavigationBar {...stepController} />
     </Article>
   );

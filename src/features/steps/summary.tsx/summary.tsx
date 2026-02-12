@@ -2,8 +2,15 @@ import { StepSection } from "../components/step-section";
 import { AddsOnSummary } from "./adds-on-summary";
 import { PersonelInfoSummary } from "./personel-info-summary";
 import { PlanSummary } from "./plan-summary";
+import { SummaryHolder } from "./summary-holder";
 
-export const Summary = ({ show = false }: { show: boolean }) => {
+export const Summary = ({
+  show = false,
+  setStep,
+}: {
+  show: boolean;
+  setStep: React.Dispatch<React.SetStateAction<number>>;
+}) => {
   return (
     <StepSection
       show={show}
@@ -13,9 +20,18 @@ export const Summary = ({ show = false }: { show: boolean }) => {
       }}
     >
       <div>
-        <PersonelInfoSummary />
-        <PlanSummary />
-        <AddsOnSummary />
+        {[
+          { component: <PersonelInfoSummary /> },
+          { component: <PlanSummary setStep={setStep} />, custom: true },
+          { component: <AddsOnSummary /> },
+        ].map(({ component, custom }, index) => (
+          <SummaryHolder
+            key={index}
+            {...{ custom, setStep, changeIndex: index }}
+          >
+            {component}
+          </SummaryHolder>
+        ))}
       </div>
       <dl className="flex gap-4 justify-between items-center px-4 mt-4 c-grey-500">
         <dt>Total (per month)</dt>

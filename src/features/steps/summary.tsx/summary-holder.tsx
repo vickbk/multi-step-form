@@ -4,9 +4,13 @@ import React from "react";
 export const SummaryHolder = ({
   children,
   custom: custom = false,
+  setStep,
+  changeIndex,
 }: {
   children: React.ReactNode;
   custom?: boolean;
+  setStep: React.Dispatch<React.SetStateAction<number>>;
+  changeIndex: number;
 }) => {
   return (
     <div
@@ -16,7 +20,11 @@ export const SummaryHolder = ({
     >
       {children}
       {!custom && (
-        <button type="button" className="underline">
+        <button
+          type="button"
+          className="underline"
+          onClick={() => setStep(changeIndex)}
+        >
           Change
         </button>
       )}

@@ -1,8 +1,6 @@
-import { SummaryHolder } from "./summary-holder";
-
 export const PersonelInfoSummary = () => {
   return (
-    <SummaryHolder>
+    <>
       {[
         ["name", "test"],
         ["email", "test@example.com"],
@@ -13,6 +11,6 @@ export const PersonelInfoSummary = () => {
           <dd className="c-blue-950">{value}</dd>
         </dl>
       ))}
-    </SummaryHolder>
+    </>
   );
 };
