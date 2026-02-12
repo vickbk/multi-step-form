@@ -4,9 +4,9 @@ export const AddsOnSummary = () => {
   return (
     <SummaryHolder>
       {[["add", "value"]].map(([label, value]) => (
-        <dl key={label}>
+        <dl className="flex justify-between" key={label}>
           <dt>{label}</dt>
-          <dd>{value}</dd>
+          <dd className="c-blue-950">{value}</dd>
         </dl>
       ))}
     </SummaryHolder>
