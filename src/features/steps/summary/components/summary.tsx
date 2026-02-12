@@ -1,4 +1,4 @@
-import { StepSection } from "../components/step-section";
+import { StepSection } from "../../components/step-section";
 import { AddsOnSummary } from "./adds-on-summary";
 import { PersonelInfoSummary } from "./personel-info-summary";
 import { PlanSummary } from "./plan-summary";
