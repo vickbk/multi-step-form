@@ -17,6 +17,10 @@ export const Summary = ({ show = false }: { show: boolean }) => {
         <PlanSummary />
         <AddsOnSummary />
       </div>
+      <dl className="flex gap-4 justify-between items-center px-4 mt-4 c-grey-500">
+        <dt>Total (per month)</dt>
+        <dd className="font-semibold text-2xl c-purple-600">$120/yr</dd>
+      </dl>
     </StepSection>
   );
 };
