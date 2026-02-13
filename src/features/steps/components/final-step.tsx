@@ -1,10 +1,13 @@
 import { default as thanksImage } from "@/assets/images/icon-thank-you.svg";
 import { SROnly } from "@/shared/components/SROnly";
-import { Heading } from "@/shared/heading-manager/components/heading-managers";
+import {
+  Article,
+  Heading,
+} from "@/shared/heading-manager/components/heading-managers";
 
 export const FinalStep = ({ show = false }: { show: boolean }) => {
   return (
-    <article
+    <Article
       className={
         !show
           ? "hidden"
@@ -26,6 +29,6 @@ export const FinalStep = ({ show = false }: { show: boolean }) => {
       >
         Subscribe another account
       </button>
-    </article>
+    </Article>
   );
 };
