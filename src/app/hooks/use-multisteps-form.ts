@@ -1,6 +1,8 @@
 import { useActionState, useMemo, useState, type JSX } from "react";
 
-export function useMultistepsForm(steps: (() => JSX.Element)[]) {
+export function useMultistepsForm<T extends object>(
+  steps: (() => JSX.Element)[],
+) {
   const [step, setStep] = useState(0);
   const [complete, setComplete] = useState(false);
 
@@ -20,20 +22,21 @@ export function useMultistepsForm(steps: (() => JSX.Element)[]) {
   );
 
   const [formData, formAction] = useActionState(
-    async (_: object, data: FormData) => {
+    async (_: T, data: FormData) => {
       const formData = Object.fromEntries(data);
       const results = { ..._, ...formData };
       if (navigation.isLastStep) {
         setComplete(true);
-        return {};
+        // can handle form submission here, e.g. send data to server
+        return {} as T;
       }
       navigation.next();
       if ("add-on" in formData) {
-        return { ...results, "add-on": data.getAll("add-on") } as object;
+        return { ...results, "add-on": data.getAll("add-on") };
       }
       return results;
     },
-    {},
+    {} as Awaited<T>,
   );
 
   return { ...navigation, formAction, formData };

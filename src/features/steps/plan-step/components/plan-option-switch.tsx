@@ -21,7 +21,7 @@ export const PlanOptionSwitch = () => {
           <input
             type="radio"
             className="sr-only"
-            name="plan-period"
+            name="billing"
             value={value}
             checked={checked === value}
             onChange={() => setChecked(value)}
