@@ -1,0 +1,10 @@
+import type { MultiStepData } from "@/app/types/multi-step-data";
+
+export type PersonalInfoType = Pick<MultiStepData, "name" | "email" | "phone">;
+
+export type PersonalInfoInput = {
+  label: string;
+  type: string;
+  placeholder: string;
+  name: keyof PersonalInfoType;
+};

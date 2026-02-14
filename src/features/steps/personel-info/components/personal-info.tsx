@@ -1,27 +1,9 @@
 import { getRandomElement, joinClasses } from "@/shared/libs";
 import { StepSection } from "../../components/step-section";
+import { PERSONEL_INFO_INPUTS } from "../scripts/inputs";
+import type { PersonalInfoType } from "../types/personal-info";
 
-export const PersonalInfo = () => {
-  const inputs = [
-    {
-      label: "Name",
-      type: "text",
-      placeholder: "e.g. Stephen King",
-      name: "name",
-    },
-    {
-      label: "Email Address",
-      type: "email",
-      placeholder: "e.g. stephenking@lorem.com",
-      name: "email",
-    },
-    {
-      label: "Phone Number",
-      type: "tel",
-      placeholder: "e.g. +1 234 567 890",
-      name: "phone",
-    },
-  ];
+export const PersonalInfo = (data: PersonalInfoType) => {
   return (
     <StepSection
       header={{
@@ -30,7 +12,7 @@ export const PersonalInfo = () => {
           "Please provide your name, email address, and phone number.",
       }}
     >
-      {inputs.map(({ name, label, placeholder, type }) => (
+      {PERSONEL_INFO_INPUTS.map(({ name, label, placeholder, type }) => (
         <label
           className="grid grid-cols-[auto_1fr] items-center text-xl gap-1 c-blue-950"
           key={label}
@@ -48,6 +30,7 @@ export const PersonalInfo = () => {
             placeholder={placeholder}
             name={name}
             required
+            defaultValue={data[name] ?? ""}
           />
         </label>
       ))}
