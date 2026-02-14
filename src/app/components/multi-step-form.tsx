@@ -1,13 +1,21 @@
 import { FormSteps } from "@/features/sidebar/components/form-steps";
 import { SideBar } from "@/features/sidebar/components/sidebar";
+import { AddsOn } from "@/features/steps/adds-on/components/adds-on";
 import { FinalStep } from "@/features/steps/components/final-step";
 import { PersonalInfo } from "@/features/steps/personel-info/components/personal-info";
+import { PlanSection } from "@/features/steps/plan-step/components/plan-section";
+import { Summary } from "@/features/steps/summary/components/summary";
 import { useMultistepsForm } from "../hooks/use-multisteps-form";
 import "../styles/multi-step-form.css";
 import { NavigationBar } from "./navigation-bar";
 
 export const MultiStepForm = () => {
-  const navigation = useMultistepsForm([PersonalInfo]);
+  const navigation = useMultistepsForm([
+    PersonalInfo,
+    PlanSection,
+    AddsOn,
+    Summary,
+  ]);
   const { formAction, goTo, Current, complete, formData } = navigation;
 
   return (

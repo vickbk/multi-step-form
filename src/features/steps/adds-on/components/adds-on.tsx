@@ -2,7 +2,7 @@ import { default as Checkmark } from "@/assets/images/icon-checkmark.svg";
 import { StepSection } from "../../components/step-section";
 import "../styles/add-ons.css";
 
-export const AddsOn = ({ show = false }: { show: boolean }) => {
+export const AddsOn = () => {
   const options = [
     {
       name: "online-service",
@@ -25,7 +25,6 @@ export const AddsOn = ({ show = false }: { show: boolean }) => {
   ];
   return (
     <StepSection
-      show={show}
       header={{
         title: "Pick Add-ons",
         description: "Add-ons help enhance your gaming experience.",

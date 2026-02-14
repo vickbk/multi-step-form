@@ -6,15 +6,12 @@ import { PlanSummary } from "./plan-summary";
 import { SummaryHolder } from "./summary-holder";
 
 export const Summary = ({
-  show = false,
-  setStep,
+  goTo: goTo,
 }: {
-  show: boolean;
-  setStep: (newStep: number) => void;
+  goTo: (newStep: number) => void;
 }) => {
   return (
     <StepSection
-      show={show}
       header={{
         title: "Finishing up",
         description: "Double-check everything looks OK before confirming.",
@@ -23,12 +20,12 @@ export const Summary = ({
       <div>
         {[
           { component: <PersonelInfoSummary /> },
-          { component: <PlanSummary setStep={setStep} />, custom: true },
+          { component: <PlanSummary setStep={goTo} />, custom: true },
           { component: <AddsOnSummary /> },
         ].map(({ component, custom }, index) => (
           <SummaryHolder
             key={index}
-            {...{ custom, setStep, changeIndex: index }}
+            {...{ custom, setStep: goTo, changeIndex: index }}
           >
             {component}
           </SummaryHolder>
