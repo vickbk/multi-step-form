@@ -1,7 +1,7 @@
 import { useActionState, useMemo, useState, type JSX } from "react";
 
 export function useMultistepsForm<T extends object>(
-  steps: (() => JSX.Element)[],
+  steps: ((data: T & { goTo: (index: number) => void }) => JSX.Element)[],
 ) {
   const [step, setStep] = useState(0);
   const [complete, setComplete] = useState(false);

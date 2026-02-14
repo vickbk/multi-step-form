@@ -7,10 +7,11 @@ import { PlanSection } from "@/features/steps/plan-step/components/plan-section"
 import { Summary } from "@/features/steps/summary/components/summary";
 import { useMultistepsForm } from "../hooks/use-multisteps-form";
 import "../styles/multi-step-form.css";
+import type { MultiStepData } from "../types/multi-step-data";
 import { NavigationBar } from "./navigation-bar";
 
 export const MultiStepForm = () => {
-  const navigation = useMultistepsForm([
+  const navigation = useMultistepsForm<MultiStepData>([
     PersonalInfo,
     PlanSection,
     AddsOn,
