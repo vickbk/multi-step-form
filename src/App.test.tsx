@@ -34,4 +34,19 @@ describe("MultiStep form Tests", () => {
       await screen.findByText(/personal info/i);
     },
   );
+
+  test("should show error messages if navigating to step 2 without valid data", async () => {
+    render(<App />);
+    const nextButton = await screen.findByRole("button", {
+      name: /next step/i,
+    });
+    await userEvent.click(nextButton);
+    expect(
+      (
+        await screen.findAllByText(
+          /(This field is required)|(Please enter a valid phone number)|(Please enter a valid email address)/i,
+        )
+      ).length,
+    ).toBe(3);
+  });
 });
