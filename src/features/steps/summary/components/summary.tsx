@@ -1,5 +1,6 @@
 import type { MultiStepData } from "@/app/types/multi-step-data";
 import { StepSection } from "../../components/step-section";
+import { getBillingLabel } from "../../plan-step/scripts/plan-helpers";
 import { getTotalPrice } from "../scripts/summary-handler";
 import "../styles/summary.css";
 import { AddsOnSummary } from "./adds-on-summary";
@@ -36,9 +37,9 @@ export const Summary = ({
         ))}
       </div>
       <dl className="flex gap-4 justify-between items-center px-4 mt-4 c-grey-500">
-        <dt>Total (per {billing === "yearly" ? "year" : "month"})</dt>
+        <dt>Total (per {getBillingLabel(billing, true)})</dt>
         <dd className="font-semibold text-2xl c-purple-600">
-          ${getTotalPrice(data)}/{billing === "yearly" ? "yr" : "mo"}
+          ${getTotalPrice(data)}/{getBillingLabel(billing)}
         </dd>
       </dl>
     </StepSection>
