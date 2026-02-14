@@ -17,7 +17,7 @@ export const MultiStepForm = () => {
     AddsOn,
     Summary,
   ]);
-  const { formAction, goTo, Current, complete, formData } = navigation;
+  const { formAction, goTo, Current, complete, formData, reset } = navigation;
 
   return (
     <form className="multi-step-form" action={formAction}>
@@ -26,7 +26,7 @@ export const MultiStepForm = () => {
       </SideBar>
       <div className="mx-4 mb-auto p-8 white rounded-2xl md:max-w-lg">
         {!complete && <Current {...{ ...formData, goTo }} />}
-        {complete && <FinalStep />}
+        {complete && <FinalStep reset={reset} />}
       </div>
       {!complete && <NavigationBar {...navigation} />}
     </form>

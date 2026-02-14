@@ -5,7 +5,7 @@ import {
   Heading,
 } from "@/shared/heading-manager/components/heading-managers";
 
-export const FinalStep = () => {
+export const FinalStep = ({ reset }: { reset: () => void }) => {
   return (
     <Article className="grid items-center gap-4 text-center c-grey-500 py-8 justify-items-center font-medium">
       <img src={thanksImage} alt="" />
@@ -20,6 +20,7 @@ export const FinalStep = () => {
       <button
         type="button"
         className="blue-950 p-4 rounded-lg c-background text-lg mt-8"
+        onClick={reset}
       >
         Subscribe another account
       </button>

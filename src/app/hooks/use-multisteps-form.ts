@@ -17,6 +17,10 @@ export function useMultistepsForm<T extends object>(
       back: () => setStep((prev) => Math.max(prev - 1, 0)),
       complete,
       Current: steps[step],
+      reset: () => {
+        setStep(0);
+        setComplete(false);
+      },
     }),
     [step, steps, complete],
   );
