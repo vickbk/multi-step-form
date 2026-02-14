@@ -3,10 +3,11 @@ import type {
   WithBack,
   WithGoTo,
 } from "@/app/types/multi-step-data";
+import { ADDON_REQUIRED_FIELDS } from "../../add-ons/scripts/inputs";
 import { StepSection } from "../../components/step-section";
 import { useRequire } from "../../hooks/use-require";
 import { getBillingLabel } from "../../plan-step/scripts/plan-helpers";
-import { getTotalPrice } from "../scripts/summary-handler";
+import { getTotalPrice } from "../scripts/summary-helpers";
 import "../styles/summary.css";
 import { AddsOnSummary } from "./adds-on-summary";
 import { PersonelInfoSummary } from "./personel-info-summary";
@@ -17,13 +18,7 @@ export const Summary = ({
   goTo: goTo,
   ...data
 }: WithBack<WithGoTo<MultiStepData>>) => {
-  const required = useRequire(data, [
-    "name",
-    "email",
-    "phone",
-    "plan",
-    "billing",
-  ]);
+  const required = useRequire(data, ADDON_REQUIRED_FIELDS);
 
   const { billing } = data;
   return (
