@@ -2,6 +2,7 @@ import { useActionState, useMemo, useState, type JSX } from "react";
 
 export function useMultistepsForm<T extends object>(
   steps: ((data: T & { goTo: (index: number) => void }) => JSX.Element)[],
+  completeCallback?: (data: T) => Promise<unknown>,
 ) {
   const [step, setStep] = useState(0);
   const [complete, setComplete] = useState(false);
@@ -31,6 +32,9 @@ export function useMultistepsForm<T extends object>(
       const results = { ..._, ...formData };
       if (navigation.isLastStep) {
         setComplete(true);
+        if (completeCallback) {
+          return (await completeCallback(results)) as T;
+        }
         // can handle form submission here, e.g. send data to server
         return {} as T;
       }
