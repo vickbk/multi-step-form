@@ -37,7 +37,7 @@ export const Summary = ({
         ))}
       </div>
       <dl className="flex gap-4 justify-between items-center px-4 mt-4 c-grey-500">
-        <dt>Total (per {getBillingLabel(billing, true)})</dt>
+        <dt>Total ({getBillingLabel(billing, true)})</dt>
         <dd className="font-semibold text-2xl c-purple-600">
           ${getTotalPrice(data)}/{getBillingLabel(billing)}
         </dd>

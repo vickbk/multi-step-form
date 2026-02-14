@@ -8,7 +8,7 @@ export function getPlanPrice({ billing, plan }: PlanType) {
 export function getBillingLabel(billing: PlanType["billing"], full = false) {
   const isYearly = billing === "yearly";
   if (full) {
-    return isYearly ? "Yearly" : "Monthly";
+    return isYearly ? "per year" : "per month";
   }
   return isYearly ? "yr" : "mo";
 }
