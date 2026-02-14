@@ -20,7 +20,11 @@ export const MultiStepForm = () => {
     navigation;
 
   return (
-    <form className="multi-step-form" action={formAction}>
+    <form
+      className="multi-step-form"
+      action={formAction}
+      aria-label="multi step form"
+    >
       <SideBar>
         <FormSteps {...navigation} />
       </SideBar>
