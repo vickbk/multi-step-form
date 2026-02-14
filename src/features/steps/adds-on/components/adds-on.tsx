@@ -1,28 +1,10 @@
 import { default as Checkmark } from "@/assets/images/icon-checkmark.svg";
 import { StepSection } from "../../components/step-section";
+import { ADDONS_INPUTS } from "../scripts/inputs";
 import "../styles/add-ons.css";
+import type { AddOns } from "../types/add-on";
 
-export const AddsOn = () => {
-  const options = [
-    {
-      name: "online-service",
-      label: "Online service",
-      description: "Access to multiplayer games",
-      price: 10,
-    },
-    {
-      label: "Larger storage",
-      name: "larger-storage",
-      description: "Extra 1TB of cloud save",
-      price: 20,
-    },
-    {
-      label: "Customizable profile",
-      name: "customizable-profile",
-      description: "Custom theme on your profile",
-      price: 20,
-    },
-  ];
+export const AddsOn = ({ "add-ons": addOns = [], billing }: AddOns) => {
   return (
     <StepSection
       header={{
@@ -30,13 +12,14 @@ export const AddsOn = () => {
         description: "Add-ons help enhance your gaming experience.",
       }}
     >
-      {options.map(({ label, name, description, price }) => (
+      {ADDONS_INPUTS[billing].map(({ label, name, description, price }) => (
         <label key={name} className="add-on">
           <input
             type="checkbox"
             className="add-on__input"
-            name="add-on"
+            name="add-ons"
             value={name}
+            defaultChecked={addOns.includes(name)}
           />
           <span className="add-on__icon ">
             <img src={Checkmark} className="w-8" alt="" />
@@ -45,7 +28,9 @@ export const AddsOn = () => {
             <span className="font-semibold c-blue-950 text-xl">{label}</span>
             <span>{description}</span>
           </span>
-          <span className="c-purple-600 font-medium ml-auto">+{price}/yr</span>
+          <span className="c-purple-600 font-medium ml-auto">
+            +{price}/{billing === "yearly" ? "yr" : "mo"}
+          </span>
         </label>
       ))}
     </StepSection>

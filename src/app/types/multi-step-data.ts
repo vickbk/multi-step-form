@@ -3,6 +3,6 @@ export type MultiStepData = {
   email: string;
   phone: string;
   plan: string;
-  addOns: string[];
+  "add-ons": string[];
   billing: "monthly" | "yearly";
 };

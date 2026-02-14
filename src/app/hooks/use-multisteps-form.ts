@@ -31,8 +31,8 @@ export function useMultistepsForm<T extends object>(
         return {} as T;
       }
       navigation.next();
-      if ("add-on" in formData) {
-        return { ...results, "add-on": data.getAll("add-on") };
+      if ("add-ons" in formData) {
+        return { ...results, "add-ons": data.getAll("add-ons") };
       }
       return results;
     },
