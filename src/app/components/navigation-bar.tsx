@@ -4,12 +4,10 @@ import "../styles/navigation-bar.css";
 
 export const NavigationBar = ({
   back,
-  next,
   isFirstStep,
   isLastStep,
 }: {
   back: () => void;
-  next: () => void;
   isFirstStep: boolean;
   isLastStep: boolean;
 }) => {
@@ -28,8 +26,7 @@ export const NavigationBar = ({
 
       <button
         className={joinClasses(["next-button", isLastStep && "hidden"])}
-        type="button"
-        onClick={next}
+        type="submit"
       >
         Next Step
       </button>
