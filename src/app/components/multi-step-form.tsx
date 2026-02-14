@@ -1,6 +1,6 @@
 import { FormSteps } from "@/features/sidebar/components/form-steps";
 import { SideBar } from "@/features/sidebar/components/sidebar";
-import { AddsOn } from "@/features/steps/adds-on/components/adds-on";
+import { AddsOn } from "@/features/steps/add-ons/components/add-ons";
 import { FinalStep } from "@/features/steps/components/final-step";
 import { PersonalInfo } from "@/features/steps/personel-info/components/personal-info";
 import { PlanSection } from "@/features/steps/plan-step/components/plan-section";
