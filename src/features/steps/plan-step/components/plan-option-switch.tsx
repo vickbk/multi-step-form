@@ -1,18 +1,22 @@
 import { Icon } from "@/shared/components/bi-icon";
 import { joinClasses } from "@/shared/libs";
-import { useState } from "react";
+import { BILLING } from "../scripts/plan-inputs";
+import type { PlanType } from "../types/plan-type";
 
-export const PlanOptionSwitch = () => {
-  const [checked, setChecked] = useState<"monthly" | "yearly">("monthly");
-  const periods = ["monthly", "yearly"] as const;
+export const PlanOptionSwitch = ({
+  billing,
+  setBilling,
+}: Pick<PlanType, "billing"> & {
+  setBilling: (value: "monthly" | "yearly") => void;
+}) => {
   return (
     <fieldset className="background p-4 rounded-lg flex gap-4 justify-center">
       <legend className="sr-only">Plan period</legend>
-      {periods.map((value) => (
+      {BILLING.map((value) => (
         <label
           key={value}
           className={joinClasses([
-            value === checked
+            value === billing
               ? "c-grey-500 cursor-not-allowed"
               : "cursor-pointer",
             "font-medium flex gap-4 capitalize",
@@ -23,14 +27,15 @@ export const PlanOptionSwitch = () => {
             className="sr-only"
             name="billing"
             value={value}
-            checked={checked === value}
-            onChange={() => setChecked(value)}
+            checked={billing === value}
+            onChange={() => setBilling(value)}
+            required
           />
-          {value === "yearly" && checked !== value && (
+          {value === "yearly" && billing !== value && (
             <Icon className={"toggle-off"} />
           )}
           {value}
-          {value === "monthly" && checked !== value && (
+          {value === "monthly" && billing !== value && (
             <Icon className={"toggle-on"} />
           )}
         </label>
