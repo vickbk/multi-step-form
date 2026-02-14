@@ -23,9 +23,9 @@ export const Summary = ({
     >
       <div>
         {[
-          { component: <PersonelInfoSummary /> },
-          { component: <PlanSummary setStep={goTo} />, custom: true },
-          { component: <AddsOnSummary /> },
+          { component: <PersonelInfoSummary {...data} /> },
+          { component: <PlanSummary {...data} goTo={goTo} />, custom: true },
+          { component: <AddsOnSummary {...data} /> },
         ].map(({ component, custom }, index) => (
           <SummaryHolder
             key={index}

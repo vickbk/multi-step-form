@@ -1,10 +1,16 @@
-export const PersonelInfoSummary = () => {
+import type { PersonalInfoType } from "../../personel-info/types/personal-info";
+
+export const PersonelInfoSummary = ({
+  name,
+  email,
+  phone,
+}: PersonalInfoType) => {
   return (
     <>
       {[
-        ["name", "test"],
-        ["email", "test@example.com"],
-        ["Telephone", "+123-456-7890"],
+        ["name", name],
+        ["email", email],
+        ["Telephone", phone],
       ].map(([label, value]) => (
         <dl className="flex gap-2 justify-between" key={label}>
           <dt>{label}: </dt>
