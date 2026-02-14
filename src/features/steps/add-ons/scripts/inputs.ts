@@ -1,4 +1,6 @@
-export const ADDONS_INPUTS = {
+import type { AddOnInput } from "../types/add-on";
+
+export const ADDONS_INPUTS: Record<"yearly" | "monthly", AddOnInput[]> = {
   yearly: [
     {
       name: "online-service",

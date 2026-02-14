@@ -1,4 +1,6 @@
+import type { MultiStepData } from "@/app/types/multi-step-data";
 import { StepSection } from "../../components/step-section";
+import { getTotalPrice } from "../scripts/summary-handler";
 import "../styles/summary.css";
 import { AddsOnSummary } from "./adds-on-summary";
 import { PersonelInfoSummary } from "./personel-info-summary";
@@ -7,9 +9,11 @@ import { SummaryHolder } from "./summary-holder";
 
 export const Summary = ({
   goTo: goTo,
-}: {
+  ...data
+}: MultiStepData & {
   goTo: (newStep: number) => void;
 }) => {
+  const { billing } = data;
   return (
     <StepSection
       header={{
@@ -32,8 +36,10 @@ export const Summary = ({
         ))}
       </div>
       <dl className="flex gap-4 justify-between items-center px-4 mt-4 c-grey-500">
-        <dt>Total (per month)</dt>
-        <dd className="font-semibold text-2xl c-purple-600">$120/yr</dd>
+        <dt>Total (per {billing === "yearly" ? "year" : "month"})</dt>
+        <dd className="font-semibold text-2xl c-purple-600">
+          ${getTotalPrice(data)}/{billing === "yearly" ? "yr" : "mo"}
+        </dd>
       </dl>
     </StepSection>
   );
