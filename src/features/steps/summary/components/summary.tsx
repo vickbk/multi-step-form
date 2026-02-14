@@ -10,7 +10,7 @@ export const Summary = ({
   setStep,
 }: {
   show: boolean;
-  setStep: React.Dispatch<React.SetStateAction<number>>;
+  setStep: (newStep: number) => void;
 }) => {
   return (
     <StepSection

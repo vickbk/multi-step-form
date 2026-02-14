@@ -9,7 +9,7 @@ export const SummaryHolder = ({
 }: {
   children: React.ReactNode;
   custom?: boolean;
-  setStep: React.Dispatch<React.SetStateAction<number>>;
+  setStep: (newStep: number) => void;
   changeIndex: number;
 }) => {
   return (

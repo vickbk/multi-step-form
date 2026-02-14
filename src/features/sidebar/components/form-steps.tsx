@@ -5,7 +5,7 @@ export const FormSteps = ({
   setStep,
 }: {
   step: number;
-  setStep: React.Dispatch<React.SetStateAction<number>>;
+  setStep: (newStep: number) => void;
 }) => {
   return (
     <ul className="mx-auto py-8 md:p-8 flex gap-4 justify-center md:grid grid-cols-1 uppercase min-w-75 md:mx-0 md:justify-start md:absolute md:top-0">

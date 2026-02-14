@@ -1,7 +1,7 @@
 import { getRandomElement, joinClasses } from "@/shared/libs";
 import { StepSection } from "../../components/step-section";
 
-export const PersonalInfo = ({ show = false }: { show: boolean }) => {
+export const PersonalInfo = () => {
   const inputs = [
     {
       label: "Name",
@@ -24,7 +24,6 @@ export const PersonalInfo = ({ show = false }: { show: boolean }) => {
   ];
   return (
     <StepSection
-      show={show}
       header={{
         title: "Personal Info",
         description:

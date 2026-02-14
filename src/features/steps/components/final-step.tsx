@@ -5,15 +5,9 @@ import {
   Heading,
 } from "@/shared/heading-manager/components/heading-managers";
 
-export const FinalStep = ({ show = false }: { show: boolean }) => {
+export const FinalStep = () => {
   return (
-    <Article
-      className={
-        !show
-          ? "hidden"
-          : "grid items-center gap-4 text-center c-grey-500 py-8 justify-items-center font-medium"
-      }
-    >
+    <Article className="grid items-center gap-4 text-center c-grey-500 py-8 justify-items-center font-medium">
       <img src={thanksImage} alt="" />
       <Heading className="c-blue-950 font-bold text-4xl">
         Thank you<SROnly> for your subscription</SROnly>!

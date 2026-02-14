@@ -10,6 +10,7 @@ export const PlanOptionSwitch = () => {
       <legend className="sr-only">Plan period</legend>
       {periods.map((value) => (
         <label
+          key={value}
           className={joinClasses([
             value === checked
               ? "c-grey-500 cursor-not-allowed"

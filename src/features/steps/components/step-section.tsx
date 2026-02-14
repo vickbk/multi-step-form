@@ -7,14 +7,12 @@ import { joinClasses } from "@/shared/libs";
 export const StepSection = ({
   header: { title, description },
   children,
-  show = false,
 }: {
   header: Record<"title" | "description", string>;
   children: React.ReactNode;
-  show?: boolean;
 }) => {
   return (
-    <fieldset className={joinClasses([!show && "hidden", "grid gap-4"])}>
+    <fieldset className={joinClasses(["grid gap-4"])}>
       <legend className="mb-4">
         <Header>
           <Heading className="text-4xl font-bold">{title}</Heading>

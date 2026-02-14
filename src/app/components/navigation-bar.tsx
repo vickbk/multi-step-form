@@ -24,8 +24,7 @@ export const NavigationBar = ({
 
       <button
         className={joinClasses(["next-button", step === 3 && "hidden"])}
-        type="button"
-        onClick={() => setStep(step + 1)}
+        type="submit"
       >
         Next Step
       </button>
