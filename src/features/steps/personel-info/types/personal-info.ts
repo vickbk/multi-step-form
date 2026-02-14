@@ -7,4 +7,6 @@ export type PersonalInfoInput = {
   type: string;
   placeholder: string;
   name: keyof PersonalInfoType;
+  errorMessage: string;
+  pattern?: string;
 };

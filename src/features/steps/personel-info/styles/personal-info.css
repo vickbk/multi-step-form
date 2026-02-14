@@ -1,0 +1,30 @@
+@import "tailwindcss";
+
+.input-field {
+  @apply grid grid-cols-[auto_1fr] items-center text-xl gap-1;
+  color: hsl(var(--blue-950));
+
+  .input-field__error {
+    @apply text-right text-sm hidden;
+    color: hsl(var(--red-500));
+  }
+
+  .input-field__input {
+    @apply col-span-full outline p-2 px-4 rounded-md font-medium;
+    outline-color: hsl(var(--grey-500));
+    &:focus,
+    &:active,
+    &:hover {
+      outline-color: hsl(var(--purple-600));
+    }
+    &:user-invalid {
+      outline-color: hsl(var(--red-500));
+    }
+  }
+
+  &:has(.input-field__input:user-invalid) {
+    .input-field__error {
+      @apply block;
+    }
+  }
+}
