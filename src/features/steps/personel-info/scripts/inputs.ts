@@ -18,11 +18,10 @@ export const PERSONEL_INFO_INPUTS: PersonalInfoInput[] = [
   },
   {
     label: "Phone Number",
-    type: "tel",
+    type: "text",
     placeholder: "e.g. +1 234 567 890",
     name: "phone",
     errorMessage: "Please enter a valid phone number",
-    pattern:
-      "^\\+?[0-9]{1,4}?[-.\\s]?\\(?[0-9]{1,3}?\\)?[-.\\s]?[0-9]{1,4}[-.\\s]?[0-9]{1,4}[-.\\s]?[0-9]{1,9}$",
+    pattern: "[+]?[0-9 \\(\\)\\-]{7,}",
   },
 ];
