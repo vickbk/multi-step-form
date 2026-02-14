@@ -15,8 +15,8 @@ export function useMultistepsForm<T extends object>(
         setStep(() => Math.max(0, Math.min(index, steps.length - 1))),
       isFirstStep: step === 0,
       isLastStep: step === steps.length - 1,
-      next: () => setStep((prev) => Math.min(prev + 1, steps.length - 1)),
-      back: () => setStep((prev) => Math.max(prev - 1, 0)),
+      next: () => setStep(Math.min(step + 1, steps.length - 1)),
+      back: () => setStep(Math.max(step - 1, 0)),
       complete,
       Current: steps[step],
       reset: () => {
