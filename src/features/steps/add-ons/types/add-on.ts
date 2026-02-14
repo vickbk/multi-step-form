@@ -1,7 +1,7 @@
 import type { MultiStepData } from "@/app/types/multi-step-data";
 import type { PlanType } from "../../plan-step/types/plan-type";
 
-export type AddOns = Pick<MultiStepData, "add-ons" | "billing">;
+export type AddOns = PlanType & Pick<MultiStepData, "add-ons">;
 
 export type AddOnInput = {
   name: string;

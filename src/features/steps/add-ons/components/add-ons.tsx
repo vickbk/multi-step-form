@@ -1,18 +1,29 @@
+import type { WithBack } from "@/app/types/multi-step-data";
 import { default as Checkmark } from "@/assets/images/icon-checkmark.svg";
 import { StepSection } from "../../components/step-section";
+import { useRequire } from "../../hooks/use-require";
 import { ADDONS_INPUTS } from "../scripts/inputs";
 import "../styles/add-ons.css";
 import type { AddOns } from "../types/add-on";
 
-export const AddsOn = ({ "add-ons": addOns = [], billing }: AddOns) => {
+export const AddsOn = (data: WithBack<AddOns>) => {
+  const required = useRequire(data, [
+    "billing",
+    "plan",
+    "name",
+    "email",
+    "phone",
+  ]);
+  const { "add-ons": addOns = [], billing } = data;
   return (
     <StepSection
+      ref={required}
       header={{
         title: "Pick Add-ons",
         description: "Add-ons help enhance your gaming experience.",
       }}
     >
-      {ADDONS_INPUTS[billing].map(({ label, name, description, price }) => (
+      {ADDONS_INPUTS[billing]?.map(({ label, name, description, price }) => (
         <label key={name} className="add-on">
           <input
             type="checkbox"

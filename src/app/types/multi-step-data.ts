@@ -6,3 +6,7 @@ export type MultiStepData = {
   "add-ons": string[];
   billing: "monthly" | "yearly";
 };
+
+export type WithGoTo<T extends object> = T & { goTo: (index: number) => void };
+
+export type WithBack<T extends object> = T & { back: () => void };

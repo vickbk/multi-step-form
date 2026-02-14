@@ -2,10 +2,12 @@ import type { PlanType } from "../types/plan-type";
 import { PLANS_INPUTS } from "./plan-inputs";
 
 export function getPlanPrice({ billing, plan }: PlanType) {
+  if (!billing) return 0;
   return PLANS_INPUTS[billing].find(({ name }) => name === plan)?.price || 0;
 }
 
 export function getBillingLabel(billing: PlanType["billing"], full = false) {
+  if (!billing) return;
   const isYearly = billing === "yearly";
   if (full) {
     return isYearly ? "per year" : "per month";

@@ -1,7 +1,8 @@
 import { useActionState, useMemo, useState, type JSX } from "react";
+import type { WithBack, WithGoTo } from "../types/multi-step-data";
 
 export function useMultistepsForm<T extends object>(
-  steps: ((data: T & { goTo: (index: number) => void }) => JSX.Element)[],
+  steps: ((data: WithBack<WithGoTo<T>>) => JSX.Element)[],
   completeCallback?: (data: T) => Promise<unknown>,
 ) {
   const [step, setStep] = useState(0);

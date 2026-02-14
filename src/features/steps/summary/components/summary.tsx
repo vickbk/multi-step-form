@@ -1,5 +1,10 @@
-import type { MultiStepData } from "@/app/types/multi-step-data";
+import type {
+  MultiStepData,
+  WithBack,
+  WithGoTo,
+} from "@/app/types/multi-step-data";
 import { StepSection } from "../../components/step-section";
+import { useRequire } from "../../hooks/use-require";
 import { getBillingLabel } from "../../plan-step/scripts/plan-helpers";
 import { getTotalPrice } from "../scripts/summary-handler";
 import "../styles/summary.css";
@@ -11,12 +16,19 @@ import { SummaryHolder } from "./summary-holder";
 export const Summary = ({
   goTo: goTo,
   ...data
-}: MultiStepData & {
-  goTo: (newStep: number) => void;
-}) => {
+}: WithBack<WithGoTo<MultiStepData>>) => {
+  const required = useRequire(data, [
+    "name",
+    "email",
+    "phone",
+    "plan",
+    "billing",
+  ]);
+
   const { billing } = data;
   return (
     <StepSection
+      ref={required}
       header={{
         title: "Finishing up",
         description: "Double-check everything looks OK before confirming.",
