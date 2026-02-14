@@ -2,10 +2,10 @@ import { joinClasses } from "@/shared/libs";
 
 export const FormSteps = ({
   step: current,
-  setStep,
+  goTo,
 }: {
   step: number;
-  setStep: (newStep: number) => void;
+  goTo: (newStep: number) => void;
 }) => {
   return (
     <ul className="mx-auto py-8 md:p-8 flex gap-4 justify-center md:grid grid-cols-1 uppercase min-w-75 md:mx-0 md:justify-start md:absolute md:top-0">
@@ -24,7 +24,7 @@ export const FormSteps = ({
                 : "c-background",
             ])}
             type="button"
-            onClick={() => setStep(step - 1)}
+            onClick={() => goTo(step - 1)}
           >
             {step} <span className="absolute inset-0"></span>
           </button>

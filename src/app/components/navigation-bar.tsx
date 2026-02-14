@@ -3,33 +3,38 @@ import { joinClasses } from "@/shared/libs";
 import "../styles/navigation-bar.css";
 
 export const NavigationBar = ({
-  step,
-  setStep,
+  back,
+  next,
+  isFirstStep,
+  isLastStep,
 }: {
-  step: number;
-  setStep: (num: number) => void;
+  back: () => void;
+  next: () => void;
+  isFirstStep: boolean;
+  isLastStep: boolean;
 }) => {
   return (
     <div className="mt-6 flex p-4 justify-between white w-full md:max-w-lg mx-auto md:px-8">
       <button
         className={joinClasses([
           "c-grey-500 font-semibold",
-          step === 0 && "hidden",
+          isFirstStep && "hidden",
         ])}
         type="button"
-        onClick={() => setStep(step - 1)}
+        onClick={back}
       >
         Go Back <SROnly>to the previous step</SROnly>
       </button>
 
       <button
-        className={joinClasses(["next-button", step === 3 && "hidden"])}
-        type="submit"
+        className={joinClasses(["next-button", isLastStep && "hidden"])}
+        type="button"
+        onClick={next}
       >
         Next Step
       </button>
       <button
-        className={joinClasses(["submit-btn", step !== 3 && "hidden"])}
+        className={joinClasses(["submit-btn", !isLastStep && "hidden"])}
         type="submit"
       >
         Confirm
