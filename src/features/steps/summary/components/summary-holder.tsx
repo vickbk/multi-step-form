@@ -9,8 +9,8 @@ export const SummaryHolder = ({
 }: {
   children: React.ReactNode;
   custom?: boolean;
-  setStep: (newStep: number) => void;
-  changeIndex: number;
+  setStep?: (newStep: number) => void;
+  changeIndex?: number;
 }) => {
   return (
     <div
@@ -23,7 +23,7 @@ export const SummaryHolder = ({
         <button
           type="button"
           className="change-btn"
-          onClick={() => setStep(changeIndex)}
+          onClick={() => setStep?.(changeIndex ?? 0)}
         >
           Change
         </button>

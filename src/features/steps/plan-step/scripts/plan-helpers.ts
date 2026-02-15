@@ -1,7 +1,10 @@
 import type { PlanType } from "../types/plan-type";
 import { PLANS_INPUTS } from "./plan-inputs";
 
-export function getPlanPrice({ billing, plan }: PlanType) {
+export function getPlanPrice({
+  billing,
+  plan,
+}: Pick<PlanType, "billing" | "plan">) {
   if (!billing) return 0;
   return PLANS_INPUTS[billing].find(({ name }) => name === plan)?.price || 0;
 }
