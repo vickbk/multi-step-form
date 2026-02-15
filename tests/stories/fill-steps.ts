@@ -33,3 +33,16 @@ export async function fillPersonalInfo(page: Page) {
     page.getByRole("heading", { name: /Select Your Plan/i }),
   ).toBeVisible();
 }
+
+export async function fillMonthlyPlanStep(page: Page) {
+  await fillPersonalInfo(page);
+  await expect(
+    page.getByRole("heading", { name: /Select Your Plan/i }),
+  ).toBeVisible();
+  const arcadePlan = page.locator("label").filter({ hasText: /arcade plan/i });
+  await arcadePlan.click();
+  await page.getByRole("button", { name: /Next Step/i }).click();
+  await expect(
+    page.getByRole("heading", { name: /Pick Add-ons/i }),
+  ).toBeVisible();
+}
