@@ -16,7 +16,7 @@ export const PlanOptions = ({ plan, billing }: PlanType) => {
             value={name}
             defaultChecked={plan === name}
             required
-            autoFocus={focus}
+            autoFocus={!plan ? focus : plan === name}
           />
           <img src={icon} alt="" />
           <span className="grid">
