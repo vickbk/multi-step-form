@@ -17,7 +17,7 @@ export const NavigationBar = ({
     <div className="mt-6 flex p-4 justify-between white w-full md:max-w-lg mx-auto md:px-8">
       <button
         className={joinClasses([
-          "c-grey-500 font-semibold active-button",
+          "c-grey-500 font-semibold active-button outline-none! active-c-blue-950",
           isFirstStep && "hidden",
         ])}
         type="button"

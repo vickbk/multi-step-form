@@ -74,19 +74,23 @@ dialog {
   @apply transition-transform duration-300;
   &:active,
   &:focus,
-  &:hover {
-    &:not(:disabled) {
+  &:focus-within &:hover {
+    &:not(:disabled),
+    &:has(:not(:disabled)) {
       @apply opacity-80 outline-2;
     }
   }
   &:hover,
-  &:focus {
-    &:not(:disabled) {
+  &:focus,
+  &:focus-within {
+    &:not(:disabled),
+    &:has(:not(:disabled)) {
       @apply scale-105;
     }
   }
   &:active {
-    &:not(:disabled) {
+    &:not(:disabled),
+    &:has(:not(:disabled)) {
       @apply scale-95;
     }
   }

@@ -18,6 +18,8 @@
     &:has(input:checked) {
       @apply outline-2;
       outline-color: hsl(var(--purple-600));
+    }
+    &:has(input:checked) {
       background-color: hsl(var(--background) / 0.4);
     }
   }

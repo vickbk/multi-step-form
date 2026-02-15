@@ -19,7 +19,7 @@ export const PlanOptionSwitch = ({
             value === billing
               ? "c-grey-500 cursor-not-allowed"
               : "cursor-pointer",
-            "font-medium flex gap-4 capitalize",
+            "font-medium flex gap-4 capitalize active-button outline-none!",
           ])}
         >
           <input
