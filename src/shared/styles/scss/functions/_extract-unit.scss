@@ -14,7 +14,7 @@ $num-list: "0123456789";
   @if $str-length == 0 or string.index($num-list, string.slice($string, 1, 1)) {
     @return "";
   } @else if $str-length == 1 {
-    @return $str-length;
+    @return $string;
   }
   @return extract-string-unit(string.slice($string, 2)) +
     string.slice($string, 1, 1);
