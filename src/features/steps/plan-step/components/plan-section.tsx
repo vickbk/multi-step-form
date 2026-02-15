@@ -1,9 +1,9 @@
-import type { WithBack } from "@/app/types/multi-step-data";
+import type { WithBack } from "@/app/types";
 import { useState } from "react";
 import { StepSection } from "../../components/step-section";
-import { useRequire } from "../../hooks/use-require";
-import { PLAN_REQUIRED_FIELDS } from "../scripts/plan-inputs";
-import type { PlanType } from "../types/plan-type";
+import { useRequire } from "../../hooks";
+import { PLAN_REQUIRED_FIELDS } from "../scripts";
+import type { PlanType } from "../types";
 import { PlanOptionSwitch } from "./plan-option-switch";
 import { PlanOptions } from "./plan-options";
 

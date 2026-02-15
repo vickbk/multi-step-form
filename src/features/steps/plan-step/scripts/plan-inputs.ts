@@ -1,8 +1,8 @@
 import { default as AdvancedIcon } from "@/assets/images/icon-advanced.svg";
 import { default as ArcadeIcon } from "@/assets/images/icon-arcade.svg";
 import { default as ProIcon } from "@/assets/images/icon-pro.svg";
-import type { PersonalInfoType } from "../../personel-info/types/personal-info";
-import type { PlanInputType, PlanType } from "../types/plan-type";
+import type { PersonalInfoType } from "../../personel-info";
+import type { PlanInputType, PlanType } from "../types";
 
 export const BILLING: PlanType["billing"][] = ["monthly", "yearly"];
 

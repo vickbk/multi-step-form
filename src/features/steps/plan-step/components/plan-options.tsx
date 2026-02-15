@@ -1,6 +1,6 @@
 import { SROnly } from "@/shared/components/SROnly";
-import { PLANS_INPUTS } from "../scripts/plan-inputs";
-import type { PlanType } from "../types/plan-type";
+import { PLANS_INPUTS } from "../scripts";
+import type { PlanType } from "../types";
 
 export const PlanOptions = ({ plan, billing }: PlanType) => {
   return (

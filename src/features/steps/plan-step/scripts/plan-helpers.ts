@@ -1,4 +1,4 @@
-import type { PlanType } from "../types/plan-type";
+import type { PlanType } from "../types";
 import { PLANS_INPUTS } from "./plan-inputs";
 
 export function getPlanPrice({

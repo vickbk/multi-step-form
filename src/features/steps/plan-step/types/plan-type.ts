@@ -1,6 +1,5 @@
-import type { MultiStepData } from "@/app/types/multi-step-data";
-import type { PersonalInfoType } from "../../personel-info/types/personal-info";
-
+import type { MultiStepData } from "@/app/types";
+import type { PersonalInfoType } from "../../personel-info";
 export type PlanType = PersonalInfoType &
   Pick<MultiStepData, "plan" | "billing">;
 

@@ -1,7 +1,7 @@
 import { Icon } from "@/shared/components/bi-icon";
 import { joinClasses } from "@/shared/libs";
-import { BILLING } from "../scripts/plan-inputs";
-import type { PlanType } from "../types/plan-type";
+import { BILLING } from "../scripts";
+import type { PlanType } from "../types";
 
 export const PlanOptionSwitch = ({
   billing,
