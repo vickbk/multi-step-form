@@ -46,3 +46,26 @@ export async function fillMonthlyPlanStep(page: Page) {
     page.getByRole("heading", { name: /Pick Add-ons/i }),
   ).toBeVisible();
 }
+
+export async function seeErrorMessageOnPlanSelection(page: Page) {
+  await fillPersonalInfo(page);
+  await expect(
+    page.getByRole("heading", { name: /Select Your Plan/i }),
+  ).toBeVisible();
+  await page.getByRole("button", { name: /Next Step/i }).click();
+  await expect(page.getByText(/Please choose your plan/i)).toBeVisible();
+}
+
+export async function fillYearlyPlanStep(page: Page) {
+  await fillPersonalInfo(page);
+  const heading = page.getByRole("heading", { name: /Select Your Plan/i });
+  await expect(heading).toBeVisible();
+  await page.getByText("yearly", { exact: true }).click();
+  const advancedPlan = await page
+    .locator("label")
+    .filter({ hasText: "advanced plan120/yr2 months" });
+  await expect(advancedPlan).toBeVisible();
+  await advancedPlan.click();
+  await page.getByRole("button", { name: /Next Step/i }).press("Enter");
+  await expect(heading).not.toBeVisible();
+}

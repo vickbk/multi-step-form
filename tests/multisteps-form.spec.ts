@@ -1,5 +1,11 @@
 import { expect, test } from "@playwright/test";
-import { asUser, fillMonthlyPlanStep, fillPersonalInfo } from "./stories";
+import {
+  asUser,
+  fillMonthlyPlanStep,
+  fillPersonalInfo,
+  fillYearlyPlanStep,
+  seeErrorMessageOnPlanSelection,
+} from "./stories";
 
 test.describe("Multi-step form", () => {
   test("should render the first step without errors", async ({ page }) => {
@@ -29,9 +35,24 @@ test.describe("Multi-step form", () => {
     await fillPersonalInfo(page);
   });
 
-  test("should select a plan and navigate to the add-ons step", async ({
+  test("should select a monthly plan and navigate to the add-ons step", async ({
     page,
   }) => {
     await fillMonthlyPlanStep(page);
+  });
+
+  test("should see an error message when trying to navigate to the next step without selecting a plan", async ({
+    page,
+  }) => {
+    await seeErrorMessageOnPlanSelection(page);
+  });
+
+  test("should select a yearly plan and navigate to the add-ons step", async ({
+    page,
+  }) => {
+    await fillYearlyPlanStep(page);
+    await expect(
+      page.getByRole("heading", { name: /Pick Add-ons/i }),
+    ).toBeVisible();
   });
 });
