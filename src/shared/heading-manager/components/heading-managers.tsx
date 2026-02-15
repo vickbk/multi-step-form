@@ -7,6 +7,13 @@ export const Heading = forwardRef<
   HTMLAttributes<HTMLHeadingElement>
 >(({ children, ...props }, ref) => {
   const level = useContext(HeadingCtx);
+  
+  if (level === undefined) {
+    console.warn(
+      "[HeadingManager] Heading used outside of a HeadingCtx provider. Defaulting to h1.",
+    );
+  }
+  
   const headings = [
     <h1 {...props} ref={ref}>
       {children}
@@ -27,7 +34,7 @@ export const Heading = forwardRef<
       {children}
     </h6>,
   ];
-  return <>{headings[level]}</>;
+  return <>{headings[level ?? 0]}</>;
 });
 
 export const Main = forwardRef<
