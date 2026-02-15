@@ -41,7 +41,7 @@ jobs:
           node-version: 24
           cache: "pnpm"
       - name: Install dependencies
-        run: pnpm i
+        run: pnpm i --no-frozen-lockfile
       - name: Build
         run: pnpm build
       - name: Setup Pages
