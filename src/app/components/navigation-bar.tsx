@@ -1,7 +1,6 @@
 import { SROnly } from "@/shared/components/SROnly";
 import { joinClasses } from "@/shared/libs";
 import { useFocusSubmit } from "../hooks/use-focus-submit";
-import "../styles/navigation-bar.css";
 
 export const NavigationBar = ({
   back,

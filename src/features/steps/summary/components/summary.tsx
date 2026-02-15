@@ -8,7 +8,6 @@ import { StepSection } from "../../components/step-section";
 import { useRequire } from "../../hooks/use-require";
 import { getBillingLabel } from "../../plan-step/scripts/plan-helpers";
 import { getTotalPrice } from "../scripts/summary-helpers";
-import "../styles/summary.css";
 import { AddsOnSummary } from "./adds-on-summary";
 import { PersonelInfoSummary } from "./personel-info-summary";
 import { PlanSummary } from "./plan-summary";

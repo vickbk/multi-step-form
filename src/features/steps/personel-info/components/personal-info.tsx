@@ -1,7 +1,6 @@
 import { joinClasses } from "@/shared/libs";
 import { StepSection } from "../../components/step-section";
 import { PERSONEL_INFO_INPUTS } from "../scripts/inputs";
-import "../styles/personal-info.css";
 import type { PersonalInfoType } from "../types/personal-info";
 
 export const PersonalInfo = (data: PersonalInfoType) => {
