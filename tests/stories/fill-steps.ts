@@ -1,7 +1,6 @@
 import { expect, Page } from "@playwright/test";
 import { asUser } from "./as-user";
 
-// See global.d.ts for ImportMetaEnv typing
 const {
   TEST_NAME = "test",
   TEST_EMAIL = "test@example.com",
@@ -10,6 +9,7 @@ const {
 
 export async function fillPersonalInfo(page: Page) {
   await asUser(page);
+
   const nameInput = page.getByRole("textbox", { name: "Name" });
   await nameInput.click();
   await nameInput.fill(TEST_NAME);
@@ -18,8 +18,9 @@ export async function fillPersonalInfo(page: Page) {
   await emailInput.fill("invalid-email");
   await emailInput.press("Enter");
 
-  const emailError = page.getByText("Please enter a valid email");
+  const emailError = page.getByText("Please enter a valid email address");
   await expect(emailError).toBeVisible();
+
   await emailInput.fill(TEST_EMAIL);
 
   const phoneInput = page.getByRole("textbox", { name: "Phone Number" });
