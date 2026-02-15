@@ -9,4 +9,5 @@ export type PlanInputType = {
   price: number;
   icon: string;
   discount?: string;
+  focus?: boolean;
 };

@@ -17,27 +17,30 @@ export const AddsOn = (data: WithBack<AddOns>) => {
         description: "Add-ons help enhance your gaming experience.",
       }}
     >
-      {ADDONS_INPUTS[billing]?.map(({ label, name, description, price }) => (
-        <label key={name} className="add-on">
-          <input
-            type="checkbox"
-            className="add-on__input"
-            name="add-ons"
-            value={name}
-            defaultChecked={addOns.includes(name)}
-          />
-          <span className="add-on__icon ">
-            <img src={Checkmark} className="w-8" alt="" />
-          </span>
-          <span className="grid c-grey-500">
-            <span className="font-semibold c-blue-950 text-xl">{label}</span>
-            <span>{description}</span>
-          </span>
-          <span className="c-purple-600 font-medium ml-auto">
-            +{price}/{billing === "yearly" ? "yr" : "mo"}
-          </span>
-        </label>
-      ))}
+      {ADDONS_INPUTS[billing]?.map(
+        ({ label, name, description, price, focus }) => (
+          <label key={name} className="add-on">
+            <input
+              type="checkbox"
+              className="add-on__input"
+              name="add-ons"
+              value={name}
+              defaultChecked={addOns.includes(name)}
+              autoFocus={focus}
+            />
+            <span className="add-on__icon ">
+              <img src={Checkmark} className="w-8" alt="" />
+            </span>
+            <span className="grid c-grey-500">
+              <span className="font-semibold c-blue-950 text-xl">{label}</span>
+              <span>{description}</span>
+            </span>
+            <span className="c-purple-600 font-medium ml-auto">
+              +{price}/{billing === "yearly" ? "yr" : "mo"}
+            </span>
+          </label>
+        ),
+      )}
     </StepSection>
   );
 };

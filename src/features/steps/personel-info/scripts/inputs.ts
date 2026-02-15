@@ -7,6 +7,7 @@ export const PERSONEL_INFO_INPUTS: PersonalInfoInput[] = [
     placeholder: "e.g. Stephen King",
     name: "name",
     errorMessage: "This field is required",
+    focus: true,
   },
   {
     label: "Email Address",

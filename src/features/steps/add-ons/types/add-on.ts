@@ -8,6 +8,7 @@ export type AddOnInput = {
   label: string;
   description: string;
   price: number;
+  focus?: boolean;
 };
 
 export type AddOn = Pick<PlanType, "billing"> & { "add-on": string };

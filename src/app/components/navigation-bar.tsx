@@ -1,5 +1,6 @@
 import { SROnly } from "@/shared/components/SROnly";
 import { joinClasses } from "@/shared/libs";
+import { useFocusSubmit } from "../hooks/use-focus-submit";
 import "../styles/navigation-bar.css";
 
 export const NavigationBar = ({
@@ -11,11 +12,12 @@ export const NavigationBar = ({
   isFirstStep: boolean;
   isLastStep: boolean;
 }) => {
+  const submitRef = useFocusSubmit(isLastStep);
   return (
     <div className="mt-6 flex p-4 justify-between white w-full md:max-w-lg mx-auto md:px-8">
       <button
         className={joinClasses([
-          "c-grey-500 font-semibold",
+          "c-grey-500 font-semibold active-button",
           isFirstStep && "hidden",
         ])}
         type="button"
@@ -25,14 +27,23 @@ export const NavigationBar = ({
       </button>
 
       <button
-        className={joinClasses(["next-button", isLastStep && "hidden"])}
+        className={joinClasses([
+          "next-button",
+          isLastStep && "hidden",
+          "active-button",
+        ])}
         type="submit"
       >
         Next Step
       </button>
       <button
-        className={joinClasses(["submit-btn", !isLastStep && "hidden"])}
+        className={joinClasses([
+          "submit-btn",
+          !isLastStep && "hidden",
+          "active-button",
+        ])}
         type="submit"
+        ref={submitRef}
       >
         Confirm
       </button>

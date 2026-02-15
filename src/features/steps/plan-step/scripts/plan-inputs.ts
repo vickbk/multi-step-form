@@ -13,6 +13,7 @@ export const PLANS_INPUTS: Record<PlanType["billing"], PlanInputType[]> = {
       price: 90,
       discount: "2 months free",
       icon: ArcadeIcon,
+      focus: true,
     },
     {
       name: "advanced",
@@ -32,6 +33,7 @@ export const PLANS_INPUTS: Record<PlanType["billing"], PlanInputType[]> = {
       name: "arcade",
       price: 9,
       icon: ArcadeIcon,
+      focus: true,
     },
     {
       name: "advanced",

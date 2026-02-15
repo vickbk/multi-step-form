@@ -14,7 +14,7 @@ export const PersonalInfo = (data: PersonalInfoType) => {
       }}
     >
       {PERSONEL_INFO_INPUTS.map(
-        ({ name, label, placeholder, type, errorMessage, pattern }) => (
+        ({ name, label, placeholder, type, errorMessage, pattern, focus }) => (
           <label className="input-field" key={label}>
             {label} <span className="input-field__error">{errorMessage}</span>
             <input
@@ -25,6 +25,7 @@ export const PersonalInfo = (data: PersonalInfoType) => {
               required
               pattern={pattern}
               defaultValue={data[name] ?? ""}
+              autoFocus={focus}
             />
           </label>
         ),

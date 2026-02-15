@@ -9,4 +9,5 @@ export type PersonalInfoInput = {
   name: keyof PersonalInfoType;
   errorMessage: string;
   pattern?: string;
+  focus?: boolean;
 };

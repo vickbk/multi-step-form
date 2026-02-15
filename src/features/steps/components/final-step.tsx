@@ -19,8 +19,9 @@ export const FinalStep = ({ reset }: { reset: () => void }) => {
       </p>
       <button
         type="button"
-        className="blue-950 p-4 rounded-lg c-background text-lg mt-8"
+        className="blue-950 active-button p-4 rounded-lg c-background text-lg mt-8"
         onClick={reset}
+        autoFocus
       >
         Subscribe another account
       </button>

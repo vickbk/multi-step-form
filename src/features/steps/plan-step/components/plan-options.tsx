@@ -7,7 +7,7 @@ export const PlanOptions = ({ plan, billing }: PlanType) => {
   return (
     <fieldset className="plan">
       <legend className="sr-only">Plan Options</legend>
-      {PLANS_INPUTS[billing].map(({ name, price, icon, discount }) => (
+      {PLANS_INPUTS[billing].map(({ name, price, icon, discount, focus }) => (
         <label className="plan__option" key={name}>
           <input
             className="sr-only"
@@ -16,6 +16,7 @@ export const PlanOptions = ({ plan, billing }: PlanType) => {
             value={name}
             defaultChecked={plan === name}
             required
+            autoFocus={focus}
           />
           <img src={icon} alt="" />
           <span className="grid">

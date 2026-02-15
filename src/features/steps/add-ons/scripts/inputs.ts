@@ -8,6 +8,7 @@ export const ADDONS_INPUTS: Record<"yearly" | "monthly", AddOnInput[]> = {
       label: "Online service",
       description: "Access to multiplayer games",
       price: 10,
+      focus: true,
     },
     {
       label: "Larger storage",
@@ -28,6 +29,7 @@ export const ADDONS_INPUTS: Record<"yearly" | "monthly", AddOnInput[]> = {
       label: "Online service",
       description: "Access to multiplayer games",
       price: 1,
+      focus: true,
     },
     {
       label: "Larger storage",
