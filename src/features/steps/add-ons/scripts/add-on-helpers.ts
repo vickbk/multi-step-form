@@ -1,4 +1,4 @@
-import type { AddOn } from "../types/add-on";
+import type { AddOn } from "../types";
 import { ADDONS_INPUTS } from "./inputs";
 
 export function getAddOnPrice({ billing, "add-on": addOn }: AddOn): number {

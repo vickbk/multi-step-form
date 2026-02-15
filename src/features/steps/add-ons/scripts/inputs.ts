@@ -1,6 +1,5 @@
-import { PLAN_REQUIRED_FIELDS } from "../../plan-step/scripts/plan-inputs";
-import type { AddOnInput, AddOns } from "../types/add-on";
-
+import { PLAN_REQUIRED_FIELDS } from "../../plan-step";
+import type { AddOnInput, AddOns } from "../types";
 export const ADDONS_INPUTS: Record<"yearly" | "monthly", AddOnInput[]> = {
   yearly: [
     {

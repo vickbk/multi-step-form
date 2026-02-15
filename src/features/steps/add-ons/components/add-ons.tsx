@@ -1,9 +1,9 @@
 import type { WithBack } from "@/app/types";
 import { default as Checkmark } from "@/assets/images/icon-checkmark.svg";
 import { StepSection } from "../../components/step-section";
-import { useRequire } from "../../hooks/use-require";
-import { ADDON_REQUIRED_FIELDS, ADDONS_INPUTS } from "../scripts/inputs";
-import type { AddOns } from "../types/add-on";
+import { useRequire } from "../../hooks";
+import { ADDON_REQUIRED_FIELDS, ADDONS_INPUTS } from "../scripts";
+import type { AddOns } from "../types";
 
 export const AddsOn = (data: WithBack<AddOns>) => {
   const required = useRequire(data, ADDON_REQUIRED_FIELDS);
