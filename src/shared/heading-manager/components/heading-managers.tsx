@@ -10,7 +10,7 @@ export const Heading = forwardRef<
   
   if (level === undefined) {
     console.warn(
-      "[HeadingManager] Heading used outside of a HeadingCtx provider. Defaulting to h1.",
+      "[HeadingManager] Heading used outside of a HeadingCtx provider. Defaulting to level 0 (h1).",
     );
   }
   
