@@ -13,11 +13,5 @@ function calculateNextHeadingLevel(
 
 export function useHeading(hasH1 = true) {
   const level = useContext(HeadingCtx);
-
-  if (level === undefined) {
-    console.warn(
-      "[HeadingManager] HeadingCtx is undefined. Did you forget to wrap your Heading in a semantic wrapper (Main, Section, etc)?",
-    );
-  }
-  return calculateNextHeadingLevel(level ?? 0, hasH1);
+  return calculateNextHeadingLevel(level, hasH1);
 }
