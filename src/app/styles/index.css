@@ -3,4 +3,4 @@
 @import "./navigation-bar.css";
 
 /* Feature-level component styles */
-@import "../../features/steps/styles/index.css";
+@import "../../features/index.css";
