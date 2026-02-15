@@ -4,4 +4,3 @@
 
 /* Component styles that use Tailwind utilities */
 @import "../../app/styles/index.css";
-@import "../../features/steps/styles/index.css";
