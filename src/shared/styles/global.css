@@ -3,9 +3,5 @@
 @import "./main/";
 
 /* Component styles that use Tailwind utilities */
-@import "../../app/styles/multi-step-form.css";
-@import "../../app/styles/navigation-bar.css";
-@import "../../features/steps/personel-info/styles/personal-info.css";
-@import "../../features/steps/plan-step/styles/plan-option.css";
-@import "../../features/steps/add-ons/styles/add-ons.css";
-@import "../../features/steps/summary/styles/summary.css";
+@import "../../app/styles/index.css";
+@import "../../features/steps/styles/index.css";
