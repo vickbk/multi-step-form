@@ -1,7 +1,7 @@
 import type { MemoObject } from "./memo-types";
 
-// Storage key constant - avoids bundling package.json metadata into client build
-export const memoName = "multi-step-form";
+// Storage key from environment variable
+export const memoName = import.meta.env.VITE_APP_STORAGE_KEY || "multi-step-form";
 
 export default function getMemo() {
   const item = localStorage.getItem(memoName);
