@@ -1,5 +1,6 @@
 import { PLAN_REQUIRED_FIELDS } from "../../plan-step";
 import type { AddOnInput, AddOns } from "../types";
+
 export const ADDONS_INPUTS: Record<"yearly" | "monthly", AddOnInput[]> = {
   yearly: [
     {
