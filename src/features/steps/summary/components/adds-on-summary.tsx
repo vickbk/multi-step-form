@@ -19,6 +19,7 @@ export const AddsOnSummary = ({ billing, "add-ons": addOns = [] }: AddOns) => {
           <dd className="c-blue-950">{value}</dd>
         </dl>
       ))}
+      {formated.length === 0 && <p className="italic">No add-ons selected</p>}
     </>
   );
 };
