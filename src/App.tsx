@@ -1,35 +1,22 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import "bootstrap-icons/font/bootstrap-icons.css";
+import { ContextProvider } from "./app/components/context-provider";
+import { MultiStepForm } from "./app/components/multi-step-form";
+import {
+  Heading,
+  Main,
+} from "./shared/heading-manager/components/heading-managers";
+import "./shared/styles/global.css";
+import "./shared/styles/scss/global.scss";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <ContextProvider>
+      <Main pageHasH1={false}>
+        <Heading className="sr-only">Multi Step Form</Heading>
+        <MultiStepForm />
+      </Main>
+    </ContextProvider>
+  );
 }
 
-export default App
+export default App;

@@ -1,0 +1,5 @@
+/* Feature-level component styles */
+@import "../personel-info/styles/index.css";
+@import "../plan-step/styles/index.css";
+@import "../add-ons/styles/index.css";
+@import "../summary/styles/index.css";

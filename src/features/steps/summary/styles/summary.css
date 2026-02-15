@@ -1,0 +1,9 @@
+.change-btn {
+  @apply underline;
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: hsl(var(--purple-600));
+  }
+}

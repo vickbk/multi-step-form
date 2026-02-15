@@ -1,0 +1,103 @@
+@theme inline {
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --font-sans: "Ubuntu", sans-serif;
+  --font-mono: "Ubuntu", sans-serif;
+}
+
+/* Styles for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none; /* Disable animations */
+    transition: none; /* Disable transitions */
+    transform: none; /* Reset any transform properties */
+  }
+}
+
+body {
+  /* background: linear-gradient(hsl(var(--bg-start)), hsl(var(--bg-end))); */
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+  font-family: var(--ff-sans);
+  line-height: 1.6;
+  @apply min-h-screen transition-colors duration-300;
+}
+
+button {
+  @apply cursor-pointer;
+  &:disabled {
+    @apply cursor-not-allowed;
+  }
+}
+
+input {
+  min-inline-size: 0;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+input {
+  &[type="radio"],
+  &[type="checkbox"] {
+    accent-color: hsl(var(--accent-color));
+  }
+  outline-color: hsl(var(--accent-color));
+}
+
+dialog {
+  &::backdrop {
+    background-color: hsl(var(--background) / 0.8);
+    @apply backdrop-blur-sm;
+  }
+}
+
+.rounded-x-full {
+  @apply rounded-l-full rounded-r-full;
+}
+
+.rounded-y-full {
+  @apply rounded-t-full rounded-b-full;
+}
+
+.active-button {
+  @apply transition-transform duration-300;
+  &:active,
+  &:focus,
+  &:focus-within,
+  &:hover {
+    &:not(:disabled),
+    &:has(:not(:disabled)) {
+      @apply opacity-80 outline-2;
+    }
+  }
+  &:hover,
+  &:focus,
+  &:focus-within {
+    &:not(:disabled),
+    &:has(:not(:disabled)) {
+      @apply scale-105;
+    }
+  }
+  &:active {
+    &:not(:disabled),
+    &:has(:not(:disabled)) {
+      @apply scale-95;
+    }
+  }
+}
+
+.break-word {
+  overflow-wrap: break-word;
+  word-break: break-word;
+}

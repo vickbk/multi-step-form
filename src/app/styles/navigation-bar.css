@@ -1,0 +1,21 @@
+.next-button,
+.submit-btn {
+  @apply p-2 px-6 rounded-md 
+  font-semibold text-xl 
+  ml-auto;
+  --accent: 1;
+  color: hsl(var(--white));
+
+  &:hover,
+  &:focus,
+  &:active {
+    --accent: 0.8;
+  }
+}
+
+.next-button {
+  background-color: hsl(var(--blue-950) / var(--accent));
+}
+.submit-btn {
+  background-color: hsl(var(--purple-600) / var(--accent));
+}

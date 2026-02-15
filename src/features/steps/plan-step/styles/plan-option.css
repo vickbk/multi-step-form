@@ -1,0 +1,36 @@
+.plan {
+  @apply grid gap-4 md:grid-cols-3;
+
+  .plan__option {
+    @apply flex md:grid gap-4 md:gap-12 
+      capitalize 
+      items-start 
+      p-4 
+      outline rounded-lg 
+      cursor-pointer;
+
+    outline-color: hsl(var(--grey-500));
+    &:hover,
+    &:focus,
+    &:focus-within,
+    &:has(input:checked) {
+      @apply outline-2;
+      outline-color: hsl(var(--purple-600));
+    }
+    &:has(input:checked) {
+      background-color: hsl(var(--background) / 0.4);
+    }
+  }
+
+  .plan__error {
+    @apply text-sm text-red-500 col-span-full hidden;
+  }
+
+  &:has(.plan__option input:user-invalid) {
+    .plan__error {
+      @apply block;
+    }
+    @apply outline p-4 rounded-lg;
+    outline-color: hsl(var(--red-500));
+  }
+}
