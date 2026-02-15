@@ -4,6 +4,7 @@ import {
   fillMonthlyPlanStep,
   fillPersonalInfo,
   fillYearlyPlanStep,
+  proceedWithoutAddOns,
   seeErrorMessageOnPlanSelection,
 } from "./stories";
 
@@ -53,6 +54,13 @@ test.describe("Multi-step form", () => {
     await fillYearlyPlanStep(page);
     await expect(
       page.getByRole("heading", { name: /Pick Add-ons/i }),
+    ).toBeVisible();
+  });
+
+  test("should proceed to summary without add-ons", async ({ page }) => {
+    await proceedWithoutAddOns(page);
+    await expect(
+      page.getByRole("heading", { name: /Finishing Up/i }),
     ).toBeVisible();
   });
 });

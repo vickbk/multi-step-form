@@ -69,3 +69,11 @@ export async function fillYearlyPlanStep(page: Page) {
   await page.getByRole("button", { name: /Next Step/i }).press("Enter");
   await expect(heading).not.toBeVisible();
 }
+
+export async function proceedWithoutAddOns(page: Page) {
+  await fillMonthlyPlanStep(page);
+  const heading = page.getByRole("heading", { name: /Pick Add-ons/i });
+  await expect(heading).toBeVisible();
+  await page.getByRole("button", { name: /Next Step/i }).click();
+  await expect(heading).not.toBeVisible();
+}
