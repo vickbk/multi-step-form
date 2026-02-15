@@ -1,6 +1,6 @@
-import type { MultiStepData } from "@/app/types/multi-step-data";
-import { getAddOnPrice } from "../../add-ons/scripts/add-on-helpers";
-import { getPlanPrice } from "../../plan-step/scripts/plan-helpers";
+import type { MultiStepData } from "@/app/types";
+import { getAddOnPrice } from "../../add-ons";
+import { getPlanPrice } from "../../plan-step";
 
 export function getTotalPrice({
   billing,

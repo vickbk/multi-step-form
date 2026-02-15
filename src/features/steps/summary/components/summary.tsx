@@ -1,13 +1,9 @@
-import type {
-  MultiStepData,
-  WithBack,
-  WithGoTo,
-} from "@/app/types/multi-step-data";
-import { ADDON_REQUIRED_FIELDS } from "../../add-ons/scripts/inputs";
+import type { MultiStepData, WithBack, WithGoTo } from "@/app/types";
+import { ADDON_REQUIRED_FIELDS } from "../../add-ons";
 import { StepSection } from "../../components/step-section";
-import { useRequire } from "../../hooks/use-require";
-import { getBillingLabel } from "../../plan-step/scripts/plan-helpers";
-import { getTotalPrice } from "../scripts/summary-helpers";
+import { useRequire } from "../../hooks";
+import { getBillingLabel } from "../../plan-step";
+import { getTotalPrice } from "../scripts";
 import { AddsOnSummary } from "./adds-on-summary";
 import { PersonelInfoSummary } from "./personel-info-summary";
 import { PlanSummary } from "./plan-summary";

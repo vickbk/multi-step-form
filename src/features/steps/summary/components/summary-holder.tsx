@@ -1,5 +1,5 @@
 import { joinClasses } from "@/shared/libs";
-import React from "react";
+import { type ReactNode } from "react";
 
 export const SummaryHolder = ({
   children,
@@ -7,7 +7,7 @@ export const SummaryHolder = ({
   setStep,
   changeIndex,
 }: {
-  children: React.ReactNode;
+  children: ReactNode;
   custom?: boolean;
   setStep?: (newStep: number) => void;
   changeIndex?: number;

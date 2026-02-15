@@ -1,4 +1,4 @@
-import type { PersonalInfoType } from "../../personel-info/types/personal-info";
+import type { PersonalInfoType } from "../../personel-info";
 
 export const PersonelInfoSummary = ({
   name,

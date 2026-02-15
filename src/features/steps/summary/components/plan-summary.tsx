@@ -1,15 +1,8 @@
+import type { WithGoTo } from "@/app/types";
 import { SROnly } from "@/shared/components/SROnly";
-import {
-  getBillingLabel,
-  getPlanPrice,
-} from "../../plan-step/scripts/plan-helpers";
-import type { PlanType } from "../../plan-step/types/plan-type";
+import { getBillingLabel, getPlanPrice, type PlanType } from "../../plan-step";
 
-export const PlanSummary = ({
-  goTo,
-  billing,
-  plan,
-}: PlanType & { goTo: (step: number) => void }) => {
+export const PlanSummary = ({ goTo, billing, plan }: WithGoTo<PlanType>) => {
   return (
     <dl className="grid grid-cols-[1fr_auto] grid-rows-2">
       <dt className="c-blue-950 font-semibold text-xl capitalize">

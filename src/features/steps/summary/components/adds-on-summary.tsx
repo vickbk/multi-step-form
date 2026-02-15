@@ -1,9 +1,5 @@
-import {
-  getAddOnLabel,
-  getAddOnPrice,
-} from "../../add-ons/scripts/add-on-helpers";
-import type { AddOns } from "../../add-ons/types/add-on";
-import { getBillingLabel } from "../../plan-step/scripts/plan-helpers";
+import { getAddOnLabel, getAddOnPrice, type AddOns } from "../../add-ons";
+import { getBillingLabel } from "../../plan-step";
 
 export const AddsOnSummary = ({ billing, "add-ons": addOns = [] }: AddOns) => {
   const formated = addOns.map((add) => [
