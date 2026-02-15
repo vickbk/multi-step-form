@@ -3,16 +3,15 @@ import {
   Heading,
 } from "@/shared/heading-manager/components/heading-managers";
 import { joinClasses } from "@/shared/libs";
+import { forwardRef } from "react";
 
-export const StepSection = ({
-  header: { title, description },
-  children,
-  ref,
-}: {
-  header: Record<"title" | "description", string>;
-  children: React.ReactNode;
-  ref?: React.ForwardedRef<HTMLFieldSetElement>;
-}) => {
+export const StepSection = forwardRef<
+  HTMLFieldSetElement,
+  {
+    header: Record<"title" | "description", string>;
+    children: React.ReactNode;
+  }
+>(({ header: { title, description }, children }, ref) => {
   return (
     <fieldset className={joinClasses(["grid gap-4"])} ref={ref}>
       <legend className="mb-4">
@@ -24,4 +23,6 @@ export const StepSection = ({
       {children}
     </fieldset>
   );
-};
+});
+
+StepSection.displayName = "StepSection";
