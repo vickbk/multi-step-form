@@ -5,5 +5,5 @@ export const ContextProvider = ({
 }: {
   children: React.ReactNode;
 }) => {
-  return <HeadingCtx value={0}>{children}</HeadingCtx>;
+  return <HeadingCtx.Provider value={0}>{children}</HeadingCtx.Provider>;
 };
