@@ -1,3 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap");
 @import "tailwindcss";
 @import "./main/";
+
+/* Component styles that use Tailwind utilities */
+@import "../../app/styles/multi-step-form.css";
+@import "../../app/styles/navigation-bar.css";
+@import "../../features/steps/personel-info/styles/personal-info.css";
+@import "../../features/steps/plan-step/styles/plan-option.css";
+@import "../../features/steps/add-ons/styles/add-ons.css";
+@import "../../features/steps/summary/styles/summary.css";

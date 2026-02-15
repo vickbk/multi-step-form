@@ -1,5 +1,3 @@
-@import "tailwindcss";
-
 .input-field {
   @apply grid grid-cols-[auto_1fr] items-center text-xl gap-1;
   color: hsl(var(--blue-950));

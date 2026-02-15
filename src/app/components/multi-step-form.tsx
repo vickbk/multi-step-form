@@ -7,7 +7,6 @@ import { PlanSection } from "@/features/steps/plan-step/components/plan-section"
 import { Summary } from "@/features/steps/summary/components/summary";
 import { useMultistepsForm } from "../hooks/use-multisteps-form";
 import { submitMultiStepSample } from "../scripts/multi-step-helpers";
-import "../styles/multi-step-form.css";
 import type { MultiStepData } from "../types/multi-step-data";
 import { NavigationBar } from "./navigation-bar";
 

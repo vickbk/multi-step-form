@@ -3,7 +3,6 @@ import { default as Checkmark } from "@/assets/images/icon-checkmark.svg";
 import { StepSection } from "../../components/step-section";
 import { useRequire } from "../../hooks/use-require";
 import { ADDON_REQUIRED_FIELDS, ADDONS_INPUTS } from "../scripts/inputs";
-import "../styles/add-ons.css";
 import type { AddOns } from "../types/add-on";
 
 export const AddsOn = (data: WithBack<AddOns>) => {
