@@ -74,7 +74,8 @@ dialog {
   @apply transition-transform duration-300;
   &:active,
   &:focus,
-  &:focus-within &:hover {
+  &:focus-within,
+  &:hover {
     &:not(:disabled),
     &:has(:not(:disabled)) {
       @apply opacity-80 outline-2;
