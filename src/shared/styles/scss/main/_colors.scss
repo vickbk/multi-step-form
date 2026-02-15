@@ -24,12 +24,12 @@ $link-color: map.get($colorsMap, purple-600);
 $text-color: map.get($colorsMap, blue-950);
 $accent-color: map.get($colorsMap, purple-600);
 
-$exluded-variables: background foreground secondary;
+$excluded-variables: background foreground secondary;
 
 :root {
   & {
     @each $name, $color in $colorsMap {
-      @if not list.index($exluded-variables, $name) {
+      @if not list.index($excluded-variables, $name) {
         --#{""+$name}: #{$color};
       }
     }
