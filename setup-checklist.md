@@ -8,6 +8,16 @@
 .\dependancies.cmd
 ```
 
+## Environment Variables
+
+- Copy `.env.example` to `.env`:
+
+```bash
+cp .env.example .env
+```
+
+- Update `VITE_APP_STORAGE_KEY` in `.env` if you need a custom storage key (default: `multi-step-form`)
+
 ## Add config
 
 - update `tsconfig.app.json` with:
