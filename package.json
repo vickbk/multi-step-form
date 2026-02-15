@@ -9,7 +9,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "test": "vitest --exclude \"**/*.spec.{js,ts,jsx,tsx}\"",
-    "playwright-server": "webpack serve --port=8081 --config webpack.dev.js"
+    "playwright-server": "vite dev --port=8081"
   },
   "dependencies": {
     "bootstrap-icons": "^1.13.1",
