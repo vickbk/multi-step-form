@@ -37,7 +37,7 @@ export const Main = forwardRef<
   const level = useHeading(pageHasH1);
   return (
     <main {...props} ref={ref}>
-      <HeadingCtx value={level}>{children}</HeadingCtx>
+      <HeadingCtx.Provider value={level}>{children}</HeadingCtx.Provider>
     </main>
   );
 });
@@ -47,7 +47,7 @@ export const Section = forwardRef<HTMLElement, HTMLAttributes<HTMLElement>>(
     const level = useHeading();
     return (
       <section {...props} ref={ref}>
-        <HeadingCtx value={level}>{children}</HeadingCtx>
+        <HeadingCtx.Provider value={level}>{children}</HeadingCtx.Provider>
       </section>
     );
   },
@@ -58,7 +58,7 @@ export const Article = forwardRef<HTMLElement, HTMLAttributes<HTMLElement>>(
     const level = useHeading();
     return (
       <article {...props} ref={ref}>
-        <HeadingCtx value={level}>{children}</HeadingCtx>
+        <HeadingCtx.Provider value={level}>{children}</HeadingCtx.Provider>
       </article>
     );
   },
@@ -69,7 +69,7 @@ export const Header = forwardRef<HTMLElement, HTMLAttributes<HTMLElement>>(
     const level = useHeading();
     return (
       <header {...props} ref={ref}>
-        <HeadingCtx value={level}>{children}</HeadingCtx>
+        <HeadingCtx.Provider value={level}>{children}</HeadingCtx.Provider>
       </header>
     );
   },
