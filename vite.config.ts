@@ -5,8 +5,8 @@ import { resolve } from "path";
 import { defineConfig } from "vite";
 
 // https://vite.dev/config/
-export default defineConfig({
-  base: "/multi-step-form/",
+export default defineConfig(({ mode }) => ({
+  base: mode === "production" ? "/multi-step-form/" : "/",
   plugins: [
     react({
       babel: {
@@ -29,4 +29,4 @@ export default defineConfig({
       exclude: ["src/tests/*", "src/mocks/*"],
     },
   },
-});
+}));
