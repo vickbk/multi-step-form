@@ -14,7 +14,7 @@ export const StepSection = forwardRef<
 >(({ header: { title, description }, children }, ref) => {
   return (
     <fieldset className={joinClasses(["grid gap-4"])} ref={ref}>
-      <legend className="mb-4">
+      <legend className="mb-4 md:mb-8">
         <Header>
           <Heading className="text-4xl font-bold">{title}</Heading>
           <p className="text-xl c-grey-500 mt-4">{description}</p>
