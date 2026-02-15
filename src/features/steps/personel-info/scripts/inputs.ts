@@ -1,4 +1,4 @@
-import type { PersonalInfoInput } from "../types/personal-info";
+import type { PersonalInfoInput } from "../types";
 
 export const PERSONEL_INFO_INPUTS: PersonalInfoInput[] = [
   {

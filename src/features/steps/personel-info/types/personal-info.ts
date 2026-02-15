@@ -1,4 +1,4 @@
-import type { MultiStepData } from "@/app/types/multi-step-data";
+import type { MultiStepData } from "@/app/types";
 
 export type PersonalInfoType = Pick<MultiStepData, "name" | "email" | "phone">;
 
