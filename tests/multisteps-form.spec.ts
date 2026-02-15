@@ -4,6 +4,7 @@ import {
   fillMonthlyPlanStep,
   fillPersonalInfo,
   fillYearlyPlanStep,
+  pickTwoAddOns,
   proceedWithoutAddOns,
   seeErrorMessageOnPlanSelection,
 } from "./stories";
@@ -62,5 +63,16 @@ test.describe("Multi-step form", () => {
     await expect(
       page.getByRole("heading", { name: /Finishing Up/i }),
     ).toBeVisible();
+  });
+
+  test("should pick two add-ons and navigate to the summary step", async ({
+    page,
+  }) => {
+    await pickTwoAddOns(page);
+    await expect(
+      page.getByRole("heading", { name: /Finishing Up/i }),
+    ).toBeVisible();
+    await expect(page.getByText(/Online service/i)).toBeVisible();
+    await expect(page.getByText(/Larger storage/i)).toBeVisible();
   });
 });

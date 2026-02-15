@@ -77,3 +77,15 @@ export async function proceedWithoutAddOns(page: Page) {
   await page.getByRole("button", { name: /Next Step/i }).click();
   await expect(heading).not.toBeVisible();
 }
+
+export async function pickTwoAddOns(page: Page) {
+  await fillMonthlyPlanStep(page);
+  const addOn1 = page.locator("label").filter({ hasText: /Online service/i });
+  const addOn2 = page.locator("label").filter({ hasText: /Larger storage/i });
+  await addOn1.click();
+  await addOn2.click();
+  await page.getByRole("button", { name: /Next Step/i }).click();
+  await expect(
+    page.getByRole("heading", { name: /Finishing Up/i }),
+  ).toBeVisible();
+}
