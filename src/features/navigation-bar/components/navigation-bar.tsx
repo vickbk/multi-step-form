@@ -24,7 +24,6 @@ export const NavigationBar = ({
       >
         Go Back <SROnly>to the previous step</SROnly>
       </button>
-
       <button
         className={joinClasses([
           "next-button",

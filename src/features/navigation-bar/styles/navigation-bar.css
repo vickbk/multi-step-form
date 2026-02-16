@@ -1,8 +1,8 @@
 .next-button,
 .submit-btn {
   @apply p-2 px-6 rounded-md 
-  font-semibold text-xl 
-  ml-auto;
+	font-semibold text-xl 
+	ml-auto;
   --accent: 1;
   color: hsl(var(--white));
 
