@@ -1,5 +1,6 @@
 import { expect, test } from "@playwright/test";
-import { updatePersonalInfo, updatePlan } from "./stories";
+import { updateAddOns, updatePersonalInfo, updatePlan } from "./stories";
+import { shouldSee } from "./stories/helpers";
 
 test.describe("Multi-step form - update", () => {
   test("should update the personal information and reflect the changes in the summary step", async ({
@@ -23,5 +24,24 @@ test.describe("Multi-step form - update", () => {
 
     await updatePlan(page, { billing: /yearly/i, plan: /advanced/i });
     await expect(page.getByText(/Advanced \(per year\)/i)).toBeVisible();
+  });
+
+  test("should update add-ons and reflect the change on summary section", async ({
+    page,
+  }) => {
+    await updateAddOns(page, [
+      /online service/i,
+      /larger storage/i,
+      /customizable profile/i,
+    ]);
+    await shouldSee(page, [
+      /Finishing Up/i,
+      /Online Service/i,
+      /Larger Storage/i,
+      /Customizable Profile/i,
+    ]);
+
+    await updateAddOns(page, [/customizable profile/i]);
+    await shouldSee(page, [/Finishing Up/i, /Customizable Profile/i]);
   });
 });

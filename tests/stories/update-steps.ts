@@ -1,5 +1,6 @@
-import { expect, Page } from "@playwright/test";
-import { pickTwoAddOns } from "./fill-steps";
+import { Page } from "@playwright/test";
+import { clickOnAddOn, pickAddOns } from "./fill-steps";
+import { shouldSee } from "./helpers";
 
 export async function updatePersonalInfo(
   page: Page,
@@ -9,12 +10,11 @@ export async function updatePersonalInfo(
     phone = "01234567890",
   } = {},
 ) {
-  await pickTwoAddOns(page);
-  const step1 = page.getByRole("button", { name: /Change/i }).first();
-  await step1.click();
-  await expect(
-    page.getByRole("heading", { name: /Personal Info/i }),
-  ).toBeVisible();
+  await pickAddOns(page);
+
+  await clickChangeButton(page, "personal info");
+  await shouldSee(page, [/Personal Info/i]);
+
   const nameInput = page.getByRole("textbox", { name: /Name/i });
   await nameInput.click();
   await nameInput.fill(name);
@@ -29,28 +29,22 @@ export async function updatePersonalInfo(
 
   await phoneInput.press("Enter");
 
-  await expect(
-    page.getByRole("heading", { name: /Select Your Plan/i }),
-  ).toBeVisible();
+  await shouldSee(page, [/Select Your Plan/i]);
 
   const step4 = page.getByRole("button", { name: /4/i });
   await step4.click();
-  await expect(
-    page.getByRole("heading", { name: /Finishing Up/i }),
-  ).toBeVisible();
+  await shouldSee(page, [/Finishing Up/i]);
 }
 
 export async function updatePlan(
   page: Page,
   { billing = /monthly/i, plan = /pro/i } = {},
 ) {
-  await pickTwoAddOns(page);
-  await expect(page.getByText(/arcade/i)).toBeVisible();
-  const step2 = page.getByRole("button", { name: /Change/i }).nth(1);
-  await step2.click();
-  await expect(
-    page.getByRole("heading", { name: /Select Your Plan/i }),
-  ).toBeVisible();
+  await pickAddOns(page);
+  await shouldSee(page, [/Arcade/i]);
+
+  await clickChangeButton(page, "plan");
+  await shouldSee(page, [/Select Your Plan/i]);
 
   await page.locator("label", { hasText: plan }).click();
   await page.locator("label", { hasText: billing }).click();
@@ -58,7 +52,43 @@ export async function updatePlan(
   const step4 = page.getByRole("button", { name: /4/i });
 
   await step4.click();
-  await expect(
-    page.getByRole("heading", { name: /Finishing Up/i }),
-  ).toBeVisible();
+  await shouldSee(page, [/Finishing Up/i]);
+}
+
+export async function updateAddOns(
+  page: Page,
+  addOns = [/online service/i, /larger storage/i, /customizable profile/i],
+) {
+  const initialAddOns = [/Online Service/i, /Larger Storage/i];
+  await pickAddOns(page, initialAddOns);
+  await shouldSee(page, initialAddOns);
+
+  await clickChangeButton(page, "add-ons");
+
+  await shouldSee(page, [/Pick Add-ons/i]);
+
+  for (const addOn of initialAddOns) {
+    await clickOnAddOn(page, addOn);
+  }
+
+  for (const addOn of addOns) {
+    await clickOnAddOn(page, addOn);
+  }
+  await page.getByRole("button", { name: /Next Step/i }).click();
+
+  await shouldSee(page, [/Finishing Up/i, ...addOns]);
+}
+
+async function clickChangeButton(
+  page: Page,
+  step: "personal info" | "plan" | "add-ons" | number,
+) {
+  const stepIndex =
+    typeof step === "number"
+      ? step
+      : { "personal info": 0, plan: 1, "add-ons": 2 }[step];
+  return page
+    .getByRole("button", { name: /Change/i })
+    .nth(stepIndex)
+    .click();
 }

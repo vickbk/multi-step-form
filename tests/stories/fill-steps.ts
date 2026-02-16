@@ -78,14 +78,24 @@ export async function proceedWithoutAddOns(page: Page) {
   await expect(heading).not.toBeVisible();
 }
 
-export async function pickTwoAddOns(page: Page) {
+export async function pickAddOns(
+  page: Page,
+  addOns = [/online service/i, /larger storage/i],
+) {
   await fillMonthlyPlanStep(page);
-  const addOn1 = page.locator("label").filter({ hasText: /Online service/i });
-  const addOn2 = page.locator("label").filter({ hasText: /Larger storage/i });
-  await addOn1.click();
-  await addOn2.click();
+
+  for (const addOn of addOns) {
+    await clickOnAddOn(page, addOn);
+  }
+
   await page.getByRole("button", { name: /Next Step/i }).click();
   await expect(
     page.getByRole("heading", { name: /Finishing Up/i }),
   ).toBeVisible();
+}
+
+export async function clickOnAddOn(page: Page, addOn: RegExp | string) {
+  const addOnOption = page.locator("label").filter({ hasText: addOn });
+  await expect(addOnOption).toBeVisible();
+  await addOnOption.click();
 }
