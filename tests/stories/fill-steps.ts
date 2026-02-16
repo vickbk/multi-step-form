@@ -84,7 +84,7 @@ export async function pickAddOns(
   }
 
   await clickNextButton(page);
-  await shouldSee(page, [/Finishing Up/i]);
+  await shouldSee(page, [/Finishing Up/i, ...addOns]);
 }
 
 export async function clickOnAddOn(page: Page, addOn: RegExp | string) {
