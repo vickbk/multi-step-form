@@ -29,14 +29,17 @@ export function useMultistepsForm<T extends object>(
 
   const [formData, formAction] = useActionState(
     async (previous: T, data: FormData) => {
-      const { isLastStep, step, next, goTo } = navigation;
+      const { isLastStep, step, next, goTo, back } = navigation;
       const results = await callback({ data, isLastStep, step, previous });
       setTimeout(() => {
         const goToValue = data.get("go-to");
         if (isLastStep) setComplete(true);
-        else if (goToValue !== null) goTo(+goToValue);
-        else next();
-      }, 1);
+        else if (goToValue !== null) {
+          if (typeof goToValue === "string" && !isNaN(Number(goToValue)))
+            goTo(+goToValue);
+          else back();
+        } else next();
+      }, 5);
       return results;
     },
     {} as Awaited<T>,

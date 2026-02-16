@@ -1,13 +1,12 @@
+import { saveAndGoTo } from "@/features/sidebar/scripts";
 import { SROnly } from "@/shared/components/SROnly";
 import { joinClasses } from "@/shared/libs";
 import { useFocusSubmit } from "../hooks/use-focus-submit";
 
 export const NavigationBar = ({
-  back,
   isFirstStep,
   isLastStep,
 }: {
-  back: () => void;
   isFirstStep: boolean;
   isLastStep: boolean;
 }) => {
@@ -20,7 +19,9 @@ export const NavigationBar = ({
           isFirstStep && "hidden",
         ])}
         type="button"
-        onClick={back}
+        onClick={saveAndGoTo}
+        name="go-to"
+        value="previous"
       >
         Go Back <SROnly>to the previous step</SROnly>
       </button>
