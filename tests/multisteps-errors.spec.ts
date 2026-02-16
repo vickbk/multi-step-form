@@ -1,6 +1,12 @@
 import test from "@playwright/test";
 import { shouldSee } from "./stories";
 import {
+  INFO_TITLE,
+  INVALID_EMAIL_ERROR,
+  INVALID_PHONE_ERROR,
+  REQUIRED_FIELD_ERROR,
+} from "./stories/constant-helpers";
+import {
   seeEmailError,
   seePersonalInfoErrors,
   seePhoneNumberError,
@@ -12,10 +18,10 @@ test.describe("Multi-step form - errors", () => {
   }) => {
     await seePersonalInfoErrors(page);
     await shouldSee(page, [
-      /Personal Info/i,
-      /This field is required/i,
-      /Please enter a valid email/i,
-      /Please enter a valid phone number/i,
+      INFO_TITLE,
+      REQUIRED_FIELD_ERROR,
+      INVALID_EMAIL_ERROR,
+      INVALID_PHONE_ERROR,
     ]);
   });
 
@@ -23,16 +29,13 @@ test.describe("Multi-step form - errors", () => {
     page,
   }) => {
     await seeEmailError(page);
-    await shouldSee(page, [/Personal Info/i, /Please enter a valid email/i]);
+    await shouldSee(page, [INFO_TITLE, INVALID_EMAIL_ERROR]);
   });
 
   test("should see error message when trying to proceed without a phone number or with an invalid phone number", async ({
     page,
   }) => {
     await seePhoneNumberError(page);
-    await shouldSee(page, [
-      /Personal Info/i,
-      /Please enter a valid phone number/i,
-    ]);
+    await shouldSee(page, [INFO_TITLE, INVALID_PHONE_ERROR]);
   });
 });
