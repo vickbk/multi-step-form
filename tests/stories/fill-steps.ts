@@ -70,6 +70,7 @@ export async function proceedWithoutAddOns(page: Page) {
 
   await clickNextButton(page);
   await shouldNotSee(page, [addOnsHeading]);
+  await shouldSee(page, [/Finishing Up/i, /no add-ons selected/i]);
 }
 
 export async function pickAddOns(
