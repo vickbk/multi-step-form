@@ -1,71 +1,75 @@
 import { Page } from "@playwright/test";
+import {
+  ARCADE_SELECTOR,
+  CUSTOMIZABLE_PROFILE,
+  EMAIL_SELECTOR,
+  FINISHING_UP_HEADING,
+  LARGER_STORAGE,
+  MONTHLY_SELECTOR,
+  NAME_SELECTOR,
+  ONLINE_SERVICE,
+  PHONE_SELECTOR,
+  PICK_ADDONS_HEADING,
+  PRO_SELECTOR,
+  SELECT_PLAN_HEADING,
+  UPDATED_EMAIL,
+  UPDATED_NAME,
+  UPDATED_PHONE,
+} from "./constant-helpers";
 import { clickOnAddOn, pickAddOns } from "./fill-steps";
-import { shouldSee } from "./helpers";
+import { clickNextButton, setValueForLocators, shouldSee } from "./helpers";
 
 export async function updatePersonalInfo(
   page: Page,
-  {
-    name = "updated name",
-    email = "updated@email.com",
-    phone = "01234567890",
-  } = {},
+  { name = UPDATED_NAME, email = UPDATED_EMAIL, phone = UPDATED_PHONE } = {},
 ) {
   await pickAddOns(page);
-
   await clickChangeButton(page, "personal info");
-  await shouldSee(page, [/Personal Info/i]);
+  await setValueForLocators(page, [
+    [NAME_SELECTOR, name],
+    [EMAIL_SELECTOR, email],
+    [PHONE_SELECTOR, phone],
+  ]);
 
-  const nameInput = page.getByRole("textbox", { name: /Name/i });
-  await nameInput.click();
-  await nameInput.fill(name);
+  await clickNextButton(page);
 
-  const emailInput = page.getByRole("textbox", { name: /Email/i });
-  await emailInput.click();
-  await emailInput.fill(email);
+  await shouldSee(page, [SELECT_PLAN_HEADING]);
 
-  const phoneInput = page.getByRole("textbox", { name: /Phone/i });
-  await phoneInput.click();
-  await phoneInput.fill(phone);
-
-  await phoneInput.press("Enter");
-
-  await shouldSee(page, [/Select Your Plan/i]);
-
-  const step4 = page.getByRole("button", { name: /4/i });
+  const step4 = page.locator("button", { hasText: /4/i });
   await step4.click();
-  await shouldSee(page, [/Finishing Up/i]);
+  await shouldSee(page, [FINISHING_UP_HEADING]);
 }
 
 export async function updatePlan(
   page: Page,
-  { billing = /monthly/i, plan = /pro/i } = {},
+  { billing = MONTHLY_SELECTOR, plan = PRO_SELECTOR } = {},
 ) {
   await pickAddOns(page);
-  await shouldSee(page, [/Arcade/i]);
+  await shouldSee(page, [ARCADE_SELECTOR]);
 
   await clickChangeButton(page, "plan");
-  await shouldSee(page, [/Select Your Plan/i]);
+  await shouldSee(page, [SELECT_PLAN_HEADING]);
 
   await page.locator("label", { hasText: plan }).click();
   await page.locator("label", { hasText: billing }).click();
 
-  const step4 = page.getByRole("button", { name: /4/i });
+  const step4 = page.locator("button", { hasText: /4/i });
 
   await step4.click();
-  await shouldSee(page, [/Finishing Up/i]);
+  await shouldSee(page, [FINISHING_UP_HEADING]);
 }
 
 export async function updateAddOns(
   page: Page,
-  addOns = [/online service/i, /larger storage/i, /customizable profile/i],
+  addOns = [ONLINE_SERVICE, LARGER_STORAGE, CUSTOMIZABLE_PROFILE],
 ) {
-  const initialAddOns = [/Online Service/i, /Larger Storage/i];
+  const initialAddOns = [ONLINE_SERVICE, LARGER_STORAGE];
   await pickAddOns(page, initialAddOns);
   await shouldSee(page, initialAddOns);
 
   await clickChangeButton(page, "add-ons");
 
-  await shouldSee(page, [/Pick Add-ons/i]);
+  await shouldSee(page, [PICK_ADDONS_HEADING]);
 
   for (const addOn of initialAddOns) {
     await clickOnAddOn(page, addOn);
@@ -74,9 +78,10 @@ export async function updateAddOns(
   for (const addOn of addOns) {
     await clickOnAddOn(page, addOn);
   }
-  await page.getByRole("button", { name: /Next Step/i }).click();
 
-  await shouldSee(page, [/Finishing Up/i, ...addOns]);
+  await clickNextButton(page);
+
+  await shouldSee(page, [FINISHING_UP_HEADING, ...addOns]);
 }
 
 async function clickChangeButton(

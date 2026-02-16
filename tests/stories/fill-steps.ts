@@ -1,6 +1,18 @@
 import { Page } from "@playwright/test";
 import { asUser } from "./as-user";
 import {
+  FINISHING_UP_HEADING,
+  LARGER_STORAGE,
+  NAME,
+  NO_ADDONS_SELECTED,
+  ONLINE_SERVICE,
+  PICK_ADDONS_HEADING,
+  PLAN_ERROR,
+  SELECT_PLAN_HEADING,
+  UPDATED_PHONE,
+  VALID_EMAIL,
+} from "./constant-helpers";
+import {
   clickNextButton,
   fillLocatorWith,
   shouldNotSee,
@@ -8,74 +20,71 @@ import {
 } from "./helpers";
 
 const {
-  TEST_NAME = "test",
-  TEST_EMAIL = "test@example.com",
-  TEST_PHONE = "1234567890",
+  TEST_NAME = NAME[1],
+  EMAIL_ADDRESS = VALID_EMAIL[1],
+  PHONE_NUMBER = UPDATED_PHONE,
 } = process.env;
 
 export async function fillPersonalInfo(page: Page) {
   await asUser(page);
 
   await fillLocatorWith(page.locator("label", { hasText: /Name/i }), TEST_NAME);
-
   await fillLocatorWith(
     page.locator("label", { hasText: /Email Address/i }),
-    TEST_EMAIL,
+    EMAIL_ADDRESS,
   );
 
   await fillLocatorWith(
     page.locator("label", { hasText: /Phone Number/i }),
-    TEST_PHONE,
+    PHONE_NUMBER,
   );
 
   await clickNextButton(page);
-  await shouldSee(page, [/Select Your Plan/i]);
+  await shouldSee(page, [SELECT_PLAN_HEADING]);
 }
 
 export async function fillMonthlyPlanStep(page: Page) {
   await fillPersonalInfo(page);
-  await shouldSee(page, [/Select Your Plan/i]);
+  await shouldSee(page, [SELECT_PLAN_HEADING]);
 
   const arcadePlan = page.locator("label", { hasText: /arcade plan/i });
   await arcadePlan.click();
   await clickNextButton(page);
-  await shouldSee(page, [/Pick Add-ons/i]);
+  await shouldSee(page, [PICK_ADDONS_HEADING]);
 }
 
 export async function seeErrorMessageOnPlanSelection(page: Page) {
   await fillPersonalInfo(page);
-  await shouldSee(page, [/Select Your Plan/i]);
+  await shouldSee(page, [SELECT_PLAN_HEADING]);
   await clickNextButton(page);
-  await shouldSee(page, [/Please choose your plan/i]);
+  await shouldSee(page, [PLAN_ERROR]);
 }
 
 export async function fillYearlyPlanStep(page: Page) {
   await fillPersonalInfo(page);
-  const planHeading = /select your plan/i;
-  await shouldSee(page, [planHeading]);
+  await shouldSee(page, [SELECT_PLAN_HEADING]);
   await page.getByText("yearly", { exact: true }).click();
   const advancedPlan = page.locator("label", {
     hasText: /advanced plan120\/yr2 months/i,
   });
   await advancedPlan.click();
   await clickNextButton(page);
-  await shouldNotSee(page, [planHeading]);
+  await shouldNotSee(page, [SELECT_PLAN_HEADING]);
 }
 
 export async function proceedWithoutAddOns(page: Page) {
   await fillMonthlyPlanStep(page);
 
-  const addOnsHeading = /pick add-ons/i;
-  await shouldSee(page, [addOnsHeading]);
+  await shouldSee(page, [PICK_ADDONS_HEADING]);
 
   await clickNextButton(page);
-  await shouldNotSee(page, [addOnsHeading]);
-  await shouldSee(page, [/Finishing Up/i, /no add-ons selected/i]);
+  await shouldNotSee(page, [PICK_ADDONS_HEADING]);
+  await shouldSee(page, [FINISHING_UP_HEADING, NO_ADDONS_SELECTED]);
 }
 
 export async function pickAddOns(
   page: Page,
-  addOns = [/online service/i, /larger storage/i],
+  addOns = [ONLINE_SERVICE, LARGER_STORAGE],
 ) {
   await fillMonthlyPlanStep(page);
 
@@ -84,7 +93,7 @@ export async function pickAddOns(
   }
 
   await clickNextButton(page);
-  await shouldSee(page, [/Finishing Up/i, ...addOns]);
+  await shouldSee(page, [FINISHING_UP_HEADING, ...addOns]);
 }
 
 export async function clickOnAddOn(page: Page, addOn: RegExp | string) {

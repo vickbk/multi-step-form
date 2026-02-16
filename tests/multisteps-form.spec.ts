@@ -4,6 +4,11 @@ import {
   fillMonthlyPlanStep,
   fillPersonalInfo,
   fillYearlyPlanStep,
+  FINISHING_UP_HEADING,
+  INFO_TITLE,
+  LARGER_STORAGE,
+  ONLINE_SERVICE,
+  PICK_ADDONS_HEADING,
   pickAddOns,
   proceedWithoutAddOns,
   seeErrorMessageOnPlanSelection,
@@ -15,7 +20,7 @@ test.describe("Multi-step form", () => {
   test("should render the first step without errors", async ({ page }) => {
     await asUser(page);
     await expect(page).toHaveTitle(/multi-step form/i);
-    await shouldSee(page, [/Personal Info/i, /Next/i]);
+    await shouldSee(page, [INFO_TITLE, /Next/i]);
     await shouldNotSee(page, [/This field is required/i]);
   });
 
@@ -23,7 +28,7 @@ test.describe("Multi-step form", () => {
     page,
   }) => {
     await fillPersonalInfo(page);
-    await shouldNotSee(page, [/Personal Info/i]);
+    await shouldNotSee(page, [INFO_TITLE]);
     await shouldSee(page, [/Select Your Plan/i]);
   });
 
@@ -44,23 +49,23 @@ test.describe("Multi-step form", () => {
   }) => {
     await fillYearlyPlanStep(page);
     await expect(
-      page.getByRole("heading", { name: /Pick Add-ons/i }),
+      page.getByRole("heading", { name: PICK_ADDONS_HEADING }),
     ).toBeVisible();
   });
 
   test("should proceed to summary without add-ons", async ({ page }) => {
     await proceedWithoutAddOns(page);
     await expect(
-      page.getByRole("heading", { name: /Finishing Up/i }),
+      page.getByRole("heading", { name: FINISHING_UP_HEADING }),
     ).toBeVisible();
   });
 
   test("should pick two add-ons and navigate to the summary step", async ({
     page,
   }) => {
-    const addOns = [/online service/i, /larger storage/i];
+    const addOns = [ONLINE_SERVICE, LARGER_STORAGE];
 
     await pickAddOns(page, addOns);
-    await shouldSee(page, [/Finishing Up/i, ...addOns]);
+    await shouldSee(page, [FINISHING_UP_HEADING, ...addOns]);
   });
 });

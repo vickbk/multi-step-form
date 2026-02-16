@@ -1,5 +1,14 @@
 import { test } from "@playwright/test";
 import {
+  ADVANCED_PLAN_YEARLY,
+  ARCADE_PLAN_MONTHLY,
+  CUSTOMIZABLE_PROFILE,
+  FINISHING_UP_HEADING,
+  JOHN_DOE,
+  JOHN_DOE_EMAIL,
+  JOHN_DOE_PHONE,
+  LARGER_STORAGE,
+  ONLINE_SERVICE,
   shouldSee,
   updateAddOns,
   updatePersonalInfo,
@@ -11,15 +20,15 @@ test.describe("Multi-step form - update", () => {
     page,
   }) => {
     await updatePersonalInfo(page, {
-      name: "John Doe",
-      email: "john.doe@email.com",
-      phone: "01234567890",
+      name: JOHN_DOE,
+      email: JOHN_DOE_EMAIL,
+      phone: JOHN_DOE_PHONE,
     });
     await shouldSee(page, [
-      /Finishing Up/i,
-      /John Doe/i,
-      /john.doe@email.com/i,
-      /01234567890/i,
+      FINISHING_UP_HEADING,
+      JOHN_DOE,
+      JOHN_DOE_EMAIL,
+      JOHN_DOE_PHONE,
     ]);
   });
 
@@ -27,25 +36,20 @@ test.describe("Multi-step form - update", () => {
     page,
   }) => {
     await updatePlan(page, { billing: /monthly/i, plan: /arcade/i });
-    await shouldSee(page, [/Finishing Up/i, /Arcade \(per month\)/i]);
+    await shouldSee(page, [FINISHING_UP_HEADING, ARCADE_PLAN_MONTHLY]);
 
     await updatePlan(page, { billing: /yearly/i, plan: /advanced/i });
-    await shouldSee(page, [/Finishing Up/i, /Advanced \(per year\)/i]);
+    await shouldSee(page, [FINISHING_UP_HEADING, ADVANCED_PLAN_YEARLY]);
   });
 
   test("should update add-ons and reflect the change on summary section", async ({
     page,
   }) => {
-    const addOns = [
-      /online service/i,
-      /larger storage/i,
-      /customizable profile/i,
-    ];
+    const addOns = [ONLINE_SERVICE, LARGER_STORAGE, CUSTOMIZABLE_PROFILE];
     await updateAddOns(page, addOns);
-    await shouldSee(page, [/Finishing Up/i, ...addOns]);
+    await shouldSee(page, [FINISHING_UP_HEADING, ...addOns]);
 
-    const customizableProfile = /customizable profile/i;
-    await updateAddOns(page, [customizableProfile]);
-    await shouldSee(page, [/Finishing Up/i, customizableProfile]);
+    await updateAddOns(page, [CUSTOMIZABLE_PROFILE]);
+    await shouldSee(page, [FINISHING_UP_HEADING, CUSTOMIZABLE_PROFILE]);
   });
 });
