@@ -10,8 +10,11 @@ import {
   ONLINE_SERVICE,
   PICK_ADDONS_HEADING,
   pickAddOns,
+  PLAN_ERROR,
   proceedWithoutAddOns,
+  REQUIRED_FIELD_ERROR,
   seeErrorMessageOnPlanSelection,
+  SELECT_PLAN_HEADING,
   shouldNotSee,
   shouldSee,
 } from "./stories";
@@ -21,7 +24,7 @@ test.describe("Multi-step form", () => {
     await asUser(page);
     await expect(page).toHaveTitle(/multi-step form/i);
     await shouldSee(page, [INFO_TITLE, /Next/i]);
-    await shouldNotSee(page, [/This field is required/i]);
+    await shouldNotSee(page, [REQUIRED_FIELD_ERROR]);
   });
 
   test("should fill the first step and navigate to the second step", async ({
@@ -29,7 +32,7 @@ test.describe("Multi-step form", () => {
   }) => {
     await fillPersonalInfo(page);
     await shouldNotSee(page, [INFO_TITLE]);
-    await shouldSee(page, [/Select Your Plan/i]);
+    await shouldSee(page, [SELECT_PLAN_HEADING]);
   });
 
   test("should select a monthly plan and navigate to the add-ons step", async ({
@@ -42,6 +45,7 @@ test.describe("Multi-step form", () => {
     page,
   }) => {
     await seeErrorMessageOnPlanSelection(page);
+    await shouldSee(page, [SELECT_PLAN_HEADING, PLAN_ERROR]);
   });
 
   test("should select a yearly plan and navigate to the add-ons step", async ({

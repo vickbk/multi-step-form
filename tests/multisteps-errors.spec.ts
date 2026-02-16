@@ -1,18 +1,16 @@
 import test from "@playwright/test";
-import { shouldSee } from "./stories";
 import {
   INFO_TITLE,
   INVALID_EMAIL_ERROR,
   INVALID_PHONE_ERROR,
   PLAN_ERROR,
   REQUIRED_FIELD_ERROR,
-} from "./stories/constant-helpers";
-import {
   seeEmailError,
   seePersonalInfoErrors,
   seePhoneNumberError,
   seePlanError,
-} from "./stories/error-steps";
+  shouldSee,
+} from "./stories";
 
 test.describe("Multi-step form - errors", () => {
   test("should not navigate to the second step without filling required fields and see error messages", async ({
