@@ -1,15 +1,15 @@
 import { expect, test } from "@playwright/test";
 import {
-  ARCADE_SELECTOR,
   ADVANCED_SELECTOR,
+  ARCADE_SELECTOR,
+  clickLabelInput,
   clickNextButton,
+  clickOnAddOn,
   CUSTOMIZABLE_PROFILE,
   fillPersonalInfo,
   FINISHING_UP_HEADING,
   LARGER_STORAGE,
-  MONTHLY_SELECTOR,
   ONLINE_SERVICE,
-  PICK_ADDONS_HEADING,
   pickAddOns,
   PRO_SELECTOR,
   SELECT_PLAN_HEADING,
@@ -63,11 +63,11 @@ test.describe("Multi-step form - pricing", () => {
     await fillPersonalInfo(page);
 
     // Select Pro monthly plan ($15/mo)
-    await page.locator("label", { hasText: PRO_SELECTOR }).click();
+    await clickLabelInput(page, PRO_SELECTOR);
     await clickNextButton(page);
 
     // Select Larger Storage add-on ($2/mo)
-    await page.locator("label", { hasText: LARGER_STORAGE }).click();
+    await clickOnAddOn(page, LARGER_STORAGE);
     await clickNextButton(page);
 
     // Verify total is $17/mo
@@ -81,11 +81,11 @@ test.describe("Multi-step form - pricing", () => {
     await shouldSee(page, [SELECT_PLAN_HEADING]);
 
     // Verify monthly is selected by default and shows monthly prices
-    await page.locator("label", { hasText: ARCADE_SELECTOR }).click();
-    
+    await clickLabelInput(page, ARCADE_SELECTOR);
+
     // Switch to yearly and verify yearly prices appear
-    await page.getByText("yearly", { exact: true }).click();
-    
+    await clickLabelInput(page, YEARLY_SELECTOR);
+
     // Wait for yearly prices to appear (multiple elements exist, so use first)
     await expect(page.getByText(/\/yr/).first()).toBeVisible();
   });
@@ -96,7 +96,7 @@ test.describe("Multi-step form - pricing", () => {
     await fillPersonalInfo(page);
 
     // Select Arcade monthly
-    await page.locator("label", { hasText: ARCADE_SELECTOR }).click();
+    await clickLabelInput(page, ARCADE_SELECTOR);
     await clickNextButton(page);
 
     // Verify monthly add-on prices (multiple elements exist, so check specific ones)
@@ -105,7 +105,7 @@ test.describe("Multi-step form - pricing", () => {
 
     // Go back to change billing
     await page.getByRole("button", { name: /go back/i }).click();
-    await page.getByText("yearly", { exact: true }).click();
+    await clickLabelInput(page, YEARLY_SELECTOR);
     await clickNextButton(page);
 
     // Verify yearly add-on prices (multiple elements exist, so check specific ones)
@@ -113,9 +113,7 @@ test.describe("Multi-step form - pricing", () => {
     await expect(page.getByText(/\+20\/yr/i).first()).toBeVisible();
   });
 
-  test("should be able to change plan from summary page", async ({
-    page,
-  }) => {
+  test("should be able to change plan from summary page", async ({ page }) => {
     await pickAddOns(page);
     await shouldSee(page, [FINISHING_UP_HEADING]);
 
@@ -131,8 +129,8 @@ test.describe("Multi-step form - pricing", () => {
     await fillPersonalInfo(page);
 
     // Select Pro yearly plan ($150/yr)
-    await page.getByText("yearly", { exact: true }).click();
-    await page.locator("label", { hasText: PRO_SELECTOR }).click();
+    await clickLabelInput(page, YEARLY_SELECTOR);
+    await clickLabelInput(page, PRO_SELECTOR);
     await clickNextButton(page);
 
     // Don't select any add-ons

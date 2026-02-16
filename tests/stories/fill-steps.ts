@@ -97,15 +97,18 @@ export async function pickAddOns(
 }
 
 export async function clickOnAddOn(page: Page, addOn: RegExp | string) {
-  const addOnOption = page.locator("label").filter({ hasText: addOn });
-  await shouldSee(page, [addOn]);
-  await addOnOption.click();
+  await clickLabelInput(page, addOn);
+}
+
+export async function clickLabelInput(page: Page, labelText: RegExp | string) {
+  const label = page.locator("label").filter({ hasText: labelText });
+  await label.click();
 }
 
 export async function completeFormSubmission(page: Page) {
   await pickAddOns(page);
   await shouldSee(page, [FINISHING_UP_HEADING]);
-  
+
   // Click confirm button
   await page.locator("button", { hasText: /Confirm/i }).click();
 }
