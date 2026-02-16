@@ -6,14 +6,14 @@ import { PersonalInfo } from "@/features/steps/personel-info/components/personal
 import { PlanSection } from "@/features/steps/plan-step/components/plan-section";
 import { Summary } from "@/features/steps/summary/components/summary";
 import { useMultistepsForm } from "../hooks/use-multisteps-form";
-import { submitMultiStepSample } from "../scripts/multi-step-helpers";
+import { multistepsSubmitHandler } from "../scripts/multi-step-helpers";
 import type { MultiStepData } from "../types/multi-step-data";
 import { NavigationBar } from "./navigation-bar";
 
 export const MultiStepForm = () => {
   const navigation = useMultistepsForm<MultiStepData>(
     [PersonalInfo, PlanSection, AddsOn, Summary],
-    submitMultiStepSample,
+    multistepsSubmitHandler,
   );
   const { formAction, goTo, back, Current, complete, formData, reset } =
     navigation;
