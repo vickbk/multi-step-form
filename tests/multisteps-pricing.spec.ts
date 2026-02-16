@@ -89,12 +89,8 @@ test.describe("Multi-step form - pricing", () => {
     // Switch to yearly and verify yearly prices appear
     await page.getByText("yearly", { exact: true }).click();
     
-    // Wait for page to update and verify yearly prices
-    await page.waitForTimeout(500); // Give time for prices to update
-    
-    // Check that at least one yearly price is visible
-    const yearlyPriceVisible = await page.getByText(/\/yr/).first().isVisible();
-    expect(yearlyPriceVisible).toBe(true);
+    // Wait for yearly prices to appear
+    await expect(page.getByText(/\/yr/).first()).toBeVisible();
   });
 
   test("should update add-on prices when switching billing period", async ({

@@ -73,10 +73,10 @@ test.describe("Multi-step form - navigation", () => {
     await page.getByRole("button", { name: /go back/i }).click();
     await shouldSee(page, [INFO_TITLE]);
 
-    // Verify personal info is still filled (form may persist data)
+    // Verify personal info is preserved with the correct values from environment
     const nameInput = page.locator('input[name="name"]');
-    const nameValue = await nameInput.inputValue();
-    expect(nameValue).toBeTruthy(); // Should have some value
+    const expectedName = process.env.TEST_NAME || "Test User";
+    await expect(nameInput).toHaveValue(expectedName);
 
     // Navigate forward again
     await page.getByRole("button", { name: /next/i }).click();
