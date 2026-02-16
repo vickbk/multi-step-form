@@ -9,6 +9,7 @@ import {
   pickAddOns,
   SELECT_PLAN_HEADING,
   shouldSee,
+  shouldNotSee,
 } from "./stories";
 
 test.describe("Multi-step form - navigation", () => {
@@ -33,9 +34,7 @@ test.describe("Multi-step form - navigation", () => {
     await shouldSee(page, [INFO_TITLE]);
 
     // Verify Go Back button is hidden on first step
-    await expect(
-      page.getByRole("button", { name: /go back/i }),
-    ).not.toBeVisible();
+    await shouldNotSee(page, [/go back/i]);
   });
 
   test("should navigate to different steps via sidebar buttons", async ({

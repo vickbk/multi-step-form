@@ -1,8 +1,9 @@
-import { expect, test } from "@playwright/test";
+import { test } from "@playwright/test";
 import {
   completeFormSubmission,
   FINISHING_UP_HEADING,
   shouldSee,
+  shouldNotSee,
   SUBSCRIBE_ANOTHER,
   THANK_YOU_EMAIL,
   THANK_YOU_HEADING,
@@ -13,12 +14,7 @@ test.describe("Multi-step form - completion", () => {
     await completeFormSubmission(page);
 
     // Verify thank you page is displayed
-    await shouldSee(page, [THANK_YOU_HEADING, THANK_YOU_EMAIL]);
-
-    // Verify "Subscribe another account" button exists
-    await expect(
-      page.getByRole("button", { name: SUBSCRIBE_ANOTHER }),
-    ).toBeVisible();
+    await shouldSee(page, [THANK_YOU_HEADING, THANK_YOU_EMAIL, SUBSCRIBE_ANOTHER]);
   });
 
   test("should reset form and return to step 1 after clicking subscribe another", async ({
@@ -33,14 +29,9 @@ test.describe("Multi-step form - completion", () => {
     await page.getByRole("button", { name: SUBSCRIBE_ANOTHER }).click();
 
     // Should be back at step 1
-    await expect(
-      page.getByRole("heading", { name: /personal info/i }),
-    ).toBeVisible();
-
-    // Verify we're on step 1 (Next button should be visible, not Confirm)
-    await expect(page.getByRole("button", { name: /next/i })).toBeVisible();
-    await expect(
-      page.getByRole("button", { name: /confirm/i }),
-    ).not.toBeVisible();
+    await shouldSee(page, [/personal info/i, /next/i]);
+    
+    // Verify Confirm button is not visible on step 1
+    await shouldNotSee(page, [/confirm/i]);
   });
 });

@@ -32,8 +32,7 @@ test.describe("Multi-step form - pricing", () => {
     await clickNextButton(page);
 
     // Verify total is $10/mo
-    await shouldSee(page, [FINISHING_UP_HEADING]);
-    await expect(page.getByText(/\$10\/mo/i)).toBeVisible();
+    await shouldSee(page, [FINISHING_UP_HEADING, /\$10\/mo/i]);
   });
 
   test("should calculate total price correctly - yearly advanced + all addons", async ({
@@ -55,8 +54,7 @@ test.describe("Multi-step form - pricing", () => {
     await clickNextButton(page);
 
     // Verify total is $170/yr
-    await shouldSee(page, [FINISHING_UP_HEADING]);
-    await expect(page.getByText(/\$170\/yr/i)).toBeVisible();
+    await shouldSee(page, [FINISHING_UP_HEADING, /\$170\/yr/i]);
   });
 
   test("should calculate total price correctly - monthly pro + larger storage", async ({
@@ -73,8 +71,7 @@ test.describe("Multi-step form - pricing", () => {
     await clickNextButton(page);
 
     // Verify total is $17/mo
-    await shouldSee(page, [FINISHING_UP_HEADING]);
-    await expect(page.getByText(/\$17\/mo/i)).toBeVisible();
+    await shouldSee(page, [FINISHING_UP_HEADING, /\$17\/mo/i]);
   });
 
   test("should update plan prices when switching billing period", async ({
@@ -89,7 +86,7 @@ test.describe("Multi-step form - pricing", () => {
     // Switch to yearly and verify yearly prices appear
     await page.getByText("yearly", { exact: true }).click();
     
-    // Wait for yearly prices to appear
+    // Wait for yearly prices to appear (multiple elements exist, so use first)
     await expect(page.getByText(/\/yr/).first()).toBeVisible();
   });
 
@@ -102,18 +99,18 @@ test.describe("Multi-step form - pricing", () => {
     await page.locator("label", { hasText: ARCADE_SELECTOR }).click();
     await clickNextButton(page);
 
-    // Verify monthly add-on prices
-    await expect(page.getByText(/\+1\/mo/i).first()).toBeVisible(); // Online service
-    await expect(page.getByText(/\+2\/mo/i).first()).toBeVisible(); // Larger storage
+    // Verify monthly add-on prices (multiple elements exist, so check specific ones)
+    await expect(page.getByText(/\+1\/mo/i).first()).toBeVisible();
+    await expect(page.getByText(/\+2\/mo/i).first()).toBeVisible();
 
     // Go back to change billing
     await page.getByRole("button", { name: /go back/i }).click();
     await page.getByText("yearly", { exact: true }).click();
     await clickNextButton(page);
 
-    // Verify yearly add-on prices
-    await expect(page.getByText(/\+10\/yr/i)).toBeVisible(); // Online service
-    await expect(page.getByText(/\+20\/yr/i).first()).toBeVisible(); // Larger storage
+    // Verify yearly add-on prices (multiple elements exist, so check specific ones)
+    await expect(page.getByText(/\+10\/yr/i).first()).toBeVisible();
+    await expect(page.getByText(/\+20\/yr/i).first()).toBeVisible();
   });
 
   test("should be able to change plan from summary page", async ({
@@ -122,10 +119,7 @@ test.describe("Multi-step form - pricing", () => {
     await pickAddOns(page);
     await shouldSee(page, [FINISHING_UP_HEADING]);
 
-    // Verify we're on the summary
-    await expect(page.getByRole("heading", { name: FINISHING_UP_HEADING })).toBeVisible();
-
-    // Verify at least one "Change" button exists
+    // Verify we're on the summary and at least one "Change" button exists
     const changeButtons = page.getByRole("button", { name: /change/i });
     const count = await changeButtons.count();
     expect(count).toBeGreaterThan(0);
@@ -144,7 +138,7 @@ test.describe("Multi-step form - pricing", () => {
     // Don't select any add-ons
     await clickNextButton(page);
 
-    // Verify total is just the plan price (use nth(1) for the total element)
+    // Verify total is just the plan price (multiple $150/yr exist - plan price and total)
     await shouldSee(page, [FINISHING_UP_HEADING]);
     await expect(page.getByText(/\$150\/yr/i).nth(1)).toBeVisible();
   });
