@@ -13,6 +13,7 @@ export async function multistepsSubmitHandler({
 }: MultiStepHandlerParams<MultiStepData>) {
   const formData = Object.fromEntries(data);
   const results: MultiStepData = { ...previous, ...formData };
+  if ("go-to" in results) delete results["go-to"];
   if (isLastStep) {
     await submitMultiStepSample(results);
     return results;
