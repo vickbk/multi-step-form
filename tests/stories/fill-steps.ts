@@ -101,3 +101,11 @@ export async function clickOnAddOn(page: Page, addOn: RegExp | string) {
   await shouldSee(page, [addOn]);
   await addOnOption.click();
 }
+
+export async function completeFormSubmission(page: Page) {
+  await pickAddOns(page);
+  await shouldSee(page, [FINISHING_UP_HEADING]);
+  
+  // Click confirm button
+  await page.locator("button", { hasText: /Confirm/i }).click();
+}
