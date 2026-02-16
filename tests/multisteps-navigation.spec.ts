@@ -23,17 +23,10 @@ test.describe("Multi-step form - navigation", () => {
     // At step 4 (summary)
     await shouldSee(page, [FINISHING_UP_HEADING]);
 
-    // Go back to step 3
-    await clickBackButton(page);
-    await shouldSee(page, [PICK_ADDONS_HEADING]);
-
-    // Go back to step 2
-    await clickBackButton(page);
-    await shouldSee(page, [SELECT_PLAN_HEADING]);
-
-    // Go back to step 1
-    await clickBackButton(page);
-    await shouldSee(page, [INFO_TITLE]);
+    for (const step of [PICK_ADDONS_HEADING, SELECT_PLAN_HEADING, INFO_TITLE]) {
+      await clickBackButton(page);
+      await shouldSee(page, [step]);
+    }
 
     // Verify Go Back button is hidden on first step
     await shouldNotSee(page, [GO_BACK_BUTTON]);
@@ -44,21 +37,15 @@ test.describe("Multi-step form - navigation", () => {
   }) => {
     await pickAddOns(page);
 
-    // At step 4, click step 1 in sidebar
-    await navigateToStep(page, 1);
-    await shouldSee(page, [INFO_TITLE]);
-
-    // Click step 3 in sidebar
-    await navigateToStep(page, 3);
-    await shouldSee(page, [PICK_ADDONS_HEADING]);
-
-    // Click step 2 in sidebar
-    await navigateToStep(page, 2);
-    await shouldSee(page, [SELECT_PLAN_HEADING]);
-
-    // Click step 4 in sidebar
-    await navigateToStep(page, 4);
-    await shouldSee(page, [FINISHING_UP_HEADING]);
+    for (const [heading, stepNumber] of [
+      [INFO_TITLE, 1],
+      [PICK_ADDONS_HEADING, 3],
+      [SELECT_PLAN_HEADING, 2],
+      [FINISHING_UP_HEADING, 4],
+    ] as const) {
+      await navigateToStep(page, stepNumber);
+      await shouldSee(page, [heading]);
+    }
   });
 
   test("should preserve form data when navigating back and forth", async ({
