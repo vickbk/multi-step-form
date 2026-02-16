@@ -39,3 +39,26 @@ export async function updatePersonalInfo(
     page.getByRole("heading", { name: /Finishing Up/i }),
   ).toBeVisible();
 }
+
+export async function updatePlan(
+  page: Page,
+  { billing = /monthly/i, plan = /pro/i } = {},
+) {
+  await pickTwoAddOns(page);
+  await expect(page.getByText(/arcade/i)).toBeVisible();
+  const step2 = page.getByRole("button", { name: /Change/i }).nth(1);
+  await step2.click();
+  await expect(
+    page.getByRole("heading", { name: /Select Your Plan/i }),
+  ).toBeVisible();
+
+  await page.locator("label", { hasText: plan }).click();
+  await page.locator("label", { hasText: billing }).click();
+
+  const step4 = page.getByRole("button", { name: /4/i });
+
+  await step4.click();
+  await expect(
+    page.getByRole("heading", { name: /Finishing Up/i }),
+  ).toBeVisible();
+}
