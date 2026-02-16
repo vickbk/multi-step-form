@@ -7,7 +7,7 @@ const NAME: LABEL_LOCATOR = [/Name/i, "Test User"];
 const INVALID_EMAIL: LABEL_LOCATOR = [/Email Address/i, "invalid-email"];
 const PHONE_NUMBER: LABEL_LOCATOR = [/Phone Number/i, "1234567890"];
 const VALID_EMAIL: LABEL_LOCATOR = [/Email Address/i, "test@example.com"];
-const VALID_PHONE_NUMBER: LABEL_LOCATOR = [
+const INVALID_PHONE_NUMBER: LABEL_LOCATOR = [
   /Phone Number/i,
   "not-a-phone-number",
 ];
@@ -40,4 +40,18 @@ export async function seeEmailError(page: Page) {
 
   await page.locator("button", { hasText: /Next/i }).click();
   await shouldSee(page, [TITLE, INVALID_EMAIL_ERROR]);
+}
+
+export async function seePhoneNumberError(page: Page) {
+  await seePersonalInfoErrors(page);
+
+  const nextButton = page.locator("button", { hasText: /Next/i });
+
+  await setValueForLocators(page, [NAME, VALID_EMAIL]);
+  await nextButton.click();
+  await shouldSee(page, [TITLE, INVALID_PHONE_ERROR]);
+
+  await setLocatorValue(page, INVALID_PHONE_NUMBER);
+  await nextButton.click();
+  await shouldSee(page, [TITLE, INVALID_PHONE_ERROR]);
 }

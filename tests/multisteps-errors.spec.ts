@@ -1,6 +1,10 @@
 import test from "@playwright/test";
 import { shouldSee } from "./stories";
-import { seeEmailError, seePersonalInfoErrors } from "./stories/error-steps";
+import {
+  seeEmailError,
+  seePersonalInfoErrors,
+  seePhoneNumberError,
+} from "./stories/error-steps";
 
 test.describe("Multi-step form - errors", () => {
   test("should not navigate to the second step without filling required fields and see error messages", async ({
@@ -20,5 +24,15 @@ test.describe("Multi-step form - errors", () => {
   }) => {
     await seeEmailError(page);
     await shouldSee(page, [/Personal Info/i, /Please enter a valid email/i]);
+  });
+
+  test("should see error message when trying to proceed without a phone number or with an invalid phone number", async ({
+    page,
+  }) => {
+    await seePhoneNumberError(page);
+    await shouldSee(page, [
+      /Personal Info/i,
+      /Please enter a valid phone number/i,
+    ]);
   });
 });
