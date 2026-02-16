@@ -43,3 +43,7 @@ export async function clickNextButton(page: Page) {
 export async function clickBackButton(page: Page) {
   await page.getByRole("button", { name: /go back/i }).click();
 }
+
+export async function navigateToStep(page: Page, stepNumber: number) {
+  await page.getByRole("button", { name: stepNumber.toString() }).click();
+}

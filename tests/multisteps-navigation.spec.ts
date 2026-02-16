@@ -1,15 +1,17 @@
 import { expect, test } from "@playwright/test";
 import {
   clickBackButton,
-  fillPersonalInfo,
   fillMonthlyPlanStep,
+  fillPersonalInfo,
   FINISHING_UP_HEADING,
+  GO_BACK_BUTTON,
   INFO_TITLE,
+  navigateToStep,
   PICK_ADDONS_HEADING,
   pickAddOns,
   SELECT_PLAN_HEADING,
-  shouldSee,
   shouldNotSee,
+  shouldSee,
 } from "./stories";
 
 test.describe("Multi-step form - navigation", () => {
@@ -34,7 +36,7 @@ test.describe("Multi-step form - navigation", () => {
     await shouldSee(page, [INFO_TITLE]);
 
     // Verify Go Back button is hidden on first step
-    await shouldNotSee(page, [/go back/i]);
+    await shouldNotSee(page, [GO_BACK_BUTTON]);
   });
 
   test("should navigate to different steps via sidebar buttons", async ({
@@ -43,19 +45,19 @@ test.describe("Multi-step form - navigation", () => {
     await pickAddOns(page);
 
     // At step 4, click step 1 in sidebar
-    await page.getByRole("button", { name: "1" }).click();
+    await navigateToStep(page, 1);
     await shouldSee(page, [INFO_TITLE]);
 
     // Click step 3 in sidebar
-    await page.getByRole("button", { name: "3" }).click();
+    await navigateToStep(page, 3);
     await shouldSee(page, [PICK_ADDONS_HEADING]);
 
     // Click step 2 in sidebar
-    await page.getByRole("button", { name: "2" }).click();
+    await navigateToStep(page, 2);
     await shouldSee(page, [SELECT_PLAN_HEADING]);
 
     // Click step 4 in sidebar
-    await page.getByRole("button", { name: "4" }).click();
+    await navigateToStep(page, 4);
     await shouldSee(page, [FINISHING_UP_HEADING]);
   });
 
@@ -79,7 +81,7 @@ test.describe("Multi-step form - navigation", () => {
     await expect(nameInput).toHaveValue(expectedName);
 
     // Navigate forward again
-    await page.getByRole("button", { name: /next/i }).click();
+    await navigateToStep(page, 2);
 
     // Should still be at step 2 with previous selection visible
     await shouldSee(page, [SELECT_PLAN_HEADING]);
