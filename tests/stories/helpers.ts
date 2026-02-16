@@ -39,3 +39,7 @@ export async function setValueForLocators(
 export async function clickNextButton(page: Page) {
   await page.locator("button", { hasText: /Next/i }).click();
 }
+
+export async function clickBackButton(page: Page) {
+  await page.getByRole("button", { name: /go back/i }).click();
+}

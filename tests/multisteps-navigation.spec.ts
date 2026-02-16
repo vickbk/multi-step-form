@@ -1,5 +1,6 @@
 import { expect, test } from "@playwright/test";
 import {
+  clickBackButton,
   fillPersonalInfo,
   fillMonthlyPlanStep,
   FINISHING_UP_HEADING,
@@ -20,15 +21,15 @@ test.describe("Multi-step form - navigation", () => {
     await shouldSee(page, [FINISHING_UP_HEADING]);
 
     // Go back to step 3
-    await page.getByRole("button", { name: /go back/i }).click();
+    await clickBackButton(page);
     await shouldSee(page, [PICK_ADDONS_HEADING]);
 
     // Go back to step 2
-    await page.getByRole("button", { name: /go back/i }).click();
+    await clickBackButton(page);
     await shouldSee(page, [SELECT_PLAN_HEADING]);
 
     // Go back to step 1
-    await page.getByRole("button", { name: /go back/i }).click();
+    await clickBackButton(page);
     await shouldSee(page, [INFO_TITLE]);
 
     // Verify Go Back button is hidden on first step
@@ -69,8 +70,8 @@ test.describe("Multi-step form - navigation", () => {
     await shouldSee(page, [PICK_ADDONS_HEADING]);
 
     // Go back to step 1
-    await page.getByRole("button", { name: /go back/i }).click();
-    await page.getByRole("button", { name: /go back/i }).click();
+    await clickBackButton(page);
+    await clickBackButton(page);
     await shouldSee(page, [INFO_TITLE]);
 
     // Verify personal info is preserved with the correct values from environment
