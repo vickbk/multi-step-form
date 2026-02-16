@@ -1,6 +1,11 @@
-import { expect, Page } from "@playwright/test";
+import { Page } from "@playwright/test";
 import { asUser } from "./as-user";
-import { clickNextButton, fillLocatorWith, shouldSee } from "./helpers";
+import {
+  clickNextButton,
+  fillLocatorWith,
+  shouldNotSee,
+  shouldSee,
+} from "./helpers";
 
 const {
   TEST_NAME = "test",
@@ -11,18 +16,15 @@ const {
 export async function fillPersonalInfo(page: Page) {
   await asUser(page);
 
-  await fillLocatorWith(
-    page.locator("textbox", { hasText: "Name" }),
-    TEST_NAME,
-  );
+  await fillLocatorWith(page.locator("label", { hasText: /Name/i }), TEST_NAME);
 
   await fillLocatorWith(
-    page.locator("textbox", { hasText: "Email Address" }),
+    page.locator("label", { hasText: /Email Address/i }),
     TEST_EMAIL,
   );
 
   await fillLocatorWith(
-    page.locator("textbox", { hasText: "Phone Number" }),
+    page.locator("label", { hasText: /Phone Number/i }),
     TEST_PHONE,
   );
 
@@ -32,46 +34,42 @@ export async function fillPersonalInfo(page: Page) {
 
 export async function fillMonthlyPlanStep(page: Page) {
   await fillPersonalInfo(page);
-  await expect(
-    page.getByRole("heading", { name: /Select Your Plan/i }),
-  ).toBeVisible();
-  const arcadePlan = page.locator("label").filter({ hasText: /arcade plan/i });
+  await shouldSee(page, [/Select Your Plan/i]);
+
+  const arcadePlan = page.locator("label", { hasText: /arcade plan/i });
   await arcadePlan.click();
   await clickNextButton(page);
-  await expect(
-    page.getByRole("heading", { name: /Pick Add-ons/i }),
-  ).toBeVisible();
+  await shouldSee(page, [/Pick Add-ons/i]);
 }
 
 export async function seeErrorMessageOnPlanSelection(page: Page) {
   await fillPersonalInfo(page);
-  await expect(
-    page.getByRole("heading", { name: /Select Your Plan/i }),
-  ).toBeVisible();
+  await shouldSee(page, [/Select Your Plan/i]);
   await clickNextButton(page);
-  await expect(page.getByText(/Please choose your plan/i)).toBeVisible();
+  await shouldSee(page, [/Please choose your plan/i]);
 }
 
 export async function fillYearlyPlanStep(page: Page) {
   await fillPersonalInfo(page);
-  const heading = page.getByRole("heading", { name: /Select Your Plan/i });
-  await expect(heading).toBeVisible();
+  const planHeading = /select your plan/i;
+  await shouldSee(page, [planHeading]);
   await page.getByText("yearly", { exact: true }).click();
-  const advancedPlan = await page
-    .locator("label")
-    .filter({ hasText: "advanced plan120/yr2 months" });
-  await expect(advancedPlan).toBeVisible();
+  const advancedPlan = page.locator("label", {
+    hasText: /advanced plan120\/yr2 months/i,
+  });
   await advancedPlan.click();
   await clickNextButton(page);
-  await expect(heading).not.toBeVisible();
+  await shouldNotSee(page, [planHeading]);
 }
 
 export async function proceedWithoutAddOns(page: Page) {
   await fillMonthlyPlanStep(page);
-  const heading = page.getByRole("heading", { name: /Pick Add-ons/i });
-  await expect(heading).toBeVisible();
+
+  const addOnsHeading = /pick add-ons/i;
+  await shouldSee(page, [addOnsHeading]);
+
   await clickNextButton(page);
-  await expect(heading).not.toBeVisible();
+  await shouldNotSee(page, [addOnsHeading]);
 }
 
 export async function pickAddOns(
@@ -85,13 +83,11 @@ export async function pickAddOns(
   }
 
   await clickNextButton(page);
-  await expect(
-    page.getByRole("heading", { name: /Finishing Up/i }),
-  ).toBeVisible();
+  await shouldSee(page, [/Finishing Up/i]);
 }
 
 export async function clickOnAddOn(page: Page, addOn: RegExp | string) {
   const addOnOption = page.locator("label").filter({ hasText: addOn });
-  await expect(addOnOption).toBeVisible();
+  await shouldSee(page, [addOn]);
   await addOnOption.click();
 }
