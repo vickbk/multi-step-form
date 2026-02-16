@@ -4,37 +4,34 @@ import {
   fillMonthlyPlanStep,
   fillPersonalInfo,
   fillYearlyPlanStep,
-  pickTwoAddOns,
+  pickAddOns,
   proceedWithoutAddOns,
   seeErrorMessageOnPlanSelection,
 } from "./stories";
+import { shouldNotSee, shouldSee } from "./stories/helpers";
 
 test.describe("Multi-step form", () => {
   test("should render the first step without errors", async ({ page }) => {
     await asUser(page);
     await expect(page).toHaveTitle(/multi-step form/i);
-    await expect(
-      page.getByRole("heading", { name: /Personal Info/i }),
-    ).toBeVisible();
-    await page.getByRole("button", { name: /Next/i });
-    await expect(page.getByText(/This field is required/i)).not.toBeVisible();
+    await shouldSee(page, [/Personal Info/i, /Next/i]);
+    await shouldNotSee(page, [/This field is required/i]);
   });
 
   test("should not navigate to the second step without filling required fields and see error messages", async ({
     page,
   }) => {
     await asUser(page);
-    await page.getByRole("button", { name: /Next/i }).click();
-    await expect(
-      page.getByRole("heading", { name: /Personal Info/i }),
-    ).toBeVisible();
-    await expect(page.getByText(/This field is required/i)).toBeVisible();
+    await page.locator("button", { hasText: /Next/i }).click();
+    await shouldSee(page, [/Personal Info/i, /This field is required/i]);
   });
 
   test("should fill the first step and navigate to the second step", async ({
     page,
   }) => {
     await fillPersonalInfo(page);
+    await shouldNotSee(page, [/Personal Info/i]);
+    await shouldSee(page, [/Select Your Plan/i]);
   });
 
   test("should select a monthly plan and navigate to the add-ons step", async ({
@@ -68,11 +65,9 @@ test.describe("Multi-step form", () => {
   test("should pick two add-ons and navigate to the summary step", async ({
     page,
   }) => {
-    await pickTwoAddOns(page);
-    await expect(
-      page.getByRole("heading", { name: /Finishing Up/i }),
-    ).toBeVisible();
-    await expect(page.getByText(/Online service/i)).toBeVisible();
-    await expect(page.getByText(/Larger storage/i)).toBeVisible();
+    const addOns = [/online service/i, /larger storage/i];
+
+    await pickAddOns(page, addOns);
+    await shouldSee(page, [/Finishing Up/i, ...addOns]);
   });
 });
