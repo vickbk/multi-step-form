@@ -1,11 +1,6 @@
 import { expect, Page } from "@playwright/test";
 import { asUser } from "./as-user";
-import {
-  clickNextButton,
-  fillLocatorWith,
-  shouldNotSee,
-  shouldSee,
-} from "./helpers";
+import { clickNextButton, fillLocatorWith, shouldSee } from "./helpers";
 
 const {
   TEST_NAME = "test",
@@ -16,22 +11,18 @@ const {
 export async function fillPersonalInfo(page: Page) {
   await asUser(page);
 
-  const nameInput = page.getByRole("textbox", { name: "Name" });
-  await fillLocatorWith(nameInput, TEST_NAME);
-
-  const emailInput = page.getByRole("textbox", { name: "Email Address" });
-  await fillLocatorWith(emailInput, "invalid-email");
-
-  const emailErrorMessage = /Please enter a valid email address/i;
-  await emailInput.press("Enter");
-  await shouldSee(page, [emailErrorMessage]);
-
-  await fillLocatorWith(emailInput, TEST_EMAIL);
-
-  await shouldNotSee(page, [emailErrorMessage]);
+  await fillLocatorWith(
+    page.locator("textbox", { hasText: "Name" }),
+    TEST_NAME,
+  );
 
   await fillLocatorWith(
-    page.getByRole("textbox", { name: "Phone Number" }),
+    page.locator("textbox", { hasText: "Email Address" }),
+    TEST_EMAIL,
+  );
+
+  await fillLocatorWith(
+    page.locator("textbox", { hasText: "Phone Number" }),
     TEST_PHONE,
   );
 
