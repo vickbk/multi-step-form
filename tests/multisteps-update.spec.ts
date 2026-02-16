@@ -1,6 +1,10 @@
 import { test } from "@playwright/test";
-import { updateAddOns, updatePersonalInfo, updatePlan } from "./stories";
-import { shouldSee } from "./stories/helpers";
+import {
+  shouldSee,
+  updateAddOns,
+  updatePersonalInfo,
+  updatePlan,
+} from "./stories";
 
 test.describe("Multi-step form - update", () => {
   test("should update the personal information and reflect the changes in the summary step", async ({

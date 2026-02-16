@@ -7,8 +7,9 @@ import {
   pickAddOns,
   proceedWithoutAddOns,
   seeErrorMessageOnPlanSelection,
+  shouldNotSee,
+  shouldSee,
 } from "./stories";
-import { shouldNotSee, shouldSee } from "./stories/helpers";
 
 test.describe("Multi-step form", () => {
   test("should render the first step without errors", async ({ page }) => {

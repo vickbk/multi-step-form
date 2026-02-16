@@ -1,6 +1,5 @@
 import test from "@playwright/test";
-import { asUser } from "./stories";
-import { shouldSee } from "./stories/helpers";
+import { asUser, shouldSee } from "./stories";
 
 test.describe("Multi-step form - errors", () => {
   test("should not navigate to the second step without filling required fields and see error messages", async ({
