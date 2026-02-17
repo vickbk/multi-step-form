@@ -47,3 +47,9 @@ export const ARCADE_PLAN_YEARLY = /Arcade \(per year\)/i;
 export const ONLINE_SERVICE = /online service/i;
 export const LARGER_STORAGE = /larger storage/i;
 export const CUSTOMIZABLE_PROFILE = /customizable profile/i;
+
+export const THANK_YOU_HEADING = /Thank you/i;
+export const THANK_YOU_EMAIL = /support@loremgaming\.com/i;
+export const SUBSCRIBE_ANOTHER = /Subscribe another account/i;
+
+export const GO_BACK_BUTTON = /go back/i;

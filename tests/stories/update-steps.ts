@@ -16,8 +16,8 @@ import {
   UPDATED_NAME,
   UPDATED_PHONE,
 } from "./constant-helpers";
-import { clickOnAddOn, pickAddOns } from "./fill-steps";
-import { clickNextButton, setValueForLocators, shouldSee } from "./helpers";
+import { pickAddOns } from "./fill-steps";
+import { clickLabelInput, clickNextButton, setValueForLocators, shouldSee } from "./helpers";
 
 export async function updatePersonalInfo(
   page: Page,
@@ -72,11 +72,11 @@ export async function updateAddOns(
   await shouldSee(page, [PICK_ADDONS_HEADING]);
 
   for (const addOn of initialAddOns) {
-    await clickOnAddOn(page, addOn);
+    await clickLabelInput(page, addOn);
   }
 
   for (const addOn of addOns) {
-    await clickOnAddOn(page, addOn);
+    await clickLabelInput(page, addOn);
   }
 
   await clickNextButton(page);
