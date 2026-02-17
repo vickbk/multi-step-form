@@ -1,4 +1,4 @@
-import type { MultiStepData } from "@/app/types";
+import type { MultiStepFormData } from "@/app/types";
 import { getAddOnPrice } from "../../add-ons";
 import { getPlanPrice } from "../../plan-step";
 
@@ -6,7 +6,7 @@ export function getTotalPrice({
   billing,
   "add-ons": addOns,
   plan,
-}: MultiStepData) {
+}: MultiStepFormData) {
   const addOnsPrice =
     addOns?.reduce(
       (acc, addOn) => acc + getAddOnPrice({ billing, "add-on": addOn }),

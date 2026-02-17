@@ -1,4 +1,4 @@
-import type { MultiStepData, WithBack, WithGoTo } from "@/app/types";
+import type { MultiStepFormData, WithBack, WithGoTo } from "@/app/types";
 import { ADDON_REQUIRED_FIELDS } from "../../add-ons";
 import { StepSection } from "../../components/step-section";
 import { useRequire } from "../../hooks";
@@ -12,7 +12,7 @@ import { SummaryHolder } from "./summary-holder";
 export const Summary = ({
   goTo: goTo,
   ...data
-}: WithBack<WithGoTo<MultiStepData>>) => {
+}: WithBack<WithGoTo<MultiStepFormData>>) => {
   const required = useRequire(data, ADDON_REQUIRED_FIELDS);
 
   const { billing } = data;
