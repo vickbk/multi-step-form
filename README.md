@@ -35,12 +35,13 @@ Users should be able to:
 
 ### Screenshot
 
-![Multi-step form solution](./project/design/solution/screenshot.jpg)
+![desktop-design](./project/design/solution/desktop-design.png)
+![mobile-design](./project/design/solution/mobile-design.png)
 
 ### Links
 
 - Solution URL: [GitHub Repository](https://github.com/vickbk/multi-step-form)
-- Live Site URL: [https://vickbk.github.io/multi-step-form/](https://vickbk.github.io/multi-step-form/)
+- Live Site URL: [GitHub Pages](https://vickbk.github.io/multi-step-form/)
 
 ## My process
 
