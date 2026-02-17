@@ -26,19 +26,25 @@ const {
   PHONE_NUMBER = UPDATED_PHONE,
 } = process.env;
 
-export async function fillPersonalInfo(page: Page) {
+export interface PersonalInfoData {
+  name?: string;
+  email?: string;
+  phone?: string;
+}
+
+export async function fillPersonalInfo(
+  page: Page,
+  data: PersonalInfoData = {},
+) {
   await asUser(page);
 
-  await fillLocatorWith(page.locator("label", { hasText: /Name/i }), TEST_NAME);
-  await fillLocatorWith(
-    page.locator("label", { hasText: /Email Address/i }),
-    EMAIL_ADDRESS,
-  );
+  const name = data.name ?? TEST_NAME;
+  const email = data.email ?? EMAIL_ADDRESS;
+  const phone = data.phone ?? PHONE_NUMBER;
 
-  await fillLocatorWith(
-    page.locator("label", { hasText: /Phone Number/i }),
-    PHONE_NUMBER,
-  );
+  await fillLocatorWith(page.locator("label", { hasText: /Name/i }), name);
+  await fillLocatorWith(page.locator("label", { hasText: /Email Address/i }), email);
+  await fillLocatorWith(page.locator("label", { hasText: /Phone Number/i }), phone);
 
   await clickNextButton(page);
   await shouldSee(page, [SELECT_PLAN_HEADING]);

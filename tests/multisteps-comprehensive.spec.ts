@@ -37,12 +37,8 @@ test.describe("Multi-step form - Plan Type Coverage", () => {
   test("should select Arcade monthly plan and complete form", async ({
     page,
   }) => {
-    await fillPersonalInfo(page);
-    await shouldSee(page, [SELECT_PLAN_HEADING]);
-
     await selectArcadeMonthly(page);
 
-    await shouldSee(page, [PICK_ADDONS_HEADING]);
     await clickNextButton(page);
 
     await shouldSee(page, [FINISHING_UP_HEADING, ARCADE_PLAN_MONTHLY]);
@@ -51,12 +47,8 @@ test.describe("Multi-step form - Plan Type Coverage", () => {
   test("should select Arcade yearly plan and complete form", async ({
     page,
   }) => {
-    await fillPersonalInfo(page);
-    await shouldSee(page, [SELECT_PLAN_HEADING]);
-
     await selectArcadeYearly(page);
 
-    await shouldSee(page, [PICK_ADDONS_HEADING]);
     await clickNextButton(page);
 
     await shouldSee(page, [FINISHING_UP_HEADING, ARCADE_PLAN_YEARLY]);
@@ -65,12 +57,8 @@ test.describe("Multi-step form - Plan Type Coverage", () => {
   test("should select Advanced monthly plan and complete form", async ({
     page,
   }) => {
-    await fillPersonalInfo(page);
-    await shouldSee(page, [SELECT_PLAN_HEADING]);
-
     await selectAdvancedMonthly(page);
 
-    await shouldSee(page, [PICK_ADDONS_HEADING]);
     await clickNextButton(page);
 
     await shouldSee(page, [FINISHING_UP_HEADING, ADVANCED_PLAN_MONTHLY]);
@@ -79,36 +67,24 @@ test.describe("Multi-step form - Plan Type Coverage", () => {
   test("should select Advanced yearly plan and complete form", async ({
     page,
   }) => {
-    await fillPersonalInfo(page);
-    await shouldSee(page, [SELECT_PLAN_HEADING]);
-
     await selectAdvancedYearly(page);
 
-    await shouldSee(page, [PICK_ADDONS_HEADING]);
     await clickNextButton(page);
 
     await shouldSee(page, [FINISHING_UP_HEADING, ADVANCED_PLAN_YEARLY]);
   });
 
   test("should select Pro monthly plan and complete form", async ({ page }) => {
-    await fillPersonalInfo(page);
-    await shouldSee(page, [SELECT_PLAN_HEADING]);
-
     await selectProMonthly(page);
 
-    await shouldSee(page, [PICK_ADDONS_HEADING]);
     await clickNextButton(page);
 
     await shouldSee(page, [FINISHING_UP_HEADING, PRO_PLAN_MONTHLY]);
   });
 
   test("should select Pro yearly plan and complete form", async ({ page }) => {
-    await fillPersonalInfo(page);
-    await shouldSee(page, [SELECT_PLAN_HEADING]);
-
     await selectProYearly(page);
 
-    await shouldSee(page, [PICK_ADDONS_HEADING]);
     await clickNextButton(page);
 
     await shouldSee(page, [FINISHING_UP_HEADING, PRO_PLAN_YEARLY]);
