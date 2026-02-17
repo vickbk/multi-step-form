@@ -92,8 +92,6 @@ This project was developed with the assistance of GitHub Copilot as an AI pair p
 
 - **Tool used**: GitHub Copilot integrated with the development environment
 - **How it was used**:
-  - Generating boilerplate code for React components and TypeScript types
-  - Debugging complex state management issues
   - Writing and organizing Playwright test scenarios
   - Suggesting best practices for form validation and error handling
 - **What worked well**: Copilot significantly accelerated development by providing contextual code suggestions and helping with repetitive tasks
