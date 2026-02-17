@@ -22,7 +22,7 @@ export async function multistepsSubmitHandler({
   if ("go-to" in results) delete results["go-to"];
   if (isLastStep) {
     await submitMultiStepSample(results as MultiStepData);
-    return {};
+    return results;
   }
   if (step === 2) {
     return { ...results, "add-ons": data.getAll("add-ons") as string[] };
