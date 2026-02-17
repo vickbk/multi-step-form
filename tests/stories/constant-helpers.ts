@@ -24,7 +24,7 @@ export const INFO_TITLE = /Personal Info/i;
 export const REQUIRED_FIELD_ERROR = /This field is required/i;
 export const INVALID_EMAIL_ERROR = /Please enter a valid email/i;
 export const INVALID_PHONE_ERROR = /Please enter a valid phone number/i;
-
+export const PLAN_ERROR = /Please choose your plan/i;
 export const SELECT_PLAN_HEADING = /Select Your Plan/i;
 export const PICK_ADDONS_HEADING = /Pick Add-ons/i;
 export const FINISHING_UP_HEADING = /Finishing Up/i;
