@@ -1,28 +1,34 @@
 import { Page } from "@playwright/test";
 import { asUser } from "./as-user";
 import {
+  ADVANCED_PLAN_YEARLY,
+  ARCADE_SELECTOR,
+  CONFIRM_BUTTON,
+  EMAIL_SELECTOR,
   FINISHING_UP_HEADING,
   LARGER_STORAGE,
   NAME,
   NAME_SELECTOR,
-  EMAIL_SELECTOR,
-  PHONE_SELECTOR,
   NO_ADDONS_SELECTED,
   ONLINE_SERVICE,
+  PHONE_SELECTOR,
   PICK_ADDONS_HEADING,
   PLAN_ERROR,
   SELECT_PLAN_HEADING,
+  THANK_YOU_HEADING,
   UPDATED_PHONE,
   VALID_EMAIL,
+  YEARLY_SELECTOR,
 } from "./constant-helpers";
 import {
-  clickLabelInput,
+  clickButton,
+  clickMultipleLabelInputs,
   clickNextButton,
-  fillLocatorWith,
   setValueForLocators,
   shouldNotSee,
   shouldSee,
 } from "./helpers";
+import { selectPlan } from "./plan-helpers";
 import type { PersonalInfoData } from "./types";
 
 const {
@@ -33,7 +39,11 @@ const {
 
 export async function fillPersonalInfo(
   page: Page,
-  { name = TEST_NAME, email = EMAIL_ADDRESS, phone = PHONE_NUMBER }: PersonalInfoData = {},
+  {
+    name = TEST_NAME,
+    email = EMAIL_ADDRESS,
+    phone = PHONE_NUMBER,
+  }: PersonalInfoData = {},
 ) {
   await asUser(page);
 
@@ -48,12 +58,7 @@ export async function fillPersonalInfo(
 }
 
 export async function fillMonthlyPlanStep(page: Page) {
-  await fillPersonalInfo(page);
-  await shouldSee(page, [SELECT_PLAN_HEADING]);
-
-  const arcadePlan = page.locator("label", { hasText: /arcade plan/i });
-  await arcadePlan.click();
-  await clickNextButton(page);
+  await selectPlan(page, { plan: ARCADE_SELECTOR });
   await shouldSee(page, [PICK_ADDONS_HEADING]);
 }
 
@@ -65,14 +70,10 @@ export async function seeErrorMessageOnPlanSelection(page: Page) {
 }
 
 export async function fillYearlyPlanStep(page: Page) {
-  await fillPersonalInfo(page);
-  await shouldSee(page, [SELECT_PLAN_HEADING]);
-  await page.getByText("yearly", { exact: true }).click();
-  const advancedPlan = page.locator("label", {
-    hasText: /advanced plan120\/yr2 months/i,
+  await selectPlan(page, {
+    plan: ADVANCED_PLAN_YEARLY,
+    billing: YEARLY_SELECTOR,
   });
-  await advancedPlan.click();
-  await clickNextButton(page);
   await shouldNotSee(page, [SELECT_PLAN_HEADING]);
 }
 
@@ -92,9 +93,7 @@ export async function pickAddOns(
 ) {
   await fillMonthlyPlanStep(page);
 
-  for (const addOn of addOns) {
-    await clickLabelInput(page, addOn);
-  }
+  await clickMultipleLabelInputs(page, addOns);
 
   await clickNextButton(page);
   await shouldSee(page, [FINISHING_UP_HEADING, ...addOns]);
@@ -103,6 +102,6 @@ export async function pickAddOns(
 export async function completeFormSubmission(page: Page) {
   await pickAddOns(page);
   await shouldSee(page, [FINISHING_UP_HEADING]);
-
-  await page.locator("button", { hasText: /Confirm/i }).click();
+  await clickButton(page, CONFIRM_BUTTON);
+  await shouldSee(page, [THANK_YOU_HEADING]);
 }

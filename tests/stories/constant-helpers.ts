@@ -53,3 +53,5 @@ export const THANK_YOU_EMAIL = /support@loremgaming\.com/i;
 export const SUBSCRIBE_ANOTHER = /Subscribe another account/i;
 
 export const GO_BACK_BUTTON = /go back/i;
+export const NEXT_BUTTON = /next step/i;
+export const CONFIRM_BUTTON = /confirm/i;
