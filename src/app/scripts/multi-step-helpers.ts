@@ -1,4 +1,8 @@
-import type { MultiStepData, MultiStepHandlerParams } from "../types";
+import type {
+  MultiStepData,
+  MultiStepFormData,
+  MultiStepHandlerParams,
+} from "../types";
 
 export async function submitMultiStepSample(data: MultiStepData) {
   console.log("Form submitted with data:", data);
@@ -10,13 +14,15 @@ export async function multistepsSubmitHandler({
   data,
   isLastStep,
   step,
-}: MultiStepHandlerParams<MultiStepData>): Promise<MultiStepData> {
+}: MultiStepHandlerParams<MultiStepFormData>): Promise<
+  Partial<MultiStepFormData>
+> {
   const formData = Object.fromEntries(data);
-  const results: MultiStepData = { ...previous, ...formData };
+  const results: Partial<MultiStepFormData> = { ...previous, ...formData };
   if ("go-to" in results) delete results["go-to"];
   if (isLastStep) {
-    await submitMultiStepSample(results);
-    return {} as MultiStepData;
+    await submitMultiStepSample(results as MultiStepData);
+    return {};
   }
   if (step === 2) {
     return { ...results, "add-ons": data.getAll("add-ons") as string[] };
