@@ -1,17 +1,33 @@
 import { expect, test } from "@playwright/test";
 import {
+  ADVANCED_PLAN_MONTHLY,
+  ADVANCED_PLAN_YEARLY,
   ADVANCED_SELECTOR,
+  ARCADE_PLAN_MONTHLY,
+  ARCADE_PLAN_YEARLY,
   ARCADE_SELECTOR,
   clickLabelInput,
+  clickMultipleLabelInputs,
   clickNextButton,
   CUSTOMIZABLE_PROFILE,
   fillPersonalInfo,
   FINISHING_UP_HEADING,
   LARGER_STORAGE,
   MONTHLY_SELECTOR,
+  onTabFocus,
+  onTabNavigate,
   ONLINE_SERVICE,
   PICK_ADDONS_HEADING,
+  PRO_PLAN_MONTHLY,
+  PRO_PLAN_YEARLY,
   PRO_SELECTOR,
+  selectAdvancedMonthly,
+  selectAdvancedYearly,
+  selectArcadeMonthly,
+  selectArcadeYearly,
+  selectPlan,
+  selectProMonthly,
+  selectProYearly,
   SELECT_PLAN_HEADING,
   shouldSee,
   YEARLY_SELECTOR,
@@ -24,14 +40,12 @@ test.describe("Multi-step form - Plan Type Coverage", () => {
     await fillPersonalInfo(page);
     await shouldSee(page, [SELECT_PLAN_HEADING]);
 
-    // Select monthly billing (default)
-    await clickLabelInput(page, ARCADE_SELECTOR);
-    await clickNextButton(page);
+    await selectArcadeMonthly(page);
 
     await shouldSee(page, [PICK_ADDONS_HEADING]);
     await clickNextButton(page);
 
-    await shouldSee(page, [FINISHING_UP_HEADING, /Arcade.*per month/i]);
+    await shouldSee(page, [FINISHING_UP_HEADING, ARCADE_PLAN_MONTHLY]);
   });
 
   test("should select Arcade yearly plan and complete form", async ({
@@ -40,15 +54,12 @@ test.describe("Multi-step form - Plan Type Coverage", () => {
     await fillPersonalInfo(page);
     await shouldSee(page, [SELECT_PLAN_HEADING]);
 
-    // Switch to yearly billing
-    await clickLabelInput(page, YEARLY_SELECTOR);
-    await clickLabelInput(page, ARCADE_SELECTOR);
-    await clickNextButton(page);
+    await selectArcadeYearly(page);
 
     await shouldSee(page, [PICK_ADDONS_HEADING]);
     await clickNextButton(page);
 
-    await shouldSee(page, [FINISHING_UP_HEADING, /Arcade.*per year/i]);
+    await shouldSee(page, [FINISHING_UP_HEADING, ARCADE_PLAN_YEARLY]);
   });
 
   test("should select Advanced monthly plan and complete form", async ({
@@ -57,13 +68,12 @@ test.describe("Multi-step form - Plan Type Coverage", () => {
     await fillPersonalInfo(page);
     await shouldSee(page, [SELECT_PLAN_HEADING]);
 
-    await clickLabelInput(page, ADVANCED_SELECTOR);
-    await clickNextButton(page);
+    await selectAdvancedMonthly(page);
 
     await shouldSee(page, [PICK_ADDONS_HEADING]);
     await clickNextButton(page);
 
-    await shouldSee(page, [FINISHING_UP_HEADING, /Advanced.*per month/i]);
+    await shouldSee(page, [FINISHING_UP_HEADING, ADVANCED_PLAN_MONTHLY]);
   });
 
   test("should select Advanced yearly plan and complete form", async ({
@@ -72,41 +82,36 @@ test.describe("Multi-step form - Plan Type Coverage", () => {
     await fillPersonalInfo(page);
     await shouldSee(page, [SELECT_PLAN_HEADING]);
 
-    await clickLabelInput(page, YEARLY_SELECTOR);
-    await clickLabelInput(page, ADVANCED_SELECTOR);
-    await clickNextButton(page);
+    await selectAdvancedYearly(page);
 
     await shouldSee(page, [PICK_ADDONS_HEADING]);
     await clickNextButton(page);
 
-    await shouldSee(page, [FINISHING_UP_HEADING, /Advanced.*per year/i]);
+    await shouldSee(page, [FINISHING_UP_HEADING, ADVANCED_PLAN_YEARLY]);
   });
 
   test("should select Pro monthly plan and complete form", async ({ page }) => {
     await fillPersonalInfo(page);
     await shouldSee(page, [SELECT_PLAN_HEADING]);
 
-    await clickLabelInput(page, PRO_SELECTOR);
-    await clickNextButton(page);
+    await selectProMonthly(page);
 
     await shouldSee(page, [PICK_ADDONS_HEADING]);
     await clickNextButton(page);
 
-    await shouldSee(page, [FINISHING_UP_HEADING, /Pro.*per month/i]);
+    await shouldSee(page, [FINISHING_UP_HEADING, PRO_PLAN_MONTHLY]);
   });
 
   test("should select Pro yearly plan and complete form", async ({ page }) => {
     await fillPersonalInfo(page);
     await shouldSee(page, [SELECT_PLAN_HEADING]);
 
-    await clickLabelInput(page, YEARLY_SELECTOR);
-    await clickLabelInput(page, PRO_SELECTOR);
-    await clickNextButton(page);
+    await selectProYearly(page);
 
     await shouldSee(page, [PICK_ADDONS_HEADING]);
     await clickNextButton(page);
 
-    await shouldSee(page, [FINISHING_UP_HEADING, /Pro.*per year/i]);
+    await shouldSee(page, [FINISHING_UP_HEADING, PRO_PLAN_YEARLY]);
   });
 });
 
@@ -114,8 +119,7 @@ test.describe("Multi-step form - Add-on Deselection", () => {
   test("should deselect a single add-on", async ({ page }) => {
     await fillPersonalInfo(page);
 
-    await clickLabelInput(page, ARCADE_SELECTOR);
-    await clickNextButton(page);
+    await selectArcadeMonthly(page);
 
     await shouldSee(page, [PICK_ADDONS_HEADING]);
 
@@ -134,15 +138,16 @@ test.describe("Multi-step form - Add-on Deselection", () => {
   test("should deselect all add-ons after selecting them", async ({ page }) => {
     await fillPersonalInfo(page);
 
-    await clickLabelInput(page, ARCADE_SELECTOR);
-    await clickNextButton(page);
+    await selectArcadeMonthly(page);
 
     await shouldSee(page, [PICK_ADDONS_HEADING]);
 
     // Select all add-ons
-    await clickLabelInput(page, ONLINE_SERVICE);
-    await clickLabelInput(page, LARGER_STORAGE);
-    await clickLabelInput(page, CUSTOMIZABLE_PROFILE);
+    await clickMultipleLabelInputs(page, [
+      ONLINE_SERVICE,
+      LARGER_STORAGE,
+      CUSTOMIZABLE_PROFILE,
+    ]);
 
     // Verify all are checked
     const onlineCheckbox = page.locator(
@@ -160,9 +165,11 @@ test.describe("Multi-step form - Add-on Deselection", () => {
     await expect(profileCheckbox).toBeChecked();
 
     // Deselect all add-ons
-    await clickLabelInput(page, ONLINE_SERVICE);
-    await clickLabelInput(page, LARGER_STORAGE);
-    await clickLabelInput(page, CUSTOMIZABLE_PROFILE);
+    await clickMultipleLabelInputs(page, [
+      ONLINE_SERVICE,
+      LARGER_STORAGE,
+      CUSTOMIZABLE_PROFILE,
+    ]);
 
     // Verify all are unchecked
     await expect(onlineCheckbox).not.toBeChecked();
@@ -175,15 +182,16 @@ test.describe("Multi-step form - Add-on Deselection", () => {
   }) => {
     await fillPersonalInfo(page);
 
-    await clickLabelInput(page, ARCADE_SELECTOR);
-    await clickNextButton(page);
+    await selectArcadeMonthly(page);
 
     await shouldSee(page, [PICK_ADDONS_HEADING]);
 
     // Select all add-ons
-    await clickLabelInput(page, ONLINE_SERVICE);
-    await clickLabelInput(page, LARGER_STORAGE);
-    await clickLabelInput(page, CUSTOMIZABLE_PROFILE);
+    await clickMultipleLabelInputs(page, [
+      ONLINE_SERVICE,
+      LARGER_STORAGE,
+      CUSTOMIZABLE_PROFILE,
+    ]);
 
     // Deselect only the middle one
     await clickLabelInput(page, LARGER_STORAGE);
@@ -209,17 +217,11 @@ test.describe("Multi-step form - Keyboard Navigation", () => {
     await page.goto("/");
 
     // Focus the name input first
-    const nameInput = page.locator('input[name="name"]');
-    await nameInput.focus();
-    await expect(nameInput).toBeFocused();
+    await onTabFocus(page, 'input[name="name"]');
 
-    await page.keyboard.press("Tab");
-    const emailInput = page.locator('input[name="email"]');
-    await expect(emailInput).toBeFocused();
+    await onTabNavigate(page, 'input[name="email"]');
 
-    await page.keyboard.press("Tab");
-    const phoneInput = page.locator('input[name="phone"]');
-    await expect(phoneInput).toBeFocused();
+    await onTabNavigate(page, 'input[name="phone"]');
   });
 
   test("should select plan using keyboard", async ({ page }) => {
@@ -284,79 +286,6 @@ test.describe("Multi-step form - Keyboard Navigation", () => {
   });
 });
 
-test.describe("Multi-step form - Input Validation Edge Cases", () => {
-  test("should reject email with missing @ symbol", async ({ page }) => {
-    await page.goto("/");
-
-    await page.locator('input[name="name"]').fill("Test User");
-    await page.locator('input[name="email"]').fill("invalidemail.com");
-    await page.locator('input[name="phone"]').fill("+1234567890");
-
-    await clickNextButton(page);
-
-    // Should show validation error
-    const emailInput = page.locator('input[name="email"]');
-    const validationMessage = await emailInput.evaluate(
-      (el: HTMLInputElement) => el.validationMessage,
-    );
-    expect(validationMessage).toBeTruthy();
-  });
-
-  test("should reject email with spaces", async ({ page }) => {
-    await page.goto("/");
-
-    await page.locator('input[name="name"]').fill("Test User");
-    await page.locator('input[name="email"]').fill("test user@email.com");
-    await page.locator('input[name="phone"]').fill("+1234567890");
-
-    await clickNextButton(page);
-
-    const emailInput = page.locator('input[name="email"]');
-    const validationMessage = await emailInput.evaluate(
-      (el: HTMLInputElement) => el.validationMessage,
-    );
-    expect(validationMessage).toBeTruthy();
-  });
-
-  test("should accept email with plus sign", async ({ page }) => {
-    await page.goto("/");
-
-    await page.locator('input[name="name"]').fill("Test User");
-    await page.locator('input[name="email"]').fill("test+tag@email.com");
-    await page.locator('input[name="phone"]').fill("+1234567890");
-
-    await clickNextButton(page);
-
-    await shouldSee(page, [SELECT_PLAN_HEADING]);
-  });
-
-  test("should handle very long name gracefully", async ({ page }) => {
-    await page.goto("/");
-
-    const longName = "A".repeat(100);
-    await page.locator('input[name="name"]').fill(longName);
-    await page.locator('input[name="email"]').fill("test@email.com");
-    await page.locator('input[name="phone"]').fill("+1234567890");
-
-    await clickNextButton(page);
-
-    await shouldSee(page, [SELECT_PLAN_HEADING]);
-  });
-
-  test("should handle phone number with various formats", async ({ page }) => {
-    await page.goto("/");
-
-    // Test with dashes
-    await page.locator('input[name="name"]').fill("Test User");
-    await page.locator('input[name="email"]').fill("test@email.com");
-    await page.locator('input[name="phone"]').fill("123-456-7890");
-
-    await clickNextButton(page);
-
-    await shouldSee(page, [SELECT_PLAN_HEADING]);
-  });
-});
-
 test.describe("Multi-step form - Focus Management", () => {
   test("should focus first input on page load", async ({ page }) => {
     await page.goto("/");
@@ -386,8 +315,7 @@ test.describe("Multi-step form - Focus Management", () => {
   }) => {
     await fillPersonalInfo(page);
 
-    await clickLabelInput(page, ARCADE_SELECTOR);
-    await clickNextButton(page);
+    await selectArcadeMonthly(page);
 
     await shouldSee(page, [PICK_ADDONS_HEADING]);
 
@@ -427,9 +355,8 @@ test.describe("Multi-step form - Focus Management", () => {
   }) => {
     await fillPersonalInfo(page);
 
-    // Select Pro plan
-    await clickLabelInput(page, PRO_SELECTOR);
-    await clickNextButton(page);
+    // Select Pro plan using helper
+    await selectPlan(page, PRO_SELECTOR, MONTHLY_SELECTOR);
 
     await shouldSee(page, [PICK_ADDONS_HEADING]);
 

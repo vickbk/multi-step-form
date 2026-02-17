@@ -50,3 +50,86 @@ describe("MultiStep form Tests", () => {
     ).toBe(3);
   });
 });
+
+describe("MultiStep form - Input Validation", () => {
+  test("should reject email with missing @ symbol", async () => {
+    const { container } = render(<App />);
+    const nameInput = container.querySelector('input[name="name"]') as HTMLInputElement;
+    const emailInput = container.querySelector('input[name="email"]') as HTMLInputElement;
+    const phoneInput = container.querySelector('input[name="phone"]') as HTMLInputElement;
+
+    await userEvent.type(nameInput, "Test User");
+    await userEvent.type(emailInput, "invalidemail.com");
+    await userEvent.type(phoneInput, "+1234567890");
+
+    const nextButton = await screen.findByRole("button", { name: /next step/i });
+    await userEvent.click(nextButton);
+
+    expect(emailInput.validationMessage).toBeTruthy();
+  });
+
+  test("should reject email with spaces", async () => {
+    const { container } = render(<App />);
+    const nameInput = container.querySelector('input[name="name"]') as HTMLInputElement;
+    const emailInput = container.querySelector('input[name="email"]') as HTMLInputElement;
+    const phoneInput = container.querySelector('input[name="phone"]') as HTMLInputElement;
+
+    await userEvent.type(nameInput, "Test User");
+    await userEvent.type(emailInput, "test user@email.com");
+    await userEvent.type(phoneInput, "+1234567890");
+
+    const nextButton = await screen.findByRole("button", { name: /next step/i });
+    await userEvent.click(nextButton);
+
+    expect(emailInput.validationMessage).toBeTruthy();
+  });
+
+  test("should accept email with plus sign", async () => {
+    const { container } = render(<App />);
+    const nameInput = container.querySelector('input[name="name"]') as HTMLInputElement;
+    const emailInput = container.querySelector('input[name="email"]') as HTMLInputElement;
+    const phoneInput = container.querySelector('input[name="phone"]') as HTMLInputElement;
+
+    await userEvent.type(nameInput, "Test User");
+    await userEvent.type(emailInput, "test+tag@email.com");
+    await userEvent.type(phoneInput, "+1234567890");
+
+    const nextButton = await screen.findByRole("button", { name: /next step/i });
+    await userEvent.click(nextButton);
+
+    await screen.findByText(/select your plan/i);
+  });
+
+  test("should handle very long name gracefully", async () => {
+    const { container } = render(<App />);
+    const nameInput = container.querySelector('input[name="name"]') as HTMLInputElement;
+    const emailInput = container.querySelector('input[name="email"]') as HTMLInputElement;
+    const phoneInput = container.querySelector('input[name="phone"]') as HTMLInputElement;
+
+    const longName = "A".repeat(100);
+    await userEvent.type(nameInput, longName);
+    await userEvent.type(emailInput, "test@email.com");
+    await userEvent.type(phoneInput, "+1234567890");
+
+    const nextButton = await screen.findByRole("button", { name: /next step/i });
+    await userEvent.click(nextButton);
+
+    await screen.findByText(/select your plan/i);
+  });
+
+  test("should handle phone number with various formats", async () => {
+    const { container } = render(<App />);
+    const nameInput = container.querySelector('input[name="name"]') as HTMLInputElement;
+    const emailInput = container.querySelector('input[name="email"]') as HTMLInputElement;
+    const phoneInput = container.querySelector('input[name="phone"]') as HTMLInputElement;
+
+    await userEvent.type(nameInput, "Test User");
+    await userEvent.type(emailInput, "test@email.com");
+    await userEvent.type(phoneInput, "123-456-7890");
+
+    const nextButton = await screen.findByRole("button", { name: /next step/i });
+    await userEvent.click(nextButton);
+
+    await screen.findByText(/select your plan/i);
+  });
+});
