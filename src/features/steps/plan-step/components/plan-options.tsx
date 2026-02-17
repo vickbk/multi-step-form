@@ -6,7 +6,7 @@ export const PlanOptions = ({ plan, billing }: PlanType) => {
   return (
     <fieldset className="plan">
       <legend className="sr-only">Plan Options</legend>
-      {PLANS_INPUTS[billing].map(({ name, price, icon, discount, focus }) => (
+      {PLANS_INPUTS[billing!].map(({ name, price, icon, discount, focus }) => (
         <label className="plan__option" key={name}>
           <input
             className="sr-only"
