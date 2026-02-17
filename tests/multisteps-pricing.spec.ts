@@ -98,7 +98,6 @@ test.describe("Multi-step form - pricing", () => {
     await pickAddOns(page);
     await shouldSee(page, [FINISHING_UP_HEADING]);
 
-    // Verify we're on the summary and at least one "Change" button exists
     const changeButtons = page.getByRole("button", { name: /change/i });
     const count = await changeButtons.count();
     expect(count).toBeGreaterThan(0);
