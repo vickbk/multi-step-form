@@ -13,6 +13,7 @@ This is a solution to the [Multi-step form challenge on Frontend Mentor](https:/
   - [What I learned](#what-i-learned)
   - [Continued development](#continued-development)
   - [Useful resources](#useful-resources)
+  - [AI Collaboration](#ai-collaboration)
 - [Author](#author)
 - [Acknowledgments](#acknowledgments)
 
@@ -55,6 +56,7 @@ Users should be able to:
 - [Vite](https://vite.dev/) - Build tool and dev server
 - [Tailwind CSS](https://tailwindcss.com/) - For styles
 - [Bootstrap Icons](https://icons.getbootstrap.com/) - Icon library
+- [GitHub Copilot](https://github.com/features/copilot) - AI assistant for code development
 
 ### What I learned
 
@@ -65,6 +67,8 @@ This project helped me practice building a complex multi-step form with React an
 - Creating a responsive layout that works seamlessly on mobile and desktop
 - Using React hooks effectively for state management
 - Implementing proper navigation between form steps with the ability to go back and edit
+- Leveraging AI-powered development workflow with GitHub Copilot for faster development
+- Testing strategies for complex UI flows with Playwright
 
 ### Continued development
 
@@ -74,7 +78,6 @@ Areas I want to continue focusing on in future projects:
 - Accessibility improvements for complex form interactions
 - Performance optimization for larger forms
 - Implementing animation and transitions between steps
-- Testing strategies for complex UI flows
 
 ### Useful resources
 
@@ -82,6 +85,19 @@ Areas I want to continue focusing on in future projects:
 - [TypeScript Handbook](https://www.typescriptlang.org/docs/handbook/intro.html) - Helpful for type definitions and type safety
 - [Tailwind CSS Documentation](https://tailwindcss.com/docs) - Great reference for utility classes and responsive design
 - [MDN Web Docs](https://developer.mozilla.org/) - Comprehensive resource for HTML, CSS, and JavaScript
+
+### AI Collaboration
+
+This project was developed with the assistance of GitHub Copilot as an AI pair programming tool. Key aspects of the AI collaboration:
+
+- **Tool used**: GitHub Copilot integrated with the development environment
+- **How it was used**:
+  - Generating boilerplate code for React components and TypeScript types
+  - Debugging complex state management issues
+  - Writing and organizing Playwright test scenarios
+  - Suggesting best practices for form validation and error handling
+- **What worked well**: Copilot significantly accelerated development by providing contextual code suggestions and helping with repetitive tasks
+- **What could be improved**: Some suggestions required careful review to ensure they matched the project's specific architecture and design patterns
 
 ## Author
 
