@@ -1,7 +1,7 @@
 import { Page } from "@playwright/test";
 import { asUser } from "./as-user";
 import {
-  ADVANCED_PLAN_YEARLY,
+  ADVANCED_SELECTOR,
   ARCADE_SELECTOR,
   CONFIRM_BUTTON,
   EMAIL_SELECTOR,
@@ -71,7 +71,7 @@ export async function seeErrorMessageOnPlanSelection(page: Page) {
 
 export async function fillYearlyPlanStep(page: Page) {
   await selectPlan(page, {
-    plan: ADVANCED_PLAN_YEARLY,
+    plan: ADVANCED_SELECTOR,
     billing: YEARLY_SELECTOR,
   });
   await shouldNotSee(page, [SELECT_PLAN_HEADING]);
