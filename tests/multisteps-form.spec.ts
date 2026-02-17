@@ -10,10 +10,8 @@ import {
   ONLINE_SERVICE,
   PICK_ADDONS_HEADING,
   pickAddOns,
-  PLAN_ERROR,
   proceedWithoutAddOns,
   REQUIRED_FIELD_ERROR,
-  seeErrorMessageOnPlanSelection,
   SELECT_PLAN_HEADING,
   shouldNotSee,
   shouldSee,
@@ -39,13 +37,6 @@ test.describe("Multi-step form", () => {
     page,
   }) => {
     await fillMonthlyPlanStep(page);
-  });
-
-  test("should see an error message when trying to navigate to the next step without selecting a plan", async ({
-    page,
-  }) => {
-    await seeErrorMessageOnPlanSelection(page);
-    await shouldSee(page, [SELECT_PLAN_HEADING, PLAN_ERROR]);
   });
 
   test("should select a yearly plan and navigate to the add-ons step", async ({

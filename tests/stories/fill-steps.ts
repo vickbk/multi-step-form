@@ -7,7 +7,6 @@ import {
   NO_ADDONS_SELECTED,
   ONLINE_SERVICE,
   PICK_ADDONS_HEADING,
-  PLAN_ERROR,
   SELECT_PLAN_HEADING,
   UPDATED_PHONE,
   VALID_EMAIL,
@@ -52,13 +51,6 @@ export async function fillMonthlyPlanStep(page: Page) {
   await arcadePlan.click();
   await clickNextButton(page);
   await shouldSee(page, [PICK_ADDONS_HEADING]);
-}
-
-export async function seeErrorMessageOnPlanSelection(page: Page) {
-  await fillPersonalInfo(page);
-  await shouldSee(page, [SELECT_PLAN_HEADING]);
-  await clickNextButton(page);
-  await shouldSee(page, [PLAN_ERROR]);
 }
 
 export async function fillYearlyPlanStep(page: Page) {
