@@ -33,7 +33,7 @@ export function useMultistepsForm<T extends object>(
       const results = await callback({ data, isLastStep, step, previous });
       setTimeout(() => {
         const goToValue = data.get("go-to");
-        if (isLastStep) setComplete(true);
+        if (isLastStep && goToValue === null) setComplete(true);
         else if (goToValue !== null) {
           if (typeof goToValue === "string" && !isNaN(Number(goToValue)))
             goTo(+goToValue);
