@@ -16,7 +16,7 @@ export async function multistepsSubmitHandler({
   if ("go-to" in results) delete results["go-to"];
   if (isLastStep) {
     await submitMultiStepSample(results);
-    return results;
+    return {};
   }
   if (step === 2) {
     return { ...results, "add-ons": data.getAll("add-ons") as string[] };
