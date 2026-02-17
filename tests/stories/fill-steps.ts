@@ -4,6 +4,9 @@ import {
   FINISHING_UP_HEADING,
   LARGER_STORAGE,
   NAME,
+  NAME_SELECTOR,
+  EMAIL_SELECTOR,
+  PHONE_SELECTOR,
   NO_ADDONS_SELECTED,
   ONLINE_SERVICE,
   PICK_ADDONS_HEADING,
@@ -16,9 +19,11 @@ import {
   clickLabelInput,
   clickNextButton,
   fillLocatorWith,
+  setValueForLocators,
   shouldNotSee,
   shouldSee,
 } from "./helpers";
+import type { PersonalInfoData } from "./types";
 
 const {
   TEST_NAME = NAME[1],
@@ -26,25 +31,17 @@ const {
   PHONE_NUMBER = UPDATED_PHONE,
 } = process.env;
 
-export interface PersonalInfoData {
-  name?: string;
-  email?: string;
-  phone?: string;
-}
-
 export async function fillPersonalInfo(
   page: Page,
-  data: PersonalInfoData = {},
+  { name = TEST_NAME, email = EMAIL_ADDRESS, phone = PHONE_NUMBER }: PersonalInfoData = {},
 ) {
   await asUser(page);
 
-  const name = data.name ?? TEST_NAME;
-  const email = data.email ?? EMAIL_ADDRESS;
-  const phone = data.phone ?? PHONE_NUMBER;
-
-  await fillLocatorWith(page.locator("label", { hasText: /Name/i }), name);
-  await fillLocatorWith(page.locator("label", { hasText: /Email Address/i }), email);
-  await fillLocatorWith(page.locator("label", { hasText: /Phone Number/i }), phone);
+  await setValueForLocators(page, [
+    [NAME_SELECTOR, name],
+    [EMAIL_SELECTOR, email],
+    [PHONE_SELECTOR, phone],
+  ]);
 
   await clickNextButton(page);
   await shouldSee(page, [SELECT_PLAN_HEADING]);
