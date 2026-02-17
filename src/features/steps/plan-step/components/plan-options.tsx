@@ -2,7 +2,7 @@ import { SROnly } from "@/shared/components/SROnly";
 import { PLANS_INPUTS } from "../scripts";
 import type { PlanType } from "../types";
 
-export const PlanOptions = ({ plan, billing }: PlanType) => {
+export const PlanOptions = ({ plan = "arcade", billing }: PlanType) => {
   return (
     <fieldset className="plan">
       <legend className="sr-only">Plan Options</legend>
