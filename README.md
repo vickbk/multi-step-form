@@ -39,7 +39,7 @@ Users should be able to:
 ### Links
 
 - Solution URL: [GitHub Repository](https://github.com/vickbk/multi-step-form)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Live Site URL: [https://vickbk.github.io/multi-step-form/](https://vickbk.github.io/multi-step-form/)
 
 ## My process
 
