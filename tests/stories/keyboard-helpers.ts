@@ -31,3 +31,18 @@ export async function isAutoFocused(page: Page, selector: string, waitTime = 100
   const locator = page.locator(selector);
   await expect(locator).toBeFocused();
 }
+
+export async function isFocused(page: Page, selector: string): Promise<void> {
+  const locator = page.locator(selector);
+  await expect(locator).toBeFocused();
+}
+
+export async function isChecked(page: Page, selector: string): Promise<void> {
+  const locator = page.locator(selector);
+  await expect(locator).toBeChecked();
+}
+
+export async function isNotChecked(page: Page, selector: string): Promise<void> {
+  const locator = page.locator(selector);
+  await expect(locator).not.toBeChecked();
+}

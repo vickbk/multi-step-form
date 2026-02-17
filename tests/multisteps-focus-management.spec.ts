@@ -1,4 +1,4 @@
-import { expect, test } from "@playwright/test";
+import { test } from "@playwright/test";
 import {
   ADVANCED_SELECTOR,
   clickBackButton,
@@ -6,6 +6,8 @@ import {
   clickNextButton,
   fillPersonalInfo,
   isAutoFocused,
+  isChecked,
+  isFocused,
   MONTHLY_SELECTOR,
   PICK_ADDONS_HEADING,
   PRO_SELECTOR,
@@ -48,18 +50,16 @@ test.describe("Multi-step form - Focus Management", () => {
 
     // Select a plan
     await clickLabelInput(page, ADVANCED_SELECTOR);
-    const advancedRadio = page.locator('input[type="radio"][value="advanced"]');
-    await expect(advancedRadio).toBeChecked();
+    await isChecked(page, 'input[type="radio"][value="advanced"]');
 
     // Switch billing period
     await clickLabelInput(page, YEARLY_SELECTOR);
 
     // Advanced should still be selected after switching billing period
-    await expect(advancedRadio).toBeChecked();
+    await isChecked(page, 'input[type="radio"][value="advanced"]');
 
     // Verify the billing period changed
-    const yearlyRadio = page.locator('input[type="radio"][value="yearly"]');
-    await expect(yearlyRadio).toBeChecked();
+    await isChecked(page, 'input[type="radio"][value="yearly"]');
   });
 
   test("should restore focus to previously selected plan when navigating back", async ({
@@ -79,8 +79,7 @@ test.describe("Multi-step form - Focus Management", () => {
 
     // Pro should still be selected and focused
     await isAutoFocused(page, 'input[type="radio"][value="pro"]');
-    const proRadio = page.locator('input[type="radio"][value="pro"]');
-    await expect(proRadio).toBeChecked();
+    await isChecked(page, 'input[type="radio"][value="pro"]');
   });
 
   test("should trap focus within error messages when validation fails", async ({
@@ -92,7 +91,6 @@ test.describe("Multi-step form - Focus Management", () => {
     await clickNextButton(page);
 
     // Name input should receive focus
-    const nameInput = page.locator('input[name="name"]');
-    await expect(nameInput).toBeFocused();
+    await isFocused(page, 'input[name="name"]');
   });
 });

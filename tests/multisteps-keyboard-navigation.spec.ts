@@ -1,10 +1,13 @@
-import { expect, test } from "@playwright/test";
+import { test } from "@playwright/test";
 import {
   ARCADE_SELECTOR,
   clickLabelInput,
   clickNextButton,
   fillPersonalInfo,
   INFO_TITLE,
+  isAutoFocused,
+  isChecked,
+  isNotChecked,
   onLoadFocus,
   onTabNavigate,
   PICK_ADDONS_HEADING,
@@ -29,22 +32,19 @@ test.describe("Multi-step form - Keyboard Navigation", () => {
     await shouldSee(page, [SELECT_PLAN_HEADING]);
 
     // Tab to first plan option (should be focused by default)
-    const arcadeRadio = page.locator('input[type="radio"][value="arcade"]');
-    await arcadeRadio.focus();
+    await isAutoFocused(page, 'input[type="radio"][value="arcade"]');
 
     // Use Space to select
     await page.keyboard.press("Space");
-    await expect(arcadeRadio).toBeChecked();
+    await isChecked(page, 'input[type="radio"][value="arcade"]');
 
     // Arrow down to next option
     await page.keyboard.press("ArrowDown");
-    const advancedRadio = page.locator('input[type="radio"][value="advanced"]');
-    await expect(advancedRadio).toBeChecked();
+    await isChecked(page, 'input[type="radio"][value="advanced"]');
 
     // Arrow down to next option
     await page.keyboard.press("ArrowDown");
-    const proRadio = page.locator('input[type="radio"][value="pro"]');
-    await expect(proRadio).toBeChecked();
+    await isChecked(page, 'input[type="radio"][value="pro"]');
   });
 
   test("should toggle add-ons using Space key", async ({ page }) => {
@@ -62,11 +62,11 @@ test.describe("Multi-step form - Keyboard Navigation", () => {
 
     // Toggle with Space
     await page.keyboard.press("Space");
-    await expect(onlineCheckbox).toBeChecked();
+    await isChecked(page, 'input[type="checkbox"][value="online-service"]');
 
     // Toggle again to uncheck
     await page.keyboard.press("Space");
-    await expect(onlineCheckbox).not.toBeChecked();
+    await isNotChecked(page, 'input[type="checkbox"][value="online-service"]');
   });
 
   test("should submit step using Enter key on Next button", async ({

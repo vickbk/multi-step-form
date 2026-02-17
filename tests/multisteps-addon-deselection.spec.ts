@@ -1,10 +1,12 @@
-import { expect, test } from "@playwright/test";
+import { test } from "@playwright/test";
 import {
   clickLabelInput,
   clickMultipleLabelInputs,
   CUSTOMIZABLE_PROFILE,
   expectCheckboxesChecked,
   expectCheckboxesUnchecked,
+  isChecked,
+  isNotChecked,
   LARGER_STORAGE,
   ONLINE_SERVICE,
   selectArcadeMonthly,
@@ -16,14 +18,11 @@ test.describe("Multi-step form - Add-on Deselection", () => {
 
     // Select an add-on
     await clickLabelInput(page, ONLINE_SERVICE);
-    const onlineCheckbox = page.locator(
-      'input[type="checkbox"][value="online-service"]',
-    );
-    await expect(onlineCheckbox).toBeChecked();
+    await isChecked(page, 'input[type="checkbox"][value="online-service"]');
 
     // Deselect the add-on
     await clickLabelInput(page, ONLINE_SERVICE);
-    await expect(onlineCheckbox).not.toBeChecked();
+    await isNotChecked(page, 'input[type="checkbox"][value="online-service"]');
   });
 
   test("should deselect all add-ons after selecting them", async ({ page }) => {
