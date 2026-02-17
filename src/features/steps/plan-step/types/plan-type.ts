@@ -4,6 +4,8 @@ import type { PersonalInfoType } from "../../personel-info";
 export type PlanType = PersonalInfoType &
   Pick<MultiStepFormData, "plan" | "billing">;
 
+export type StrictBilling = Exclude<PlanType["billing"], undefined>;
+
 export type PlanInputType = {
   name: string;
   price: number;
