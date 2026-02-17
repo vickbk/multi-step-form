@@ -13,7 +13,7 @@ export const PlanOptions = ({ plan = "arcade", billing }: PlanType) => {
             type="radio"
             name="plan"
             value={name}
-            defaultChecked={plan === name}
+            defaultChecked={plan === name || (!plan && name === "arcade")}
             required
             autoFocus={!plan ? focus : plan === name}
           />
