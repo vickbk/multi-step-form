@@ -1,9 +1,9 @@
 import { useActionState, useMemo, useState, type JSX } from "react";
-import type { WithBack, WithGoTo } from "../types";
+import type { MultiStepHandlerParams, WithBack, WithGoTo } from "../types";
 
 export function useMultistepsForm<T extends object>(
   steps: ((data: WithBack<WithGoTo<T>>) => JSX.Element)[],
-  completeCallback?: (data: T) => Promise<unknown>,
+  callback: (data: MultiStepHandlerParams<T>) => Promise<T>,
 ) {
   const [step, setStep] = useState(0);
   const [complete, setComplete] = useState(false);
@@ -28,21 +28,23 @@ export function useMultistepsForm<T extends object>(
   );
 
   const [formData, formAction] = useActionState(
-    async (_: T, data: FormData) => {
-      const formData = Object.fromEntries(data);
-      const results = { ..._, ...formData };
-      if (navigation.isLastStep) {
-        setComplete(true);
-        if (completeCallback) {
-          return (await completeCallback(results)) as T;
-        }
-        // can handle form submission here, e.g. send data to server
-        return {} as T;
-      }
-      navigation.next();
-      if ("add-ons" in formData) {
-        return { ...results, "add-ons": data.getAll("add-ons") };
-      }
+    async (previous: T, data: FormData) => {
+      const goToValue = data.get("go-to");
+      const { isLastStep, step, next, goTo, back } = navigation;
+      const results = await callback({
+        data,
+        isLastStep: isLastStep && goToValue === null,
+        step,
+        previous,
+      });
+      setTimeout(() => {
+        if (isLastStep && goToValue === null) setComplete(true);
+        else if (goToValue !== null) {
+          if (typeof goToValue === "string" && !isNaN(Number(goToValue)))
+            goTo(+goToValue);
+          else back();
+        } else next();
+      }, 5);
       return results;
     },
     {} as Awaited<T>,

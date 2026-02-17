@@ -1,3 +1,4 @@
+import { NavigationBar } from "@/features/navigation-bar/components/navigation-bar";
 import { FormSteps } from "@/features/sidebar/components/form-steps";
 import { SideBar } from "@/features/sidebar/components/sidebar";
 import { AddsOn } from "@/features/steps/add-ons/components/add-ons";
@@ -6,14 +7,13 @@ import { PersonalInfo } from "@/features/steps/personel-info/components/personal
 import { PlanSection } from "@/features/steps/plan-step/components/plan-section";
 import { Summary } from "@/features/steps/summary/components/summary";
 import { useMultistepsForm } from "../hooks/use-multisteps-form";
-import { submitMultiStepSample } from "../scripts/multi-step-helpers";
-import type { MultiStepData } from "../types/multi-step-data";
-import { NavigationBar } from "./navigation-bar";
+import { multistepsSubmitHandler } from "../scripts";
+import type { MultiStepData } from "../types";
 
 export const MultiStepForm = () => {
   const navigation = useMultistepsForm<MultiStepData>(
     [PersonalInfo, PlanSection, AddsOn, Summary],
-    submitMultiStepSample,
+    multistepsSubmitHandler,
   );
   const { formAction, goTo, back, Current, complete, formData, reset } =
     navigation;
