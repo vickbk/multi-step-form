@@ -1,5 +1,5 @@
-export type LABEL_LOCATOR = [RegExp | string, string];
+export type TEXT_PATTERN = RegExp | string;
+export type LABEL_LOCATOR = [TEXT_PATTERN, string];
 
-export type SHOWN_TEXT = RegExp | string;
-export type TEXT_WITH_NTH = [SHOWN_TEXT, number];
-export type TEXT_MATCHER = SHOWN_TEXT | TEXT_WITH_NTH;
+export type TEXT_WITH_NTH = [TEXT_PATTERN, number];
+export type TEXT_MATCHER = TEXT_PATTERN | TEXT_WITH_NTH;

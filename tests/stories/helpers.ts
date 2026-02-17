@@ -1,5 +1,5 @@
 import { expect, Locator, Page } from "@playwright/test";
-import { LABEL_LOCATOR, TEXT_MATCHER } from "./types";
+import { LABEL_LOCATOR, TEXT_MATCHER, TEXT_PATTERN } from "./types";
 
 export async function shouldSee(page: Page, textes: TEXT_MATCHER[]) {
   for (const text of textes) {
@@ -58,12 +58,12 @@ export async function navigateToStep(page: Page, stepNumber: number) {
   await page.getByRole("button", { name: stepNumber.toString() }).click();
 }
 
-export async function clickLabelInput(page: Page, labelText: RegExp | string) {
+export async function clickLabelInput(page: Page, labelText: TEXT_PATTERN) {
   const label = page.locator("label").filter({ hasText: labelText });
   await label.click();
 }
 
-export async function clickMultipleLabelInputs(page: Page, labelTexts: (RegExp | string)[]) {
+export async function clickMultipleLabelInputs(page: Page, labelTexts: TEXT_PATTERN[]) {
   for (const labelText of labelTexts) {
     await clickLabelInput(page, labelText);
   }
