@@ -9,3 +9,9 @@ export type PersonalInfoData = {
   email?: string;
   phone?: string;
 };
+
+export type PlanOptions = {
+  plan?: RegExp;
+  billing?: RegExp;
+  personalInfo?: PersonalInfoData;
+};

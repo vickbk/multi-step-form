@@ -1,3 +1,4 @@
+export * from "./addon-helpers";
 export * from "./as-user";
 export * from "./constant-helpers";
 export * from "./error-steps";

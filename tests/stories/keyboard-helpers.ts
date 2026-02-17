@@ -1,6 +1,6 @@
 import { expect, Locator, Page } from "@playwright/test";
 
-export async function onTabFocus(page: Page, selector: string): Promise<Locator> {
+export async function onLoadFocus(page: Page, selector: string): Promise<Locator> {
   const locator = page.locator(selector);
   await locator.focus();
   await expect(locator).toBeFocused();
@@ -15,13 +15,19 @@ export async function onTabNavigate(page: Page, selector: string): Promise<Locat
 }
 
 export async function onTabFill(page: Page, selector: string, value: string): Promise<Locator> {
-  const locator = await onTabFocus(page, selector);
+  const locator = await onLoadFocus(page, selector);
   await locator.fill(value);
   return locator;
 }
 
 export async function onTabCheck(page: Page, selector: string): Promise<Locator> {
-  const locator = await onTabFocus(page, selector);
+  const locator = await onLoadFocus(page, selector);
   await page.keyboard.press("Space");
   return locator;
+}
+
+export async function isAutoFocused(page: Page, selector: string, waitTime = 100): Promise<void> {
+  await page.waitForTimeout(waitTime);
+  const locator = page.locator(selector);
+  await expect(locator).toBeFocused();
 }

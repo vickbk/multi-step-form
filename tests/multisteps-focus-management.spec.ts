@@ -1,9 +1,11 @@
 import { expect, test } from "@playwright/test";
 import {
   ADVANCED_SELECTOR,
+  clickBackButton,
   clickLabelInput,
   clickNextButton,
   fillPersonalInfo,
+  isAutoFocused,
   MONTHLY_SELECTOR,
   PICK_ADDONS_HEADING,
   PRO_SELECTOR,
@@ -18,11 +20,7 @@ test.describe("Multi-step form - Focus Management", () => {
   test("should focus first input on page load", async ({ page }) => {
     await page.goto("/");
 
-    // Wait a bit for autofocus to take effect
-    await page.waitForTimeout(100);
-
-    const nameInput = page.locator('input[name="name"]');
-    await expect(nameInput).toBeFocused();
+    await isAutoFocused(page, 'input[name="name"]');
   });
 
   test("should focus first plan option when navigating to plan step", async ({
@@ -31,29 +29,15 @@ test.describe("Multi-step form - Focus Management", () => {
     await fillPersonalInfo(page);
     await shouldSee(page, [SELECT_PLAN_HEADING]);
 
-    // Wait a bit for autofocus to take effect
-    await page.waitForTimeout(100);
-
-    const arcadeRadio = page.locator('input[type="radio"][value="arcade"]');
-    await expect(arcadeRadio).toBeFocused();
+    await isAutoFocused(page, 'input[type="radio"][value="arcade"]');
   });
 
   test("should focus first add-on when navigating to add-ons step", async ({
     page,
   }) => {
-    await fillPersonalInfo(page);
-
     await selectArcadeMonthly(page);
 
-    await shouldSee(page, [PICK_ADDONS_HEADING]);
-
-    // Wait a bit for autofocus to take effect
-    await page.waitForTimeout(100);
-
-    const onlineCheckbox = page.locator(
-      'input[type="checkbox"][value="online-service"]',
-    );
-    await expect(onlineCheckbox).toBeFocused();
+    await isAutoFocused(page, 'input[type="checkbox"][value="online-service"]');
   });
 
   test("should maintain focus on selected plan when switching billing period", async ({
@@ -89,18 +73,14 @@ test.describe("Multi-step form - Focus Management", () => {
     await shouldSee(page, [PICK_ADDONS_HEADING]);
 
     // Navigate back
-    const backButton = page.getByRole("button", { name: /go back/i });
-    await backButton.click();
+    await clickBackButton(page);
 
     await shouldSee(page, [SELECT_PLAN_HEADING]);
 
-    // Wait a bit for autofocus to take effect
-    await page.waitForTimeout(100);
-
     // Pro should still be selected and focused
+    await isAutoFocused(page, 'input[type="radio"][value="pro"]');
     const proRadio = page.locator('input[type="radio"][value="pro"]');
     await expect(proRadio).toBeChecked();
-    await expect(proRadio).toBeFocused();
   });
 
   test("should trap focus within error messages when validation fails", async ({

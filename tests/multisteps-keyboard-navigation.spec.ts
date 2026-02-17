@@ -4,7 +4,8 @@ import {
   clickLabelInput,
   clickNextButton,
   fillPersonalInfo,
-  onTabFocus,
+  INFO_TITLE,
+  onLoadFocus,
   onTabNavigate,
   PICK_ADDONS_HEADING,
   SELECT_PLAN_HEADING,
@@ -16,7 +17,7 @@ test.describe("Multi-step form - Keyboard Navigation", () => {
     await page.goto("/");
 
     // Focus the name input first
-    await onTabFocus(page, 'input[name="name"]');
+    await onLoadFocus(page, 'input[name="name"]');
 
     await onTabNavigate(page, 'input[name="email"]');
 
@@ -82,5 +83,23 @@ test.describe("Multi-step form - Keyboard Navigation", () => {
     await page.keyboard.press("Enter");
 
     await shouldSee(page, [PICK_ADDONS_HEADING]);
+  });
+
+  test("should navigate back using Escape key", async ({ page }) => {
+    // This test should fail as the feature is not yet implemented
+    test.fail(true, "Escape key navigation not yet implemented");
+
+    await fillPersonalInfo(page);
+    await shouldSee(page, [SELECT_PLAN_HEADING]);
+
+    await clickLabelInput(page, ARCADE_SELECTOR);
+    await clickNextButton(page);
+    await shouldSee(page, [PICK_ADDONS_HEADING]);
+
+    // Try to navigate back with Escape key
+    await page.keyboard.press("Escape");
+
+    // When implemented, this should navigate back to SELECT_PLAN_HEADING
+    await shouldSee(page, [SELECT_PLAN_HEADING]);
   });
 });

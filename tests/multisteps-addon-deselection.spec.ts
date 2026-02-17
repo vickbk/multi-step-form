@@ -3,21 +3,16 @@ import {
   clickLabelInput,
   clickMultipleLabelInputs,
   CUSTOMIZABLE_PROFILE,
-  fillPersonalInfo,
+  expectCheckboxesChecked,
+  expectCheckboxesUnchecked,
   LARGER_STORAGE,
   ONLINE_SERVICE,
-  PICK_ADDONS_HEADING,
   selectArcadeMonthly,
-  shouldSee,
 } from "./stories";
 
 test.describe("Multi-step form - Add-on Deselection", () => {
   test("should deselect a single add-on", async ({ page }) => {
-    await fillPersonalInfo(page);
-
     await selectArcadeMonthly(page);
-
-    await shouldSee(page, [PICK_ADDONS_HEADING]);
 
     // Select an add-on
     await clickLabelInput(page, ONLINE_SERVICE);
@@ -32,55 +27,35 @@ test.describe("Multi-step form - Add-on Deselection", () => {
   });
 
   test("should deselect all add-ons after selecting them", async ({ page }) => {
-    await fillPersonalInfo(page);
-
     await selectArcadeMonthly(page);
 
-    await shouldSee(page, [PICK_ADDONS_HEADING]);
+    const addOns = [ONLINE_SERVICE, LARGER_STORAGE, CUSTOMIZABLE_PROFILE];
 
     // Select all add-ons
-    await clickMultipleLabelInputs(page, [
-      ONLINE_SERVICE,
-      LARGER_STORAGE,
-      CUSTOMIZABLE_PROFILE,
-    ]);
+    await clickMultipleLabelInputs(page, addOns);
 
     // Verify all are checked
-    const onlineCheckbox = page.locator(
-      'input[type="checkbox"][value="online-service"]',
-    );
-    const storageCheckbox = page.locator(
-      'input[type="checkbox"][value="larger-storage"]',
-    );
-    const profileCheckbox = page.locator(
-      'input[type="checkbox"][value="customizable-profile"]',
-    );
-
-    await expect(onlineCheckbox).toBeChecked();
-    await expect(storageCheckbox).toBeChecked();
-    await expect(profileCheckbox).toBeChecked();
-
-    // Deselect all add-ons
-    await clickMultipleLabelInputs(page, [
-      ONLINE_SERVICE,
-      LARGER_STORAGE,
-      CUSTOMIZABLE_PROFILE,
+    await expectCheckboxesChecked(page, [
+      "online-service",
+      "larger-storage",
+      "customizable-profile",
     ]);
 
+    // Deselect all add-ons
+    await clickMultipleLabelInputs(page, addOns);
+
     // Verify all are unchecked
-    await expect(onlineCheckbox).not.toBeChecked();
-    await expect(storageCheckbox).not.toBeChecked();
-    await expect(profileCheckbox).not.toBeChecked();
+    await expectCheckboxesUnchecked(page, [
+      "online-service",
+      "larger-storage",
+      "customizable-profile",
+    ]);
   });
 
   test("should deselect specific add-ons while keeping others selected", async ({
     page,
   }) => {
-    await fillPersonalInfo(page);
-
     await selectArcadeMonthly(page);
-
-    await shouldSee(page, [PICK_ADDONS_HEADING]);
 
     // Select all add-ons
     await clickMultipleLabelInputs(page, [
@@ -92,18 +67,11 @@ test.describe("Multi-step form - Add-on Deselection", () => {
     // Deselect only the middle one
     await clickLabelInput(page, LARGER_STORAGE);
 
-    const onlineCheckbox = page.locator(
-      'input[type="checkbox"][value="online-service"]',
-    );
-    const storageCheckbox = page.locator(
-      'input[type="checkbox"][value="larger-storage"]',
-    );
-    const profileCheckbox = page.locator(
-      'input[type="checkbox"][value="customizable-profile"]',
-    );
-
-    await expect(onlineCheckbox).toBeChecked();
-    await expect(storageCheckbox).not.toBeChecked();
-    await expect(profileCheckbox).toBeChecked();
+    // Verify correct states
+    await expectCheckboxesChecked(page, [
+      "online-service",
+      "customizable-profile",
+    ]);
+    await expectCheckboxesUnchecked(page, ["larger-storage"]);
   });
 });

@@ -10,13 +10,7 @@ import {
 } from "./constant-helpers";
 import { clickLabelInput, clickNextButton, shouldSee } from "./helpers";
 import { fillPersonalInfo } from "./fill-steps";
-import type { PersonalInfoData } from "./types";
-
-export type PlanOptions = {
-  plan?: typeof ARCADE_SELECTOR | typeof ADVANCED_SELECTOR | typeof PRO_SELECTOR;
-  billing?: typeof MONTHLY_SELECTOR | typeof YEARLY_SELECTOR;
-  personalInfo?: PersonalInfoData;
-};
+import type { PersonalInfoData, PlanOptions } from "./types";
 
 export async function selectPlan(
   page: Page,
