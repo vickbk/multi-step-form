@@ -1,14 +1,17 @@
 import { expect, test } from "@playwright/test";
 import {
   clickBackButton,
-  clickLabelInput,
+  clickMultipleLabelInputs,
   fillMonthlyPlanStep,
   FINISHING_UP_HEADING,
   GO_BACK_BUTTON,
   INFO_TITLE,
+  LARGER_STORAGE,
   navigateToStep,
+  ONLINE_SERVICE,
   PICK_ADDONS_HEADING,
   pickAddOns,
+  PRO_SELECTOR,
   SELECT_PLAN_HEADING,
   shouldNotSee,
   shouldSee,
@@ -20,7 +23,6 @@ test.describe("Multi-step form - navigation", () => {
   }) => {
     await pickAddOns(page);
 
-    // At step 4 (summary)
     await shouldSee(page, [FINISHING_UP_HEADING]);
 
     for (const step of [PICK_ADDONS_HEADING, SELECT_PLAN_HEADING, INFO_TITLE]) {
@@ -28,7 +30,6 @@ test.describe("Multi-step form - navigation", () => {
       await shouldSee(page, [step]);
     }
 
-    // Verify Go Back button is hidden on first step
     await shouldNotSee(page, [GO_BACK_BUTTON]);
   });
 
@@ -73,12 +74,11 @@ test.describe("Multi-step form - navigation", () => {
   }) => {
     await fillMonthlyPlanStep(page);
 
-    await clickLabelInput(page, /pro/i);
+    await clickMultipleLabelInputs(page, [PRO_SELECTOR]);
     
     await navigateToStep(page, 3);
     await shouldSee(page, [PICK_ADDONS_HEADING]);
-    await clickLabelInput(page, /online service/i);
-    await clickLabelInput(page, /larger storage/i);
+    await clickMultipleLabelInputs(page, [ONLINE_SERVICE, LARGER_STORAGE]);
 
     await clickBackButton(page);
     await shouldSee(page, [SELECT_PLAN_HEADING]);

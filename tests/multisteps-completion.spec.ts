@@ -2,6 +2,7 @@ import { test } from "@playwright/test";
 import {
   completeFormSubmission,
   FINISHING_UP_HEADING,
+  INFO_TITLE,
   shouldSee,
   shouldNotSee,
   SUBSCRIBE_ANOTHER,
@@ -13,7 +14,6 @@ test.describe("Multi-step form - completion", () => {
   test("should complete full form and see thank you page", async ({ page }) => {
     await completeFormSubmission(page);
 
-    // Verify thank you page is displayed
     await shouldSee(page, [THANK_YOU_HEADING, THANK_YOU_EMAIL, SUBSCRIBE_ANOTHER]);
   });
 
@@ -26,7 +26,7 @@ test.describe("Multi-step form - completion", () => {
 
     await page.getByRole("button", { name: SUBSCRIBE_ANOTHER }).click();
 
-    await shouldSee(page, [/personal info/i, /next/i]);
+    await shouldSee(page, [INFO_TITLE, /next/i]);
     await shouldNotSee(page, [/confirm/i]);
   });
 });

@@ -2,6 +2,7 @@ import { expect, test } from "@playwright/test";
 import {
   ADVANCED_SELECTOR,
   ARCADE_SELECTOR,
+  clickBackButton,
   clickLabelInput,
   clickNextButton,
   CUSTOMIZABLE_PROFILE,
@@ -86,7 +87,7 @@ test.describe("Multi-step form - pricing", () => {
 
     await shouldSee(page, [[/\+1\/mo/i, 0], [/\+2\/mo/i, 0]]);
 
-    await page.getByRole("button", { name: /go back/i }).click();
+    await clickBackButton(page);
     await clickLabelInput(page, YEARLY_SELECTOR);
     await clickNextButton(page);
 

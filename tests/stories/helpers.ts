@@ -62,3 +62,9 @@ export async function clickLabelInput(page: Page, labelText: RegExp | string) {
   const label = page.locator("label").filter({ hasText: labelText });
   await label.click();
 }
+
+export async function clickMultipleLabelInputs(page: Page, labelTexts: (RegExp | string)[]) {
+  for (const labelText of labelTexts) {
+    await clickLabelInput(page, labelText);
+  }
+}
