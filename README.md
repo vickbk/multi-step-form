@@ -41,7 +41,7 @@ Users should be able to:
 ### Links
 
 - Solution URL: [GitHub Repository](https://github.com/vickbk/multi-step-form)
-- Live Site URL: [Github Pages](https://vickbk.github.io/multi-step-form/)
+- Live Site URL: [GitHub Pages](https://vickbk.github.io/multi-step-form/)
 
 ## My process
 
