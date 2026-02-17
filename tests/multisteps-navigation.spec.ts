@@ -1,8 +1,10 @@
 import { expect, test } from "@playwright/test";
 import {
   clickBackButton,
+  clickLabelInput,
   clickMultipleLabelInputs,
   fillMonthlyPlanStep,
+  fillPersonalInfo,
   FINISHING_UP_HEADING,
   GO_BACK_BUTTON,
   INFO_TITLE,
@@ -72,10 +74,11 @@ test.describe("Multi-step form - navigation", () => {
   test("should preserve selections when navigating backwards from later steps", async ({
     page,
   }) => {
-    await fillMonthlyPlanStep(page);
+    await fillPersonalInfo(page);
+    await shouldSee(page, [SELECT_PLAN_HEADING]);
 
-    await clickMultipleLabelInputs(page, [PRO_SELECTOR]);
-    
+    await clickLabelInput(page, PRO_SELECTOR);
+
     await navigateToStep(page, 3);
     await shouldSee(page, [PICK_ADDONS_HEADING]);
     await clickMultipleLabelInputs(page, [ONLINE_SERVICE, LARGER_STORAGE]);
@@ -92,8 +95,12 @@ test.describe("Multi-step form - navigation", () => {
     await navigateToStep(page, 3);
     await shouldSee(page, [PICK_ADDONS_HEADING]);
 
-    const onlineServiceCheckbox = page.locator('input[type="checkbox"][value="online-service"]');
-    const largerStorageCheckbox = page.locator('input[type="checkbox"][value="larger-storage"]');
+    const onlineServiceCheckbox = page.locator(
+      'input[type="checkbox"][value="online-service"]',
+    );
+    const largerStorageCheckbox = page.locator(
+      'input[type="checkbox"][value="larger-storage"]',
+    );
     await expect(onlineServiceCheckbox).toBeChecked();
     await expect(largerStorageCheckbox).toBeChecked();
   });
