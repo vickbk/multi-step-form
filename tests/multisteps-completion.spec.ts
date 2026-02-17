@@ -22,16 +22,11 @@ test.describe("Multi-step form - completion", () => {
   }) => {
     await completeFormSubmission(page);
 
-    // On thank you page
     await shouldSee(page, [THANK_YOU_HEADING]);
 
-    // Click reset button
     await page.getByRole("button", { name: SUBSCRIBE_ANOTHER }).click();
 
-    // Should be back at step 1
     await shouldSee(page, [/personal info/i, /next/i]);
-    
-    // Verify Confirm button is not visible on step 1
     await shouldNotSee(page, [/confirm/i]);
   });
 });

@@ -1,15 +1,25 @@
 import { expect, Locator, Page } from "@playwright/test";
-import { LABEL_LOCATOR } from "./types";
+import { LABEL_LOCATOR, TEXT_MATCHER } from "./types";
 
-export async function shouldSee(page: Page, textes: (string | RegExp)[]) {
+export async function shouldSee(page: Page, textes: TEXT_MATCHER[]) {
   for (const text of textes) {
-    await expect(page.getByText(text)).toBeVisible();
+    if (Array.isArray(text)) {
+      const [matcher, nth] = text;
+      await expect(page.getByText(matcher).nth(nth)).toBeVisible();
+    } else {
+      await expect(page.getByText(text)).toBeVisible();
+    }
   }
 }
 
-export async function shouldNotSee(page: Page, textes: (string | RegExp)[]) {
+export async function shouldNotSee(page: Page, textes: TEXT_MATCHER[]) {
   for (const text of textes) {
-    await expect(page.getByText(text)).not.toBeVisible();
+    if (Array.isArray(text)) {
+      const [matcher, nth] = text;
+      await expect(page.getByText(matcher).nth(nth)).not.toBeVisible();
+    } else {
+      await expect(page.getByText(text)).not.toBeVisible();
+    }
   }
 }
 
@@ -46,4 +56,9 @@ export async function clickBackButton(page: Page) {
 
 export async function navigateToStep(page: Page, stepNumber: number) {
   await page.getByRole("button", { name: stepNumber.toString() }).click();
+}
+
+export async function clickLabelInput(page: Page, labelText: RegExp | string) {
+  const label = page.locator("label").filter({ hasText: labelText });
+  await label.click();
 }

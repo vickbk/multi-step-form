@@ -13,6 +13,7 @@ import {
   VALID_EMAIL,
 } from "./constant-helpers";
 import {
+  clickLabelInput,
   clickNextButton,
   fillLocatorWith,
   shouldNotSee,
@@ -89,26 +90,16 @@ export async function pickAddOns(
   await fillMonthlyPlanStep(page);
 
   for (const addOn of addOns) {
-    await clickOnAddOn(page, addOn);
+    await clickLabelInput(page, addOn);
   }
 
   await clickNextButton(page);
   await shouldSee(page, [FINISHING_UP_HEADING, ...addOns]);
 }
 
-export async function clickOnAddOn(page: Page, addOn: RegExp | string) {
-  await clickLabelInput(page, addOn);
-}
-
-export async function clickLabelInput(page: Page, labelText: RegExp | string) {
-  const label = page.locator("label").filter({ hasText: labelText });
-  await label.click();
-}
-
 export async function completeFormSubmission(page: Page) {
   await pickAddOns(page);
   await shouldSee(page, [FINISHING_UP_HEADING]);
 
-  // Click confirm button
   await page.locator("button", { hasText: /Confirm/i }).click();
 }
