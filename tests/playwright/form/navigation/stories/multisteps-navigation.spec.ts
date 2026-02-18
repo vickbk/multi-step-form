@@ -1,5 +1,5 @@
 import { expect, test } from "@playwright/test";
-import { expectCheckboxesChecked } from "@tests/playwright/addon-deselection/helpers";
+import { expectInputsChecked } from "@tests/playwright/addon-deselection/helpers";
 import {
   fillMonthlyPlanStep,
   fillPersonalInfo,
@@ -102,7 +102,7 @@ test.describe("Multi-step form - navigation", () => {
     await navigateToStep(page, 3);
     await shouldSee(page, [PICK_ADDONS_HEADING]);
 
-    await expectCheckboxesChecked(page, [
+    await expectInputsChecked(page, [
       ONLINE_SERVICE_CHECKBOX,
       LARGER_STORAGE_CHECKBOX,
     ]);

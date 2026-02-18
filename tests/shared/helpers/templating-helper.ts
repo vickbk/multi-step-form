@@ -20,6 +20,9 @@ export function cssTemplateCreator(
   return `${template}${options.join("")}`;
 }
 
+export function isTemplated(value: string): boolean {
+  return /\[.*=.*\]/.test(value);
+}
 /**
  * Generates an input selector string based on name, type, and value attributes.
  * Uses array syntax to support trailing commas for optional parameters.
@@ -38,6 +41,9 @@ export function inputTemp([name, type, value]: [
   string?,
   string?,
 ] = []): string {
+  if (isTemplated(value || "")) {
+    return value as string;
+  }
   return cssTemplateCreator("input", { name, type, value });
 }
 
