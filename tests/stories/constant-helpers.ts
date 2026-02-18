@@ -57,17 +57,31 @@ export const NEXT_BUTTON = /next step/i;
 export const CONFIRM_BUTTON = /confirm/i;
 export const CHANGE_BUTTON = /change/i;
 
-export const NAME_INPUT = 'input[name="name"]';
-export const EMAIL_INPUT = 'input[name="email"]';
-export const PHONE_INPUT = 'input[name="phone"]';
+function inputTemp(name?: string, type?: string, value?: string): string {
+  const parts: string[] = ['input'];
+  
+  if (name) parts.push(`[name="${name}"]`);
+  if (type) parts.push(`[type="${type}"]`);
+  if (value) parts.push(`[value="${value}"]`);
+  
+  return parts.join('');
+}
 
-export const ARCADE_RADIO_INPUT = 'input[type="radio"][value="arcade"]';
-export const ADVANCED_RADIO_INPUT = 'input[type="radio"][value="advanced"]';
-export const PRO_RADIO_INPUT = 'input[type="radio"][value="pro"]';
+export const NAME_INPUT = inputTemp('name');
+export const EMAIL_INPUT = inputTemp('email');
+export const PHONE_INPUT = inputTemp('phone');
 
-export const MONTHLY_RADIO_INPUT = 'input[type="radio"][value="monthly"]';
-export const YEARLY_RADIO_INPUT = 'input[type="radio"][value="yearly"]';
+export const ARCADE_RADIO_INPUT = inputTemp(undefined, 'radio', 'arcade');
+export const ADVANCED_RADIO_INPUT = inputTemp(undefined, 'radio', 'advanced');
+export const PRO_RADIO_INPUT = inputTemp(undefined, 'radio', 'pro');
 
-export const ONLINE_SERVICE_CHECKBOX = 'input[type="checkbox"][value="online-service"]';
-export const LARGER_STORAGE_CHECKBOX = 'input[type="checkbox"][value="larger-storage"]';
-export const CUSTOMIZABLE_PROFILE_CHECKBOX = 'input[type="checkbox"][value="customizable-profile"]';
+export const MONTHLY_RADIO_INPUT = inputTemp(undefined, 'radio', 'monthly');
+export const YEARLY_RADIO_INPUT = inputTemp(undefined, 'radio', 'yearly');
+
+export const ONLINE_SERVICE_CHECKBOX = inputTemp(undefined, 'checkbox', 'online-service');
+export const LARGER_STORAGE_CHECKBOX = inputTemp(undefined, 'checkbox', 'larger-storage');
+export const CUSTOMIZABLE_PROFILE_CHECKBOX = inputTemp(undefined, 'checkbox', 'customizable-profile');
+
+export const ONLINE_SERVICE_VALUE = 'online-service';
+export const LARGER_STORAGE_VALUE = 'larger-storage';
+export const CUSTOMIZABLE_PROFILE_VALUE = 'customizable-profile';

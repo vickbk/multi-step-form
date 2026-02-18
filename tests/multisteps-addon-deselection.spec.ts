@@ -4,14 +4,17 @@ import {
   clickMultipleLabelInputs,
   CUSTOMIZABLE_PROFILE,
   CUSTOMIZABLE_PROFILE_CHECKBOX,
+  CUSTOMIZABLE_PROFILE_VALUE,
   expectCheckboxesChecked,
   expectCheckboxesUnchecked,
   isChecked,
   isNotChecked,
   LARGER_STORAGE,
   LARGER_STORAGE_CHECKBOX,
+  LARGER_STORAGE_VALUE,
   ONLINE_SERVICE,
   ONLINE_SERVICE_CHECKBOX,
+  ONLINE_SERVICE_VALUE,
   selectArcadeMonthly,
 } from "./stories";
 
@@ -34,17 +37,17 @@ test.describe("Multi-step form - Add-on Deselection", () => {
     await clickMultipleLabelInputs(page, addOns);
 
     await expectCheckboxesChecked(page, [
-      "online-service",
-      "larger-storage",
-      "customizable-profile",
+      ONLINE_SERVICE_VALUE,
+      LARGER_STORAGE_VALUE,
+      CUSTOMIZABLE_PROFILE_VALUE,
     ]);
 
     await clickMultipleLabelInputs(page, addOns);
 
     await expectCheckboxesUnchecked(page, [
-      "online-service",
-      "larger-storage",
-      "customizable-profile",
+      ONLINE_SERVICE_VALUE,
+      LARGER_STORAGE_VALUE,
+      CUSTOMIZABLE_PROFILE_VALUE,
     ]);
   });
 
@@ -62,9 +65,9 @@ test.describe("Multi-step form - Add-on Deselection", () => {
     await clickLabelInput(page, LARGER_STORAGE);
 
     await expectCheckboxesChecked(page, [
-      "online-service",
-      "customizable-profile",
+      ONLINE_SERVICE_VALUE,
+      CUSTOMIZABLE_PROFILE_VALUE,
     ]);
-    await expectCheckboxesUnchecked(page, ["larger-storage"]);
+    await expectCheckboxesUnchecked(page, [LARGER_STORAGE_VALUE]);
   });
 });

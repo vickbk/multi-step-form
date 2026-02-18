@@ -20,6 +20,12 @@ export async function onTabFill(page: Page, selector: string, value: string): Pr
   return locator;
 }
 
+export async function onFocusFill(page: Page, selector: string, value: string): Promise<Locator> {
+  const locator = page.locator(selector);
+  await locator.fill(value);
+  return locator;
+}
+
 export async function onTabCheck(page: Page, selector: string): Promise<Locator> {
   const locator = await onLoadFocus(page, selector);
   await page.keyboard.press("Space");

@@ -4,20 +4,30 @@ import {
   ARCADE_RADIO_INPUT,
   ARCADE_SELECTOR,
   clickLabelInput,
+  clickNextButton,
   EMAIL_INPUT,
+  EMAIL_SELECTOR,
+  fillPersonalInfo,
   isAutoFocused,
   isChecked,
   isNotChecked,
   NAME_INPUT,
+  NAME_SELECTOR,
   NEXT_BUTTON,
+  onFocusFill,
   onLoadFocus,
   onTabNavigate,
   ONLINE_SERVICE_CHECKBOX,
   PHONE_INPUT,
+  PHONE_SELECTOR,
   PICK_ADDONS_HEADING,
   PRO_RADIO_INPUT,
   SELECT_PLAN_HEADING,
+  selectArcadeMonthly,
   shouldSee,
+  UPDATED_EMAIL,
+  UPDATED_NAME,
+  UPDATED_PHONE,
 } from "./stories";
 
 test.describe("Multi-step form - Keyboard Navigation", () => {
@@ -34,14 +44,9 @@ test.describe("Multi-step form - Keyboard Navigation", () => {
   test("should select plan using keyboard", async ({ page }) => {
     await page.goto("/");
     
-    const nameInput = page.locator(NAME_INPUT);
-    await nameInput.fill("Test User");
-    
-    const emailInput = page.locator(EMAIL_INPUT);
-    await emailInput.fill("test@example.com");
-    
-    const phoneInput = page.locator(PHONE_INPUT);
-    await phoneInput.fill("1234567890");
+    await onFocusFill(page, NAME_INPUT, UPDATED_NAME);
+    await onFocusFill(page, EMAIL_INPUT, UPDATED_EMAIL);
+    await onFocusFill(page, PHONE_INPUT, UPDATED_PHONE);
     
     const nextButton = page.getByRole("button", { name: NEXT_BUTTON });
     await nextButton.click();
@@ -61,24 +66,7 @@ test.describe("Multi-step form - Keyboard Navigation", () => {
   });
 
   test("should toggle add-ons using Space key", async ({ page }) => {
-    await page.goto("/");
-    
-    const nameInput = page.locator(NAME_INPUT);
-    await nameInput.fill("Test User");
-    
-    const emailInput = page.locator(EMAIL_INPUT);
-    await emailInput.fill("test@example.com");
-    
-    const phoneInput = page.locator(PHONE_INPUT);
-    await phoneInput.fill("1234567890");
-    
-    const nextButton1 = page.getByRole("button", { name: NEXT_BUTTON });
-    await nextButton1.click();
-
-    await clickLabelInput(page, ARCADE_SELECTOR);
-    
-    const nextButton2 = page.getByRole("button", { name: NEXT_BUTTON });
-    await nextButton2.click();
+    await selectArcadeMonthly(page);
 
     await shouldSee(page, [PICK_ADDONS_HEADING]);
 
@@ -97,14 +85,9 @@ test.describe("Multi-step form - Keyboard Navigation", () => {
   }) => {
     await page.goto("/");
     
-    const nameInput = page.locator(NAME_INPUT);
-    await nameInput.fill("Test User");
-    
-    const emailInput = page.locator(EMAIL_INPUT);
-    await emailInput.fill("test@example.com");
-    
-    const phoneInput = page.locator(PHONE_INPUT);
-    await phoneInput.fill("1234567890");
+    await onFocusFill(page, NAME_INPUT, UPDATED_NAME);
+    await onFocusFill(page, EMAIL_INPUT, UPDATED_EMAIL);
+    await onFocusFill(page, PHONE_INPUT, UPDATED_PHONE);
     
     const nextButton1 = page.getByRole("button", { name: NEXT_BUTTON });
     await nextButton1.click();
