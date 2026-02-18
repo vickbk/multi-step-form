@@ -88,9 +88,11 @@ test.describe("Multi-step form - Keyboard Navigation", () => {
   }) => {
     await page.goto("/");
     
-    await onFocusFill(page, NAME_INPUT, UPDATED_NAME);
-    await onFocusFill(page, EMAIL_INPUT, UPDATED_EMAIL);
-    await onFocusFill(page, PHONE_INPUT, UPDATED_PHONE);
+    await onMultipleFocusFill(page, [
+      [NAME_INPUT, UPDATED_NAME],
+      [EMAIL_INPUT, UPDATED_EMAIL],
+      [PHONE_INPUT, UPDATED_PHONE],
+    ]);
     
     const nextButton1 = page.getByRole("button", { name: NEXT_BUTTON });
     await nextButton1.click();

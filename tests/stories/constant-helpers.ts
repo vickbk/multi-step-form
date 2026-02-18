@@ -57,7 +57,7 @@ export const NEXT_BUTTON = /next step/i;
 export const CONFIRM_BUTTON = /confirm/i;
 export const CHANGE_BUTTON = /change/i;
 
-function inputTemp(name?: string, type?: string, value?: string): string {
+export function inputTemp([name, type, value]: [string?, string?, string?] = []): string {
   const parts: string[] = ['input'];
   
   if (name) parts.push(`[name="${name}"]`);
@@ -67,20 +67,20 @@ function inputTemp(name?: string, type?: string, value?: string): string {
   return parts.join('');
 }
 
-export const NAME_INPUT = inputTemp('name');
-export const EMAIL_INPUT = inputTemp('email');
-export const PHONE_INPUT = inputTemp('phone');
+export const NAME_INPUT = inputTemp(['name']);
+export const EMAIL_INPUT = inputTemp(['email']);
+export const PHONE_INPUT = inputTemp(['phone']);
 
-export const ARCADE_RADIO_INPUT = inputTemp(undefined, 'radio', 'arcade');
-export const ADVANCED_RADIO_INPUT = inputTemp(undefined, 'radio', 'advanced');
-export const PRO_RADIO_INPUT = inputTemp(undefined, 'radio', 'pro');
+export const ARCADE_RADIO_INPUT = inputTemp([, 'radio', 'arcade']);
+export const ADVANCED_RADIO_INPUT = inputTemp([, 'radio', 'advanced']);
+export const PRO_RADIO_INPUT = inputTemp([, 'radio', 'pro']);
 
-export const MONTHLY_RADIO_INPUT = inputTemp(undefined, 'radio', 'monthly');
-export const YEARLY_RADIO_INPUT = inputTemp(undefined, 'radio', 'yearly');
+export const MONTHLY_RADIO_INPUT = inputTemp([, 'radio', 'monthly']);
+export const YEARLY_RADIO_INPUT = inputTemp([, 'radio', 'yearly']);
 
-export const ONLINE_SERVICE_CHECKBOX = inputTemp(undefined, 'checkbox', 'online-service');
-export const LARGER_STORAGE_CHECKBOX = inputTemp(undefined, 'checkbox', 'larger-storage');
-export const CUSTOMIZABLE_PROFILE_CHECKBOX = inputTemp(undefined, 'checkbox', 'customizable-profile');
+export const ONLINE_SERVICE_CHECKBOX = inputTemp([, 'checkbox', 'online-service']);
+export const LARGER_STORAGE_CHECKBOX = inputTemp([, 'checkbox', 'larger-storage']);
+export const CUSTOMIZABLE_PROFILE_CHECKBOX = inputTemp([, 'checkbox', 'customizable-profile']);
 
 export const ONLINE_SERVICE_VALUE = 'online-service';
 export const LARGER_STORAGE_VALUE = 'larger-storage';
