@@ -15,7 +15,7 @@ import {
   SELECT_PLAN_HEADING,
   shouldSee,
   YEARLY_SELECTOR,
-} from "./stories";
+} from "../../../shared/helpers";
 
 test.describe("Multi-step form - pricing", () => {
   test("should calculate total price correctly - monthly arcade + online service", async ({
