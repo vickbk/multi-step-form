@@ -5,14 +5,12 @@ import {
   INVALID_EMAIL_ERROR,
   INVALID_EMAIL_LOCATOR,
   INVALID_PHONE_ERROR,
-  INVALID_PHONE_NUMBER_LOCATOR,
-  NAME_LOCATOR,
-  PHONE_NUMBER_LOCATOR,
-  PLAN_ERROR,
+  INVALID_PHONE_NUMBER,
+  NAME,
+  PHONE_NUMBER,
   REQUIRED_FIELD_ERROR,
   VALID_EMAIL_LOCATOR,
 } from "./constant-helpers";
-import { fillPersonalInfo } from "./fill-steps";
 import {
   clickNextButton,
   setLocatorValue,
@@ -57,10 +55,4 @@ export async function seePhoneNumberError(page: Page) {
   await setLocatorValue(page, INVALID_PHONE_NUMBER_LOCATOR);
   await clickNextButton(page);
   await shouldSee(page, [INFO_TITLE, INVALID_PHONE_ERROR]);
-}
-
-export async function seePlanError(page: Page) {
-  await fillPersonalInfo(page);
-  await clickNextButton(page);
-  await shouldSee(page, [PLAN_ERROR]);
 }

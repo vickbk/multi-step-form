@@ -74,3 +74,15 @@ export const Header = forwardRef<HTMLElement, HTMLAttributes<HTMLElement>>(
     );
   },
 );
+
+export const Legend = forwardRef<
+  HTMLLegendElement,
+  HTMLAttributes<HTMLLegendElement>
+>(({ children, ...props }, ref) => {
+  const level = useHeading();
+  return (
+    <legend {...props} ref={ref}>
+      <HeadingCtx.Provider value={level}>{children}</HeadingCtx.Provider>
+    </legend>
+  );
+});

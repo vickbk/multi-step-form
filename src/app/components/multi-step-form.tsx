@@ -8,10 +8,10 @@ import { PlanSection } from "@/features/steps/plan-step/components/plan-section"
 import { Summary } from "@/features/steps/summary/components/summary";
 import { useMultistepsForm } from "../hooks/use-multisteps-form";
 import { multistepsSubmitHandler } from "../scripts";
-import type { MultiStepData } from "../types";
+import type { MultiStepFormData } from "../types";
 
 export const MultiStepForm = () => {
-  const navigation = useMultistepsForm<MultiStepData>(
+  const navigation = useMultistepsForm<MultiStepFormData>(
     [PersonalInfo, PlanSection, AddsOn, Summary],
     multistepsSubmitHandler,
   );

@@ -1,13 +1,13 @@
 import { Icon } from "@/shared/components/bi-icon";
 import { joinClasses } from "@/shared/libs";
 import { BILLING } from "../scripts";
-import type { PlanType } from "../types";
+import type { PlanType, StrictBilling } from "../types";
 
 export const PlanOptionSwitch = ({
   billing,
   setBilling,
 }: Pick<PlanType, "billing"> & {
-  setBilling: (value: "monthly" | "yearly") => void;
+  setBilling: (value: StrictBilling) => void;
 }) => {
   return (
     <fieldset className="background p-4 rounded-lg flex gap-4 justify-center">

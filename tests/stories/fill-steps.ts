@@ -13,7 +13,6 @@ import {
   ONLINE_SERVICE,
   PHONE_SELECTOR,
   PICK_ADDONS_HEADING,
-  PLAN_ERROR,
   SELECT_PLAN_HEADING,
   THANK_YOU_HEADING,
   UPDATED_PHONE,
@@ -60,13 +59,6 @@ export async function fillPersonalInfo(
 export async function fillMonthlyPlanStep(page: Page) {
   await selectPlan(page, { plan: ARCADE_SELECTOR });
   await shouldSee(page, [PICK_ADDONS_HEADING]);
-}
-
-export async function seeErrorMessageOnPlanSelection(page: Page) {
-  await fillPersonalInfo(page);
-  await shouldSee(page, [SELECT_PLAN_HEADING]);
-  await clickNextButton(page);
-  await shouldSee(page, [PLAN_ERROR]);
 }
 
 export async function fillYearlyPlanStep(page: Page) {

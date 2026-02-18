@@ -1,8 +1,10 @@
-import type { MultiStepData } from "@/app/types";
+import type { MultiStepFormData } from "@/app/types";
 import type { PersonalInfoType } from "../../personel-info";
 
 export type PlanType = PersonalInfoType &
-  Pick<MultiStepData, "plan" | "billing">;
+  Pick<MultiStepFormData, "plan" | "billing">;
+
+export type StrictBilling = Exclude<PlanType["billing"], undefined>;
 
 export type PlanInputType = {
   name: string;

@@ -7,6 +7,8 @@ export type MultiStepData = {
   billing: "monthly" | "yearly";
 };
 
+export type MultiStepFormData = Partial<MultiStepData>;
+
 export type MultiStepHandlerParams<T extends object> = {
   previous: T;
   data: FormData;

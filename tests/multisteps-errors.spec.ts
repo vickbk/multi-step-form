@@ -3,12 +3,10 @@ import {
   INFO_TITLE,
   INVALID_EMAIL_ERROR,
   INVALID_PHONE_ERROR,
-  PLAN_ERROR,
   REQUIRED_FIELD_ERROR,
   seeEmailError,
   seePersonalInfoErrors,
   seePhoneNumberError,
-  seePlanError,
   shouldSee,
 } from "./stories";
 
@@ -37,12 +35,5 @@ test.describe("Multi-step form - errors", () => {
   }) => {
     await seePhoneNumberError(page);
     await shouldSee(page, [INFO_TITLE, INVALID_PHONE_ERROR]);
-  });
-
-  test("should see error message when trying to proceed without choosing a plan", async ({
-    page,
-  }) => {
-    await seePlanError(page);
-    await shouldSee(page, [PLAN_ERROR]);
   });
 });

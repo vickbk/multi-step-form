@@ -16,7 +16,7 @@ export const AddsOn = (data: WithBack<AddOns>) => {
         description: "Add-ons help enhance your gaming experience.",
       }}
     >
-      {ADDONS_INPUTS[billing]?.map(
+      {ADDONS_INPUTS[billing!]?.map(
         ({ label, name, description, price, focus }) => (
           <label key={name} className="add-on">
             <input
