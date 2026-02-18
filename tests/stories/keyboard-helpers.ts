@@ -6,7 +6,6 @@ export async function onLoadFocus(
   selector: string,
 ): Promise<Locator> {
   const locator = page.locator(selector);
-  await locator.focus();
   await expect(locator).toBeFocused();
   return locator;
 }
@@ -26,7 +25,7 @@ export async function onTabFill(
   selector: string,
   value: string,
 ): Promise<Locator> {
-  const locator = await onLoadFocus(page, selector);
+  const locator = await onTabNavigate(page, selector);
   await locator.fill(value);
   return locator;
 }
@@ -55,7 +54,7 @@ export async function onTabCheck(
   page: Page,
   selector: string,
 ): Promise<Locator> {
-  const locator = await onLoadFocus(page, selector);
+  const locator = await onTabNavigate(page, selector);
   await page.keyboard.press("Space");
   return locator;
 }
