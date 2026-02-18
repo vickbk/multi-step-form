@@ -1,6 +1,6 @@
 import { Page } from "@playwright/test";
-import { asUser } from "./as-user";
 import {
+  asUser,
   FINISHING_UP_HEADING,
   LARGER_STORAGE,
   NAME,
@@ -10,14 +10,12 @@ import {
   SELECT_PLAN_HEADING,
   UPDATED_PHONE,
   VALID_EMAIL,
-} from "./constant-helpers";
-import {
   clickLabelInput,
   clickNextButton,
   fillLocatorWith,
   shouldNotSee,
   shouldSee,
-} from "./helpers";
+} from "../../../shared/helpers";
 
 const {
   TEST_NAME = NAME[1],

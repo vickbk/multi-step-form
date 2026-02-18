@@ -3,8 +3,6 @@ import {
   clickBackButton,
   clickLabelInput,
   clickMultipleLabelInputs,
-  fillMonthlyPlanStep,
-  fillPersonalInfo,
   FINISHING_UP_HEADING,
   GO_BACK_BUTTON,
   INFO_TITLE,
@@ -12,12 +10,16 @@ import {
   navigateToStep,
   ONLINE_SERVICE,
   PICK_ADDONS_HEADING,
-  pickAddOns,
   PRO_SELECTOR,
   SELECT_PLAN_HEADING,
   shouldNotSee,
   shouldSee,
-} from "./stories";
+} from "../../../shared/helpers";
+import {
+  fillMonthlyPlanStep,
+  fillPersonalInfo,
+  pickAddOns,
+} from "../../multisteps-form/helpers";
 
 test.describe("Multi-step form - navigation", () => {
   test("should navigate back through all steps using Go Back button", async ({

@@ -15,9 +15,12 @@ import {
   UPDATED_EMAIL,
   UPDATED_NAME,
   UPDATED_PHONE,
-} from "./constant-helpers";
-import { pickAddOns } from "./fill-steps";
-import { clickLabelInput, clickNextButton, setValueForLocators, shouldSee } from "./helpers";
+  clickLabelInput,
+  clickNextButton,
+  setValueForLocators,
+  shouldSee,
+} from "../../../shared/helpers";
+import { pickAddOns } from "../../multisteps-form/helpers";
 
 export async function updatePersonalInfo(
   page: Page,

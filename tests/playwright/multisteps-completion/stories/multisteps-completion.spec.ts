@@ -1,6 +1,5 @@
 import { test } from "@playwright/test";
 import {
-  completeFormSubmission,
   FINISHING_UP_HEADING,
   INFO_TITLE,
   shouldSee,
@@ -8,7 +7,10 @@ import {
   SUBSCRIBE_ANOTHER,
   THANK_YOU_EMAIL,
   THANK_YOU_HEADING,
-} from "./stories";
+} from "../../../shared/helpers";
+import {
+  completeFormSubmission,
+} from "../../multisteps-form/helpers";
 
 test.describe("Multi-step form - completion", () => {
   test("should complete full form and see thank you page", async ({ page }) => {

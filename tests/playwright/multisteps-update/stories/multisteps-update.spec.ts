@@ -13,11 +13,13 @@ import {
   MONTHLY_SELECTOR,
   ONLINE_SERVICE,
   shouldSee,
+  YEARLY_SELECTOR,
+} from "../../../shared/helpers";
+import {
   updateAddOns,
   updatePersonalInfo,
   updatePlan,
-  YEARLY_SELECTOR,
-} from "./stories";
+} from "../helpers";
 
 test.describe("Multi-step form - update", () => {
   test("should update the personal information and reflect the changes in the summary step", async ({

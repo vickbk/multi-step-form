@@ -1,21 +1,23 @@
 import { expect, test } from "@playwright/test";
 import {
   asUser,
-  fillMonthlyPlanStep,
-  fillPersonalInfo,
-  fillYearlyPlanStep,
   FINISHING_UP_HEADING,
   INFO_TITLE,
   LARGER_STORAGE,
   ONLINE_SERVICE,
   PICK_ADDONS_HEADING,
-  pickAddOns,
-  proceedWithoutAddOns,
   REQUIRED_FIELD_ERROR,
   SELECT_PLAN_HEADING,
   shouldNotSee,
   shouldSee,
-} from "./stories";
+} from "../../../shared/helpers";
+import {
+  fillMonthlyPlanStep,
+  fillPersonalInfo,
+  fillYearlyPlanStep,
+  pickAddOns,
+  proceedWithoutAddOns,
+} from "../helpers";
 
 test.describe("Multi-step form", () => {
   test("should render the first step without errors", async ({ page }) => {

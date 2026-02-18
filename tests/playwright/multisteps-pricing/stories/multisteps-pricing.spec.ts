@@ -6,16 +6,18 @@ import {
   clickLabelInput,
   clickNextButton,
   CUSTOMIZABLE_PROFILE,
-  fillPersonalInfo,
   FINISHING_UP_HEADING,
   LARGER_STORAGE,
   ONLINE_SERVICE,
-  pickAddOns,
   PRO_SELECTOR,
   SELECT_PLAN_HEADING,
   shouldSee,
   YEARLY_SELECTOR,
-} from "./stories";
+} from "../../../shared/helpers";
+import {
+  fillPersonalInfo,
+  pickAddOns,
+} from "../../multisteps-form/helpers";
 
 test.describe("Multi-step form - pricing", () => {
   test("should calculate total price correctly - monthly arcade + online service", async ({
