@@ -17,7 +17,7 @@ import {
   TEST_PHONE,
   VALID_PHONES,
   VALID_PLUS_EMAIL,
-} from "@tests/stories";
+} from "@tests/shared";
 import App from "./App";
 import { checkHeadingOrder } from "./shared/heading-manager/library/check-heading-order";
 import { drawRegion } from "./shared/heading-manager/library/region-drawer";
