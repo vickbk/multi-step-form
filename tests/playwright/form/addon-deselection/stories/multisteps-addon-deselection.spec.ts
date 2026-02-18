@@ -5,6 +5,8 @@ import {
   clickMultipleLabelInputs,
   CUSTOMIZABLE_PROFILE,
   CUSTOMIZABLE_PROFILE_VALUE,
+  expectCheckboxesChecked,
+  expectCheckboxesUnchecked,
   isChecked,
   isNotChecked,
   LARGER_STORAGE,
@@ -13,7 +15,6 @@ import {
   ONLINE_SERVICE_CHECKBOX,
   ONLINE_SERVICE_VALUE,
 } from "@tests/playwright/shared";
-import { expectCheckboxesChecked, expectCheckboxesUnchecked } from "../helpers";
 
 test.describe("Multi-step form - Add-on Deselection", () => {
   test("should deselect a single add-on", async ({ page }) => {

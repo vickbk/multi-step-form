@@ -1,5 +1,4 @@
 import { expect, test } from "@playwright/test";
-import { expectInputsChecked } from "@tests/playwright/addon-deselection/helpers";
 import {
   fillMonthlyPlanStep,
   fillPersonalInfo,
@@ -8,6 +7,7 @@ import {
 import {
   clickLabelInput,
   clickMultipleLabelInputs,
+  expectInputsChecked,
   FINISHING_UP_HEADING,
   GO_BACK_BUTTON,
   INFO_TITLE,
