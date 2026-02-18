@@ -1,24 +1,6 @@
 import { expect, Page } from "@playwright/test";
 import { inputTemp } from "./helpers";
 
-type CheckboxState = {
-  selector: string;
-  value: string;
-};
-
-export async function getCheckedCheckboxes(
-  page: Page,
-  checkboxes: CheckboxState[],
-) {
-  const locators = checkboxes.map(({ selector, value }) => ({
-    locator: page.locator(inputTemp([, 'checkbox', value])),
-    selector,
-    value,
-  }));
-
-  return locators;
-}
-
 export async function expectCheckboxesChecked(
   page: Page,
   checkboxValues: string[],
