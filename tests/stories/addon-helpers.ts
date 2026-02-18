@@ -1,58 +1,50 @@
 import { expect, Page } from "@playwright/test";
 import { checkboxTemp, inputTemp, radioTemp } from "./templating-helper";
 
+export async function expectInputState(
+  page: Page,
+  selectors: string[],
+  checked = true,
+) {
+  for (const selector of selectors) {
+    const input = page.locator(selector);
+    if (checked) {
+      await expect(input).toBeChecked();
+    } else {
+      await expect(input).not.toBeChecked();
+    }
+  }
+}
 export async function expectCheckboxesChecked(
   page: Page,
   checkboxValues: string[],
 ) {
-  for (const value of checkboxValues) {
-    const checkbox = page.locator(checkboxTemp(value));
-    await expect(checkbox).toBeChecked();
-  }
+  await expectInputState(page, checkboxValues.map(checkboxTemp));
 }
 
 export async function expectCheckboxesUnchecked(
   page: Page,
   checkboxValues: string[],
 ) {
-  for (const value of checkboxValues) {
-    const checkbox = page.locator(checkboxTemp(value));
-    await expect(checkbox).not.toBeChecked();
-  }
+  await expectInputState(page, checkboxValues.map(checkboxTemp), false);
 }
 
 export async function expectRadiosChecked(page: Page, radioValues: string[]) {
-  for (const value of radioValues) {
-    const radio = page.locator(radioTemp(value));
-    await expect(radio).toBeChecked();
-  }
+  await expectInputState(page, radioValues.map(radioTemp));
 }
 
 export async function expectRadiosUnchecked(page: Page, radioValues: string[]) {
-  for (const value of radioValues) {
-    const radio = page.locator(radioTemp(value));
-    await expect(radio).not.toBeChecked();
-  }
+  await expectInputState(page, radioValues.map(radioTemp), false);
 }
 
-export async function expectInputsChecked(
-  page: Page,
-  inputType: "checkbox" | "radio",
-  values: string[],
-) {
-  for (const value of values) {
-    const input = page.locator(inputTemp([undefined, inputType, value]));
-    await expect(input).toBeChecked();
-  }
+function inputTempWithValue(value: string) {
+  return inputTemp([undefined, undefined, value]);
 }
 
-export async function expectInputsUnchecked(
-  page: Page,
-  inputType: "checkbox" | "radio",
-  values: string[],
-) {
-  for (const value of values) {
-    const input = page.locator(inputTemp([undefined, inputType, value]));
-    await expect(input).not.toBeChecked();
-  }
+export async function expectInputsChecked(page: Page, values: string[]) {
+  await expectInputState(page, values.map(inputTempWithValue));
+}
+
+export async function expectInputsUnchecked(page: Page, values: string[]) {
+  await expectInputState(page, values.map(inputTempWithValue), false);
 }
