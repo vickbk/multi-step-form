@@ -1,5 +1,4 @@
 import type { Page } from "@playwright/test";
-import { asUser } from "./as-user";
 import {
   ADVANCED_SELECTOR,
   ARCADE_SELECTOR,
@@ -19,6 +18,8 @@ import {
   VALID_EMAIL_LOCATOR,
   YEARLY_SELECTOR,
 } from "@tests/shared";
+import type { PersonalInfoData } from "../types";
+import { asUser } from "./as-user";
 import {
   clickButton,
   clickMultipleLabelInputs,
@@ -28,7 +29,6 @@ import {
   shouldSee,
 } from "./helpers";
 import { selectPlan } from "./plan-helpers";
-import type { PersonalInfoData } from "./types";
 
 const {
   TEST_NAME = NAME_LOCATOR[1],

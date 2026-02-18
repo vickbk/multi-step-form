@@ -1,7 +1,10 @@
 import { test } from "@playwright/test";
 import {
+  clickButton,
   completeFormSubmission,
+  CONFIRM_BUTTON,
   INFO_TITLE,
+  NEXT_BUTTON,
   shouldNotSee,
   shouldSee,
   SUBSCRIBE_ANOTHER,
@@ -27,9 +30,9 @@ test.describe("Multi-step form - completion", () => {
 
     await shouldSee(page, [THANK_YOU_HEADING]);
 
-    await page.getByRole("button", { name: SUBSCRIBE_ANOTHER }).click();
+    await clickButton(page, SUBSCRIBE_ANOTHER);
 
-    await shouldSee(page, [INFO_TITLE, /next/i]);
-    await shouldNotSee(page, [/confirm/i]);
+    await shouldSee(page, [INFO_TITLE, NEXT_BUTTON]);
+    await shouldNotSee(page, [CONFIRM_BUTTON, SUBSCRIBE_ANOTHER]);
   });
 });
