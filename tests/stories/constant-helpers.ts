@@ -1,4 +1,5 @@
 import { LABEL_LOCATOR } from "./types";
+import { inputTemp } from "./helpers";
 
 export const NAME_SELECTOR = /Name/i;
 export const EMAIL_SELECTOR = /Email Address/i;
@@ -56,16 +57,6 @@ export const GO_BACK_BUTTON = /go back/i;
 export const NEXT_BUTTON = /next step/i;
 export const CONFIRM_BUTTON = /confirm/i;
 export const CHANGE_BUTTON = /change/i;
-
-export function inputTemp([name, type, value]: [string?, string?, string?] = []): string {
-  const parts: string[] = ['input'];
-  
-  if (name) parts.push(`[name="${name}"]`);
-  if (type) parts.push(`[type="${type}"]`);
-  if (value) parts.push(`[value="${value}"]`);
-  
-  return parts.join('');
-}
 
 export const NAME_INPUT = inputTemp(['name']);
 export const EMAIL_INPUT = inputTemp(['email']);

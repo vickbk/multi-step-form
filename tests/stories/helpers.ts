@@ -76,3 +76,25 @@ export async function clickMultipleLabelInputs(
     await clickLabelInput(page, labelText);
   }
 }
+
+/**
+ * Generates an input selector string based on name, type, and value attributes.
+ * Uses array syntax to support trailing commas for optional parameters.
+ * 
+ * @param params - Array of [name, type, value] where all parameters are optional
+ * @returns A CSS selector string for the input element
+ * 
+ * @example
+ * inputTemp(['name']) // 'input[name="name"]'
+ * inputTemp([, 'radio', 'arcade']) // 'input[type="radio"][value="arcade"]'
+ * inputTemp([, 'checkbox', 'online-service']) // 'input[type="checkbox"][value="online-service"]'
+ */
+export function inputTemp([name, type, value]: [string?, string?, string?] = []): string {
+  const parts: string[] = ['input'];
+  
+  if (name) parts.push(`[name="${name}"]`);
+  if (type) parts.push(`[type="${type}"]`);
+  if (value) parts.push(`[value="${value}"]`);
+  
+  return parts.join('');
+}

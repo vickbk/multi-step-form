@@ -1,5 +1,5 @@
 import { expect, Page } from "@playwright/test";
-import { inputTemp } from "./constant-helpers";
+import { inputTemp } from "./helpers";
 
 type CheckboxState = {
   selector: string;
