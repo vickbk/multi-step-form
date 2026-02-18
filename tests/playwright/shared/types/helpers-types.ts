@@ -1,4 +1,4 @@
-export * from "@tests/shared/types";
+import type { TEXT_PATTERN } from "@tests/shared";
 
 export type PersonalInfoData = {
   name?: string;

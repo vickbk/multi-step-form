@@ -1,5 +1,9 @@
 import { test } from "@playwright/test";
 import {
+  isFocused,
+  onMultipleFocusFill,
+} from "@tests/playwright/focus-management/helpers/focus-helpers";
+import {
   ADVANCED_RADIO_INPUT,
   ARCADE_RADIO_INPUT,
   ARCADE_SELECTOR,
@@ -7,13 +11,10 @@ import {
   clickNextButton,
   EMAIL_INPUT,
   isChecked,
-  isFocused,
   isNotChecked,
   NAME_INPUT,
   NEXT_BUTTON,
   ONLINE_SERVICE_CHECKBOX,
-  onMultipleFocusFill,
-  onTabNavigate,
   PHONE_INPUT,
   PICK_ADDONS_HEADING,
   PRO_RADIO_INPUT,
@@ -24,6 +25,7 @@ import {
   UPDATED_NAME,
   UPDATED_PHONE,
 } from "@tests/playwright/shared";
+import { onTabNavigate } from "../helpers";
 
 test.describe("Multi-step form - Keyboard Navigation", () => {
   test("should navigate through form using Tab key", async ({ page }) => {

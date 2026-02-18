@@ -1,1 +1,2 @@
-export type * from "./helpers-types";
+export * from "@tests/shared/types";
+export * from "./helpers-types";

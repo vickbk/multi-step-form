@@ -8,9 +8,9 @@ import {
   SELECT_PLAN_HEADING,
   YEARLY_SELECTOR,
 } from "@tests/shared";
+import type { PersonalInfoData, PlanOptions } from "../types";
 import { fillPersonalInfo } from "./fill-steps";
 import { clickLabelInput, clickNextButton, shouldSee } from "./helpers";
-import type { PersonalInfoData, PlanOptions } from "./types";
 
 export async function selectPlan(
   page: Page,
