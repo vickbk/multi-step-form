@@ -16,6 +16,7 @@ import {
   NEXT_BUTTON,
   onFocusFill,
   onLoadFocus,
+  onMultipleFocusFill,
   onTabNavigate,
   ONLINE_SERVICE_CHECKBOX,
   PHONE_INPUT,
@@ -44,9 +45,11 @@ test.describe("Multi-step form - Keyboard Navigation", () => {
   test("should select plan using keyboard", async ({ page }) => {
     await page.goto("/");
     
-    await onFocusFill(page, NAME_INPUT, UPDATED_NAME);
-    await onFocusFill(page, EMAIL_INPUT, UPDATED_EMAIL);
-    await onFocusFill(page, PHONE_INPUT, UPDATED_PHONE);
+    await onMultipleFocusFill(page, [
+      [NAME_INPUT, UPDATED_NAME],
+      [EMAIL_INPUT, UPDATED_EMAIL],
+      [PHONE_INPUT, UPDATED_PHONE]
+    ]);
     
     const nextButton = page.getByRole("button", { name: NEXT_BUTTON });
     await nextButton.click();
