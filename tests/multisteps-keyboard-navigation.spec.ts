@@ -6,21 +6,16 @@ import {
   clickLabelInput,
   clickNextButton,
   EMAIL_INPUT,
-  EMAIL_SELECTOR,
-  fillPersonalInfo,
   isAutoFocused,
   isChecked,
   isNotChecked,
   NAME_INPUT,
-  NAME_SELECTOR,
   NEXT_BUTTON,
-  onFocusFill,
+  ONLINE_SERVICE_CHECKBOX,
   onLoadFocus,
   onMultipleFocusFill,
   onTabNavigate,
-  ONLINE_SERVICE_CHECKBOX,
   PHONE_INPUT,
-  PHONE_SELECTOR,
   PICK_ADDONS_HEADING,
   PRO_RADIO_INPUT,
   SELECT_PLAN_HEADING,
@@ -44,16 +39,16 @@ test.describe("Multi-step form - Keyboard Navigation", () => {
 
   test("should select plan using keyboard", async ({ page }) => {
     await page.goto("/");
-    
+
     await onMultipleFocusFill(page, [
       [NAME_INPUT, UPDATED_NAME],
       [EMAIL_INPUT, UPDATED_EMAIL],
-      [PHONE_INPUT, UPDATED_PHONE]
+      [PHONE_INPUT, UPDATED_PHONE],
     ]);
-    
+
     const nextButton = page.getByRole("button", { name: NEXT_BUTTON });
     await nextButton.click();
-    
+
     await shouldSee(page, [SELECT_PLAN_HEADING]);
 
     await isAutoFocused(page, ARCADE_RADIO_INPUT);
@@ -87,22 +82,21 @@ test.describe("Multi-step form - Keyboard Navigation", () => {
     page,
   }) => {
     await page.goto("/");
-    
+
     await onMultipleFocusFill(page, [
       [NAME_INPUT, UPDATED_NAME],
       [EMAIL_INPUT, UPDATED_EMAIL],
       [PHONE_INPUT, UPDATED_PHONE],
     ]);
-    
-    const nextButton1 = page.getByRole("button", { name: NEXT_BUTTON });
-    await nextButton1.click();
-    
+
+    await clickNextButton(page);
+
     await shouldSee(page, [SELECT_PLAN_HEADING]);
 
     await clickLabelInput(page, ARCADE_SELECTOR);
 
-    const nextButton = page.getByRole("button", { name: NEXT_BUTTON });
-    await nextButton.focus();
+    await page.locator("button", { hasText: NEXT_BUTTON }).focus();
+
     await page.keyboard.press("Enter");
 
     await shouldSee(page, [PICK_ADDONS_HEADING]);
