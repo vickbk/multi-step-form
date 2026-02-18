@@ -21,7 +21,6 @@ import {
 import App from "./App";
 import { checkHeadingOrder } from "./shared/heading-manager/library/check-heading-order";
 import { drawRegion } from "./shared/heading-manager/library/region-drawer";
-import { getRandomElement } from "./shared/libs";
 
 type FormFieldTuple = [selector: string, value: string];
 
@@ -108,9 +107,7 @@ describe("MultiStep form - Input Validation", () => {
       true,
     );
 
-    const emailInput = container.querySelector(
-      EMAIL_INPUT,
-    ) as HTMLInputElement;
+    const emailInput = container.querySelector(EMAIL_INPUT) as HTMLInputElement;
     expect(emailInput?.validationMessage).toBeTruthy();
   });
 

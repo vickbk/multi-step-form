@@ -4,10 +4,7 @@ export function useKeyboardBack() {
   const backButtonRef = useRef<HTMLButtonElement | null>(null);
   useEffect(() => {
     function handleKeyDown(event: KeyboardEvent) {
-      if (
-        (event.key === "Escape" || (event.key === "Tab" && event.shiftKey)) &&
-        !event.repeat
-      ) {
+      if (event.key === "Escape" && !event.repeat) {
         event.preventDefault();
         backButtonRef.current?.click();
       }
