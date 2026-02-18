@@ -47,12 +47,27 @@ export async function setValueForLocators(
   }
 }
 
+export function getLocatorByText(
+  page: Page,
+  [locator, hasText]: [string, TEXT_PATTERN],
+) {
+  return page.locator(locator, { hasText });
+}
+
+export function getButton(page: Page, hasText: TEXT_PATTERN) {
+  return getLocatorByText(page, ["button", hasText]);
+}
+
+export function getLabel(page: Page, hasText: TEXT_PATTERN) {
+  return getLocatorByText(page, ["label", hasText]);
+}
+
 export async function clickButton(page: Page, hasText: TEXT_PATTERN) {
-  await page.locator("button", { hasText }).click();
+  await getButton(page, hasText).click();
 }
 
 export async function clickLabelInput(page: Page, labelText: TEXT_PATTERN) {
-  const label = page.locator("label").filter({ hasText: labelText });
+  const label = getLabel(page, labelText);
   await label.click();
 }
 

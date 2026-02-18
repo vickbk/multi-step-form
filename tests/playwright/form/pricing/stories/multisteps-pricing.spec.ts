@@ -8,6 +8,7 @@ import {
   clickLabelInput,
   CUSTOMIZABLE_PROFILE,
   FINISHING_UP_HEADING,
+  getButton,
   LARGER_STORAGE,
   ONLINE_SERVICE,
   PRO_SELECTOR,
@@ -103,7 +104,7 @@ test.describe("Multi-step form - pricing", () => {
     await pickAddOns(page);
     await shouldSee(page, [FINISHING_UP_HEADING]);
 
-    const changeButtons = page.getByRole("button", { name: CHANGE_BUTTON });
+    const changeButtons = getButton(page, CHANGE_BUTTON);
     const count = await changeButtons.count();
     expect(count).toBeGreaterThan(0);
   });

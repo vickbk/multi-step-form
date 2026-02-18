@@ -2,6 +2,7 @@ import type { Page } from "@playwright/test";
 import { clickNextButton } from "@tests/playwright/form";
 import {
   ARCADE_SELECTOR,
+  CHANGE_BUTTON,
   CUSTOMIZABLE_PROFILE,
   EMAIL_SELECTOR,
   FINISHING_UP_HEADING,
@@ -18,7 +19,12 @@ import {
   UPDATED_PHONE,
 } from "@tests/shared";
 import { pickAddOns } from "../../form/helpers/fill-steps";
-import { clickLabelInput, setValueForLocators, shouldSee } from "./helpers";
+import {
+  clickLabelInput,
+  getButton,
+  setValueForLocators,
+  shouldSee,
+} from "./helpers";
 
 export async function updatePersonalInfo(
   page: Page,
@@ -85,7 +91,7 @@ export async function updateAddOns(
   await shouldSee(page, [FINISHING_UP_HEADING, ...addOns]);
 }
 
-async function clickChangeButton(
+export async function clickChangeButton(
   page: Page,
   step: "personal info" | "plan" | "add-ons" | number,
 ) {
@@ -93,8 +99,5 @@ async function clickChangeButton(
     typeof step === "number"
       ? step
       : { "personal info": 0, plan: 1, "add-ons": 2 }[step];
-  return page
-    .getByRole("button", { name: /Change/i })
-    .nth(stepIndex)
-    .click();
+  return getButton(page, CHANGE_BUTTON).nth(stepIndex).click();
 }
