@@ -1,9 +1,5 @@
 import { expect, test } from "@playwright/test";
-import {
-  fillMonthlyPlanStep,
-  fillPersonalInfo,
-  pickAddOns,
-} from "@tests/playwright/form";
+import { fillMonthlyPlanStep, fillPersonalInfo } from "@tests/playwright/form";
 import {
   clickLabelInput,
   clickMultipleLabelInputs,
@@ -25,6 +21,7 @@ import {
   shouldSee,
   TEST_NAME,
 } from "@tests/playwright/shared";
+import { pickAddOns } from "../../addon-deselection";
 import { clickBackButton, navigateToStep } from "../helpers";
 
 test.describe("Multi-step form - navigation", () => {

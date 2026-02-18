@@ -1,7 +1,11 @@
 import type { Page } from "@playwright/test";
 
 import type { PersonalInfoData, PlanOptions } from "@tests/playwright/shared";
-import { clickLabelInput, shouldSee } from "@tests/playwright/shared";
+import {
+  clickLabelInput,
+  shouldNotSee,
+  shouldSee,
+} from "@tests/playwright/shared";
 import {
   ADVANCED_SELECTOR,
   ARCADE_SELECTOR,
@@ -32,6 +36,19 @@ export async function selectPlan(
   await clickNextButton(page);
 
   await shouldSee(page, [PICK_ADDONS_HEADING]);
+}
+
+export async function fillMonthlyPlanStep(page: Page) {
+  await selectPlan(page, { plan: ARCADE_SELECTOR });
+  await shouldSee(page, [PICK_ADDONS_HEADING]);
+}
+
+export async function fillYearlyPlanStep(page: Page) {
+  await selectPlan(page, {
+    plan: ADVANCED_SELECTOR,
+    billing: YEARLY_SELECTOR,
+  });
+  await shouldNotSee(page, [SELECT_PLAN_HEADING]);
 }
 
 export async function selectArcadeMonthly(

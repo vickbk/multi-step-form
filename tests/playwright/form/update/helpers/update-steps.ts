@@ -1,5 +1,5 @@
 import type { Page } from "@playwright/test";
-import { clickNextButton, pickAddOns } from "@tests/playwright/form";
+import { clickNextButton } from "@tests/playwright/form";
 import {
   ARCADE_SELECTOR,
   CHANGE_BUTTON,
@@ -25,6 +25,7 @@ import {
   setValueForLocators,
   shouldSee,
 } from "@tests/playwright/shared";
+import { pickAddOns } from "../../addon-deselection";
 
 export async function updatePersonalInfo(
   page: Page,

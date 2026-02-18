@@ -12,13 +12,9 @@ import {
   shouldNotSee,
   shouldSee,
 } from "@tests/playwright/shared";
-import {
-  fillMonthlyPlanStep,
-  fillPersonalInfo,
-  fillYearlyPlanStep,
-  pickAddOns,
-  proceedWithoutAddOns,
-} from "../helpers";
+import { pickAddOns, proceedWithoutAddOns } from "../addon-deselection";
+import { fillPersonalInfo } from "../helpers";
+import { fillMonthlyPlanStep, fillYearlyPlanStep } from "../plan-coverage";
 
 test.describe("Multi-step form", () => {
   test("should render the first step without errors", async ({ page }) => {

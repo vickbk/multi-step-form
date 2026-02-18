@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 import { clickBackButton, clickNextButton } from "@tests/playwright/form";
-import { fillPersonalInfo, pickAddOns } from "@tests/playwright/form/helpers";
+import { fillPersonalInfo } from "@tests/playwright/form/helpers";
 import {
   ADVANCED_SELECTOR,
   ARCADE_SELECTOR,
@@ -16,6 +16,7 @@ import {
   shouldSee,
   YEARLY_SELECTOR,
 } from "@tests/playwright/shared";
+import { pickAddOns } from "../../addon-deselection";
 
 test.describe("Multi-step form - pricing", () => {
   test("should calculate total price correctly - monthly arcade + online service", async ({

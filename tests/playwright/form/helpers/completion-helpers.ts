@@ -5,7 +5,7 @@ import {
   FINISHING_UP_HEADING,
   THANK_YOU_HEADING,
 } from "@tests/shared";
-import { pickAddOns } from "./fill-steps";
+import { pickAddOns } from "../addon-deselection";
 
 export async function completeFormSubmission(page: Page) {
   await pickAddOns(page);
