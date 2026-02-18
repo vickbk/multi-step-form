@@ -15,7 +15,7 @@ import {
   SELECT_PLAN_HEADING,
   shouldNotSee,
   shouldSee,
-} from ".";
+} from "..";
 
 test.describe("Multi-step form", () => {
   test("should render the first step without errors", async ({ page }) => {

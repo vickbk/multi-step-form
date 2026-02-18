@@ -17,7 +17,7 @@ import {
   SELECT_PLAN_HEADING,
   shouldNotSee,
   shouldSee,
-} from ".";
+} from "..";
 
 test.describe("Multi-step form - navigation", () => {
   test("should navigate back through all steps using Go Back button", async ({
