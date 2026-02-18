@@ -109,7 +109,7 @@ describe("MultiStep form - Input Validation", () => {
     );
 
     const emailInput = container.querySelector(
-      'input[name="email"]',
+      EMAIL_INPUT,
     ) as HTMLInputElement;
     expect(emailInput?.validationMessage).toBeTruthy();
   });
