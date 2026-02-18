@@ -11,13 +11,13 @@ import {
   VALID_EMAIL_LOCATOR,
 } from "@tests/shared";
 
-import { clickNextButton } from "@tests/playwright/form";
 import {
   asUser,
   setLocatorValue,
   setValueForLocators,
   shouldSee,
 } from "@tests/playwright/shared";
+import { clickNextButton } from "../../navigation";
 
 export async function seePersonalInfoErrors(page: Page) {
   await asUser(page);
