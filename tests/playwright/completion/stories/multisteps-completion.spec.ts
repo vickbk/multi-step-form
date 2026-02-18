@@ -1,7 +1,6 @@
 import { test } from "@playwright/test";
 import {
   clickButton,
-  completeFormSubmission,
   CONFIRM_BUTTON,
   INFO_TITLE,
   NEXT_BUTTON,
@@ -11,6 +10,7 @@ import {
   THANK_YOU_EMAIL,
   THANK_YOU_HEADING,
 } from "@tests/playwright/shared";
+import { completeFormSubmission } from "../helpers";
 
 test.describe("Multi-step form - completion", () => {
   test("should complete full form and see thank you page", async ({ page }) => {

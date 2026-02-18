@@ -2,7 +2,6 @@ import type { Page } from "@playwright/test";
 import {
   ADVANCED_SELECTOR,
   ARCADE_SELECTOR,
-  CONFIRM_BUTTON,
   EMAIL_SELECTOR,
   FINISHING_UP_HEADING,
   LARGER_STORAGE,
@@ -13,7 +12,6 @@ import {
   PHONE_SELECTOR,
   PICK_ADDONS_HEADING,
   SELECT_PLAN_HEADING,
-  THANK_YOU_HEADING,
   UPDATED_PHONE,
   VALID_EMAIL_LOCATOR,
   YEARLY_SELECTOR,
@@ -21,7 +19,6 @@ import {
 import type { PersonalInfoData } from "../types";
 import { asUser } from "./as-user";
 import {
-  clickButton,
   clickMultipleLabelInputs,
   clickNextButton,
   setValueForLocators,
@@ -89,11 +86,4 @@ export async function pickAddOns(
 
   await clickNextButton(page);
   await shouldSee(page, [FINISHING_UP_HEADING, ...addOns]);
-}
-
-export async function completeFormSubmission(page: Page) {
-  await pickAddOns(page);
-  await shouldSee(page, [FINISHING_UP_HEADING]);
-  await clickButton(page, CONFIRM_BUTTON);
-  await shouldSee(page, [THANK_YOU_HEADING]);
 }
