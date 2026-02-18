@@ -1,5 +1,5 @@
+import { checkboxTemp, inputTemp, radioTemp } from "./templating-helper";
 import { LABEL_LOCATOR } from "./types";
-import { inputTemp } from "./helpers";
 
 export const NAME_SELECTOR = /Name/i;
 export const EMAIL_SELECTOR = /Email Address/i;
@@ -58,21 +58,23 @@ export const NEXT_BUTTON = /next step/i;
 export const CONFIRM_BUTTON = /confirm/i;
 export const CHANGE_BUTTON = /change/i;
 
-export const NAME_INPUT = inputTemp(['name']);
-export const EMAIL_INPUT = inputTemp(['email']);
-export const PHONE_INPUT = inputTemp(['phone']);
+export const NAME_INPUT = inputTemp(["name"]);
+export const EMAIL_INPUT = inputTemp(["email"]);
+export const PHONE_INPUT = inputTemp(["phone"]);
 
-export const ARCADE_RADIO_INPUT = inputTemp([, 'radio', 'arcade']);
-export const ADVANCED_RADIO_INPUT = inputTemp([, 'radio', 'advanced']);
-export const PRO_RADIO_INPUT = inputTemp([, 'radio', 'pro']);
+export const ARCADE_RADIO_INPUT = radioTemp("arcade");
+export const ADVANCED_RADIO_INPUT = radioTemp("advanced");
+export const PRO_RADIO_INPUT = radioTemp("pro");
 
-export const MONTHLY_RADIO_INPUT = inputTemp([, 'radio', 'monthly']);
-export const YEARLY_RADIO_INPUT = inputTemp([, 'radio', 'yearly']);
+export const MONTHLY_RADIO_INPUT = radioTemp("monthly");
+export const YEARLY_RADIO_INPUT = radioTemp("yearly");
 
-export const ONLINE_SERVICE_CHECKBOX = inputTemp([, 'checkbox', 'online-service']);
-export const LARGER_STORAGE_CHECKBOX = inputTemp([, 'checkbox', 'larger-storage']);
-export const CUSTOMIZABLE_PROFILE_CHECKBOX = inputTemp([, 'checkbox', 'customizable-profile']);
+export const ONLINE_SERVICE_CHECKBOX = checkboxTemp("online-service");
+export const LARGER_STORAGE_CHECKBOX = checkboxTemp("larger-storage");
+export const CUSTOMIZABLE_PROFILE_CHECKBOX = checkboxTemp(
+  "customizable-profile",
+);
 
-export const ONLINE_SERVICE_VALUE = 'online-service';
-export const LARGER_STORAGE_VALUE = 'larger-storage';
-export const CUSTOMIZABLE_PROFILE_VALUE = 'customizable-profile';
+export const ONLINE_SERVICE_VALUE = "online-service";
+export const LARGER_STORAGE_VALUE = "larger-storage";
+export const CUSTOMIZABLE_PROFILE_VALUE = "customizable-profile";
