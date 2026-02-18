@@ -3,7 +3,7 @@ import {
   isFocused,
   onMultipleFocusFill,
 } from "@tests/playwright/focus-management/helpers";
-import { clickNextButton } from "@tests/playwright/form";
+import { clickNextButton, selectArcadeMonthly } from "@tests/playwright/form";
 import {
   ADVANCED_RADIO_INPUT,
   ARCADE_RADIO_INPUT,
@@ -19,7 +19,6 @@ import {
   PICK_ADDONS_HEADING,
   PRO_RADIO_INPUT,
   SELECT_PLAN_HEADING,
-  selectArcadeMonthly,
   shouldSee,
   UPDATED_EMAIL,
   UPDATED_NAME,

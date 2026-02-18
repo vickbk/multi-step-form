@@ -9,9 +9,9 @@ import {
   SELECT_PLAN_HEADING,
   YEARLY_SELECTOR,
 } from "@tests/shared";
-import { fillPersonalInfo } from "../../form/helpers/fill-steps";
-import type { PersonalInfoData, PlanOptions } from "../types";
-import { clickLabelInput, shouldSee } from "./helpers";
+import { clickLabelInput, shouldSee } from "../../../shared/helpers/helpers";
+import type { PersonalInfoData, PlanOptions } from "../../../shared/types";
+import { fillPersonalInfo } from "../../helpers/fill-steps";
 
 export async function selectPlan(
   page: Page,

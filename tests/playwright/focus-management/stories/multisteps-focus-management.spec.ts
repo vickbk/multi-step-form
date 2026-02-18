@@ -1,5 +1,10 @@
 import { test } from "@playwright/test";
-import { clickBackButton, clickNextButton } from "@tests/playwright/form";
+import {
+  clickBackButton,
+  clickNextButton,
+  selectArcadeMonthly,
+  selectPlan,
+} from "@tests/playwright/form";
 import { fillPersonalInfo } from "@tests/playwright/form/helpers";
 import {
   ADVANCED_RADIO_INPUT,
@@ -14,8 +19,6 @@ import {
   PRO_RADIO_INPUT,
   PRO_SELECTOR,
   SELECT_PLAN_HEADING,
-  selectArcadeMonthly,
-  selectPlan,
   shouldSee,
   YEARLY_RADIO_INPUT,
   YEARLY_SELECTOR,

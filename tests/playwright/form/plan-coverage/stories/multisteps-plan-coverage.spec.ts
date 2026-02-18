@@ -1,5 +1,4 @@
 import { test } from "@playwright/test";
-import { clickNextButton } from "@tests/playwright/form";
 import {
   ADVANCED_PLAN_MONTHLY,
   ADVANCED_PLAN_YEARLY,
@@ -8,14 +7,17 @@ import {
   FINISHING_UP_HEADING,
   PRO_PLAN_MONTHLY,
   PRO_PLAN_YEARLY,
+  shouldSee,
+} from "@tests/playwright/shared";
+import { clickNextButton } from "../../navigation";
+import {
   selectAdvancedMonthly,
   selectAdvancedYearly,
   selectArcadeMonthly,
   selectArcadeYearly,
   selectProMonthly,
   selectProYearly,
-  shouldSee,
-} from "@tests/playwright/shared";
+} from "../helpers";
 
 test.describe("Multi-step form - Plan Type Coverage", () => {
   test("should select Arcade monthly plan and complete form", async ({

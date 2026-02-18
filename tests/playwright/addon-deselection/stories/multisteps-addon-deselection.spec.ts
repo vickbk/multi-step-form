@@ -1,4 +1,5 @@
 import { test } from "@playwright/test";
+import { selectArcadeMonthly } from "@tests/playwright/form";
 import {
   clickLabelInput,
   clickMultipleLabelInputs,
@@ -11,7 +12,6 @@ import {
   ONLINE_SERVICE,
   ONLINE_SERVICE_CHECKBOX,
   ONLINE_SERVICE_VALUE,
-  selectArcadeMonthly,
 } from "@tests/playwright/shared";
 import { expectCheckboxesChecked, expectCheckboxesUnchecked } from "../helpers";
 
