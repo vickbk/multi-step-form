@@ -51,10 +51,6 @@ export async function clickButton(page: Page, hasText: TEXT_PATTERN) {
   await page.locator("button", { hasText }).click();
 }
 
-export async function navigateToStep(page: Page, stepNumber: number) {
-  await clickButton(page, stepNumber.toString());
-}
-
 export async function clickLabelInput(page: Page, labelText: TEXT_PATTERN) {
   const label = page.locator("label").filter({ hasText: labelText });
   await label.click();

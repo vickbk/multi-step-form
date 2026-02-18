@@ -9,3 +9,7 @@ export async function clickNextButton(page: Page) {
 export async function clickBackButton(page: Page) {
   await clickButton(page, GO_BACK_BUTTON);
 }
+
+export async function navigateToStep(page: Page, stepNumber: number) {
+  await clickButton(page, stepNumber.toString());
+}

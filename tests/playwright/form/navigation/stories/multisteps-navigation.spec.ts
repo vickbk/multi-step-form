@@ -11,7 +11,6 @@ import {
   GO_BACK_BUTTON,
   INFO_TITLE,
   LARGER_STORAGE,
-  navigateToStep,
   ONLINE_SERVICE,
   PICK_ADDONS_HEADING,
   PRO_SELECTOR,
@@ -19,7 +18,7 @@ import {
   shouldNotSee,
   shouldSee,
 } from "@tests/playwright/shared";
-import { clickBackButton } from "../helpers";
+import { clickBackButton, navigateToStep } from "../helpers";
 
 test.describe("Multi-step form - navigation", () => {
   test("should navigate back through all steps using Go Back button", async ({
