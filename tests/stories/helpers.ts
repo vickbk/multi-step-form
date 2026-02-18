@@ -1,6 +1,7 @@
-import { expect, Locator, Page } from "@playwright/test";
+import type { Locator, Page } from "@playwright/test";
+import { expect } from "@playwright/test";
 import { GO_BACK_BUTTON, NEXT_BUTTON } from "./constant-helpers";
-import { LABEL_LOCATOR, TEXT_MATCHER, TEXT_PATTERN } from "./types";
+import type { LABEL_LOCATOR, TEXT_MATCHER, TEXT_PATTERN } from "./types";
 
 export async function shouldSee(page: Page, textes: TEXT_MATCHER[]) {
   for (const text of textes) {

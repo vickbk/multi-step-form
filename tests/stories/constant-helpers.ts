@@ -1,5 +1,5 @@
 import { checkboxTemp, inputTemp, radioTemp } from "./templating-helper";
-import { LABEL_LOCATOR } from "./types";
+import type { LABEL_LOCATOR } from "./types";
 
 export const NAME_SELECTOR = /Name/i;
 export const EMAIL_SELECTOR = /Email Address/i;

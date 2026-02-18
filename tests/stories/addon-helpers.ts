@@ -1,4 +1,4 @@
-import { expect, Page } from "@playwright/test";
+import { expect, type Page } from "@playwright/test";
 import { checkboxTemp, inputTemp, radioTemp } from "./templating-helper";
 
 export async function expectInputState(

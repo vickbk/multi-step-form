@@ -1,5 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { NEXT_BUTTON } from "@tests/stories";
 import App from "./App";
 import { checkHeadingOrder } from "./shared/heading-manager/library/check-heading-order";
 import { drawRegion } from "./shared/heading-manager/library/region-drawer";
@@ -19,7 +20,9 @@ async function fillForm(
   }
 
   if (submit) {
-    const nextButton = await screen.findByRole("button", { name: /next step/i });
+    const nextButton = await screen.findByRole("button", {
+      name: NEXT_BUTTON,
+    });
     await userEvent.click(nextButton);
   }
 }
@@ -85,7 +88,9 @@ describe("MultiStep form - Input Validation", () => {
       true,
     );
 
-    const emailInput = container.querySelector('input[name="email"]') as HTMLInputElement;
+    const emailInput = container.querySelector(
+      'input[name="email"]',
+    ) as HTMLInputElement;
     expect(emailInput?.validationMessage).toBeTruthy();
   });
 
@@ -102,7 +107,9 @@ describe("MultiStep form - Input Validation", () => {
       true,
     );
 
-    const emailInput = container.querySelector('input[name="email"]') as HTMLInputElement;
+    const emailInput = container.querySelector(
+      'input[name="email"]',
+    ) as HTMLInputElement;
     expect(emailInput?.validationMessage).toBeTruthy();
   });
 
