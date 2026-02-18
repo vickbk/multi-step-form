@@ -1,8 +1,47 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import {
+  EMAIL_INPUT,
+  INVALID_EMAIL,
+  INVALID_EMAIL_ERROR,
+  INVALID_PHONE,
+  INVALID_PHONE_ERROR,
+  INVALID_SPACED_EMAIL,
+  NAME_INPUT,
+  NEXT_BUTTON,
+  PHONE_INPUT,
+  REQUIRED_FIELD_ERROR,
+  SELECT_PLAN_HEADING,
+  TEST_EMAIL,
+  TEST_NAME,
+  TEST_PHONE,
+  VALID_PHONES,
+  VALID_PLUS_EMAIL,
+} from "@tests/shared";
 import App from "./App";
 import { checkHeadingOrder } from "./shared/heading-manager/library/check-heading-order";
 import { drawRegion } from "./shared/heading-manager/library/region-drawer";
+
+type FormFieldTuple = [selector: string, value: string];
+
+async function fillForm(
+  container: HTMLElement,
+  fields: FormFieldTuple[],
+  submit = false,
+) {
+  for (const [selector, value] of fields) {
+    const input = container.querySelector(selector) as HTMLInputElement;
+
+    await userEvent.type(input, value);
+  }
+
+  if (submit) {
+    const nextButton = await screen.findByRole("button", {
+      name: NEXT_BUTTON,
+    });
+    await userEvent.click(nextButton);
+  }
+}
 
 describe("MultiStep form Tests", () => {
   test("should have one level 1 heading", async () => {
@@ -38,15 +77,108 @@ describe("MultiStep form Tests", () => {
   test("should show error messages if navigating to step 2 without valid data", async () => {
     render(<App />);
     const nextButton = await screen.findByRole("button", {
-      name: /next step/i,
+      name: NEXT_BUTTON,
     });
     await userEvent.click(nextButton);
+    const errorsSelectors = [
+      REQUIRED_FIELD_ERROR,
+      INVALID_EMAIL_ERROR,
+      INVALID_PHONE_ERROR,
+    ]
+      .map(({ source }) => source)
+      .join("|");
     expect(
-      (
-        await screen.findAllByText(
-          /(This field is required)|(Please enter a valid phone number)|(Please enter a valid email address)/i,
-        )
-      ).length,
+      (await screen.findAllByText(new RegExp(errorsSelectors, "i"))).length,
     ).toBe(3);
   });
+});
+
+describe("MultiStep form - Input Validation", () => {
+  test("should reject email with missing @ symbol", async () => {
+    const { container } = render(<App />);
+
+    await fillForm(
+      container,
+      [
+        [NAME_INPUT, TEST_NAME],
+        [EMAIL_INPUT, INVALID_EMAIL],
+        [PHONE_INPUT, INVALID_PHONE],
+      ],
+      true,
+    );
+
+    const emailInput = container.querySelector(EMAIL_INPUT) as HTMLInputElement;
+    expect(emailInput).toBeInTheDocument();
+    expect(emailInput.checkValidity()).toBeFalsy();
+  });
+
+  test("should reject email with spaces", async () => {
+    const { container } = render(<App />);
+
+    await fillForm(
+      container,
+      [
+        [NAME_INPUT, TEST_NAME],
+        [EMAIL_INPUT, INVALID_SPACED_EMAIL],
+        [PHONE_INPUT, TEST_PHONE],
+      ],
+      true,
+    );
+
+    const emailInput = container.querySelector(EMAIL_INPUT) as HTMLInputElement;
+    expect(emailInput).toBeInTheDocument();
+    expect(emailInput.checkValidity()).toBeFalsy();
+  });
+
+  test("should accept email with plus sign", async () => {
+    const { container } = render(<App />);
+
+    await fillForm(
+      container,
+      [
+        [NAME_INPUT, TEST_NAME],
+        [EMAIL_INPUT, VALID_PLUS_EMAIL],
+        [PHONE_INPUT, TEST_PHONE],
+      ],
+      true,
+    );
+
+    await screen.findByText(SELECT_PLAN_HEADING);
+  });
+
+  test("should handle very long name gracefully", async () => {
+    const { container } = render(<App />);
+
+    const longName = "A".repeat(100);
+    await fillForm(
+      container,
+      [
+        [NAME_INPUT, longName],
+        [EMAIL_INPUT, TEST_EMAIL],
+        [PHONE_INPUT, TEST_PHONE],
+      ],
+      true,
+    );
+
+    await screen.findByText(SELECT_PLAN_HEADING);
+  });
+
+  test.each(VALID_PHONES)(
+    "should handle phone number with format: %s",
+    async (phoneNumber) => {
+      const { container } = render(<App />);
+
+      await fillForm(
+        container,
+        [
+          [NAME_INPUT, TEST_NAME],
+          [EMAIL_INPUT, TEST_EMAIL],
+          [PHONE_INPUT, phoneNumber],
+        ],
+        true,
+      );
+
+      await screen.findByText(SELECT_PLAN_HEADING);
+    },
+  );
 });
