@@ -65,9 +65,9 @@ export async function isAutoFocused(
   selector: string,
   waitTime = 100,
 ): Promise<Locator> {
-  await page.waitForTimeout(waitTime);
   const locator = page.locator(selector);
-  await expect(locator).toBeFocused();
+  // Use Playwright's auto-waiting instead of a hard timeout; wait up to `waitTime` for focus.
+  await expect(locator).toBeFocused({ timeout: waitTime });
   return locator;
 }
 
