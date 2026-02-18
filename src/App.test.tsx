@@ -164,19 +164,22 @@ describe("MultiStep form - Input Validation", () => {
     await screen.findByText(SELECT_PLAN_HEADING);
   });
 
-  test("should handle phone number with various formats", async () => {
-    const { container } = render(<App />);
+  test.each(VALID_PHONES)(
+    "should handle phone number with format: %s",
+    async (phoneNumber) => {
+      const { container } = render(<App />);
 
-    await fillForm(
-      container,
-      [
-        [NAME_INPUT, TEST_NAME],
-        [EMAIL_INPUT, TEST_EMAIL],
-        [PHONE_INPUT, getRandomElement(VALID_PHONES)],
-      ],
-      true,
-    );
+      await fillForm(
+        container,
+        [
+          [NAME_INPUT, TEST_NAME],
+          [EMAIL_INPUT, TEST_EMAIL],
+          [PHONE_INPUT, phoneNumber],
+        ],
+        true,
+      );
 
-    await screen.findByText(SELECT_PLAN_HEADING);
-  });
+      await screen.findByText(SELECT_PLAN_HEADING);
+    },
+  );
 });
