@@ -1,5 +1,7 @@
 import type { Page } from "@playwright/test";
 import { clickNextButton } from "@tests/playwright/form";
+import type { PersonalInfoData, PlanOptions } from "@tests/playwright/shared";
+import { clickLabelInput, shouldSee } from "@tests/playwright/shared";
 import {
   ADVANCED_SELECTOR,
   ARCADE_SELECTOR,
@@ -9,8 +11,6 @@ import {
   SELECT_PLAN_HEADING,
   YEARLY_SELECTOR,
 } from "@tests/shared";
-import { clickLabelInput, shouldSee } from "../../../shared/helpers/helpers";
-import type { PersonalInfoData, PlanOptions } from "../../../shared/types";
 import { fillPersonalInfo } from "../../helpers/fill-steps";
 
 export async function selectPlan(

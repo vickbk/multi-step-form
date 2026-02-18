@@ -1,4 +1,5 @@
 import type { Page } from "@playwright/test";
+import type { PersonalInfoData } from "@tests/playwright/shared";
 import {
   asUser,
   clickMultipleLabelInputs,
@@ -6,7 +7,6 @@ import {
   shouldNotSee,
   shouldSee,
 } from "@tests/playwright/shared";
-import type { PersonalInfoData } from "@tests/playwright/shared/types";
 import {
   ADVANCED_SELECTOR,
   ARCADE_SELECTOR,
