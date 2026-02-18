@@ -1,5 +1,5 @@
 import type { Page } from "@playwright/test";
-import { clickNextButton } from "@tests/playwright/form";
+import { clickNextButton, pickAddOns } from "@tests/playwright/form";
 import {
   ARCADE_SELECTOR,
   CHANGE_BUTTON,
@@ -18,13 +18,13 @@ import {
   UPDATED_NAME,
   UPDATED_PHONE,
 } from "@tests/shared";
-import { pickAddOns } from "../../form/helpers/fill-steps";
+
 import {
   clickLabelInput,
   getButton,
   setValueForLocators,
   shouldSee,
-} from "./helpers";
+} from "@tests/playwright/shared";
 
 export async function updatePersonalInfo(
   page: Page,

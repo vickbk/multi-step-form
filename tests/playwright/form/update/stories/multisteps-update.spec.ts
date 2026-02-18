@@ -13,11 +13,9 @@ import {
   MONTHLY_SELECTOR,
   ONLINE_SERVICE,
   shouldSee,
-  updateAddOns,
-  updatePersonalInfo,
-  updatePlan,
   YEARLY_SELECTOR,
 } from "@tests/playwright/shared";
+import { updateAddOns, updatePersonalInfo, updatePlan } from "../helpers";
 
 test.describe("Multi-step form - update", () => {
   test("should update the personal information and reflect the changes in the summary step", async ({

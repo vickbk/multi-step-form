@@ -2,7 +2,7 @@ import { test } from "@playwright/test";
 import {
   isFocused,
   onMultipleFocusFill,
-} from "@tests/playwright/focus-management/helpers";
+} from "@tests/playwright/focus-management";
 import { clickNextButton, selectArcadeMonthly } from "@tests/playwright/form";
 import {
   ADVANCED_RADIO_INPUT,
