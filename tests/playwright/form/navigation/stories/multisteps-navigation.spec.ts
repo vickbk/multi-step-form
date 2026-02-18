@@ -1,22 +1,29 @@
 import { expect, test } from "@playwright/test";
+import { expectCheckboxesChecked } from "@tests/playwright/addon-deselection/helpers";
 import {
   fillMonthlyPlanStep,
   fillPersonalInfo,
   pickAddOns,
-} from "@tests/playwright/form/helpers";
+} from "@tests/playwright/form";
 import {
   clickLabelInput,
   clickMultipleLabelInputs,
   FINISHING_UP_HEADING,
   GO_BACK_BUTTON,
   INFO_TITLE,
+  isChecked,
   LARGER_STORAGE,
+  LARGER_STORAGE_CHECKBOX,
+  NAME_INPUT,
   ONLINE_SERVICE,
+  ONLINE_SERVICE_CHECKBOX,
   PICK_ADDONS_HEADING,
+  PRO_RADIO_INPUT,
   PRO_SELECTOR,
   SELECT_PLAN_HEADING,
   shouldNotSee,
   shouldSee,
+  TEST_NAME,
 } from "@tests/playwright/shared";
 import { clickBackButton, navigateToStep } from "../helpers";
 
@@ -63,8 +70,8 @@ test.describe("Multi-step form - navigation", () => {
     await clickBackButton(page);
     await shouldSee(page, [INFO_TITLE]);
 
-    const nameInput = page.locator('input[name="name"]');
-    const expectedName = process.env.TEST_NAME || "Test User";
+    const nameInput = page.locator(NAME_INPUT);
+    const expectedName = process.env.TEST_NAME || TEST_NAME;
     await expect(nameInput).toHaveValue(expectedName);
 
     await navigateToStep(page, 2);
@@ -87,8 +94,7 @@ test.describe("Multi-step form - navigation", () => {
     await clickBackButton(page);
     await shouldSee(page, [SELECT_PLAN_HEADING]);
 
-    const proRadio = page.locator('input[type="radio"][value="pro"]');
-    await expect(proRadio).toBeChecked();
+    await isChecked(page, PRO_RADIO_INPUT);
 
     await clickBackButton(page);
     await shouldSee(page, [INFO_TITLE]);
@@ -96,13 +102,9 @@ test.describe("Multi-step form - navigation", () => {
     await navigateToStep(page, 3);
     await shouldSee(page, [PICK_ADDONS_HEADING]);
 
-    const onlineServiceCheckbox = page.locator(
-      'input[type="checkbox"][value="online-service"]',
-    );
-    const largerStorageCheckbox = page.locator(
-      'input[type="checkbox"][value="larger-storage"]',
-    );
-    await expect(onlineServiceCheckbox).toBeChecked();
-    await expect(largerStorageCheckbox).toBeChecked();
+    await expectCheckboxesChecked(page, [
+      ONLINE_SERVICE_CHECKBOX,
+      LARGER_STORAGE_CHECKBOX,
+    ]);
   });
 });
