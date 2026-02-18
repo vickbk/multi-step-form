@@ -108,7 +108,8 @@ describe("MultiStep form - Input Validation", () => {
     );
 
     const emailInput = container.querySelector(EMAIL_INPUT) as HTMLInputElement;
-    expect(emailInput?.validationMessage).toBeTruthy();
+    expect(emailInput).toBeInTheDocument();
+    expect(emailInput.checkValidity()).toBeFalsy();
   });
 
   test("should reject email with spaces", async () => {
@@ -125,7 +126,8 @@ describe("MultiStep form - Input Validation", () => {
     );
 
     const emailInput = container.querySelector(EMAIL_INPUT) as HTMLInputElement;
-    expect(emailInput?.validationMessage).toBeTruthy();
+    expect(emailInput).toBeInTheDocument();
+    expect(emailInput.checkValidity()).toBeFalsy();
   });
 
   test("should accept email with plus sign", async () => {
