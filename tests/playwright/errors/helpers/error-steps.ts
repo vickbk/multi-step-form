@@ -1,5 +1,4 @@
 import type { Page } from "@playwright/test";
-import { asUser } from "./as-user";
 import {
   INFO_TITLE,
   INVALID_EMAIL_ERROR,
@@ -11,12 +10,13 @@ import {
   REQUIRED_FIELD_ERROR,
   VALID_EMAIL_LOCATOR,
 } from "@tests/shared";
+import { asUser } from "../../shared/helpers/as-user";
 import {
   clickNextButton,
   setLocatorValue,
   setValueForLocators,
   shouldSee,
-} from "./helpers";
+} from "../../shared/helpers/helpers";
 
 export async function seePersonalInfoErrors(page: Page) {
   await asUser(page);

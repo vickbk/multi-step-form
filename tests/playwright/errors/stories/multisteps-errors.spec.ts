@@ -4,11 +4,13 @@ import {
   INVALID_EMAIL_ERROR,
   INVALID_PHONE_ERROR,
   REQUIRED_FIELD_ERROR,
+  shouldSee,
+} from "@tests/playwright/shared";
+import {
   seeEmailError,
   seePersonalInfoErrors,
   seePhoneNumberError,
-  shouldSee,
-} from "@tests/playwright/shared";
+} from "../helpers";
 
 test.describe("Multi-step form - errors", () => {
   test("should not navigate to the second step without filling required fields and see error messages", async ({
