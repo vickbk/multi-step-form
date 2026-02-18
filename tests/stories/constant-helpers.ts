@@ -55,3 +55,19 @@ export const SUBSCRIBE_ANOTHER = /Subscribe another account/i;
 export const GO_BACK_BUTTON = /go back/i;
 export const NEXT_BUTTON = /next step/i;
 export const CONFIRM_BUTTON = /confirm/i;
+export const CHANGE_BUTTON = /change/i;
+
+export const NAME_INPUT = 'input[name="name"]';
+export const EMAIL_INPUT = 'input[name="email"]';
+export const PHONE_INPUT = 'input[name="phone"]';
+
+export const ARCADE_RADIO_INPUT = 'input[type="radio"][value="arcade"]';
+export const ADVANCED_RADIO_INPUT = 'input[type="radio"][value="advanced"]';
+export const PRO_RADIO_INPUT = 'input[type="radio"][value="pro"]';
+
+export const MONTHLY_RADIO_INPUT = 'input[type="radio"][value="monthly"]';
+export const YEARLY_RADIO_INPUT = 'input[type="radio"][value="yearly"]';
+
+export const ONLINE_SERVICE_CHECKBOX = 'input[type="checkbox"][value="online-service"]';
+export const LARGER_STORAGE_CHECKBOX = 'input[type="checkbox"][value="larger-storage"]';
+export const CUSTOMIZABLE_PROFILE_CHECKBOX = 'input[type="checkbox"][value="customizable-profile"]';

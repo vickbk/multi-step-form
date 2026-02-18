@@ -3,12 +3,15 @@ import {
   clickLabelInput,
   clickMultipleLabelInputs,
   CUSTOMIZABLE_PROFILE,
+  CUSTOMIZABLE_PROFILE_CHECKBOX,
   expectCheckboxesChecked,
   expectCheckboxesUnchecked,
   isChecked,
   isNotChecked,
   LARGER_STORAGE,
+  LARGER_STORAGE_CHECKBOX,
   ONLINE_SERVICE,
+  ONLINE_SERVICE_CHECKBOX,
   selectArcadeMonthly,
 } from "./stories";
 
@@ -17,10 +20,10 @@ test.describe("Multi-step form - Add-on Deselection", () => {
     await selectArcadeMonthly(page);
 
     await clickLabelInput(page, ONLINE_SERVICE);
-    await isChecked(page, 'input[type="checkbox"][value="online-service"]');
+    await isChecked(page, ONLINE_SERVICE_CHECKBOX);
 
     await clickLabelInput(page, ONLINE_SERVICE);
-    await isNotChecked(page, 'input[type="checkbox"][value="online-service"]');
+    await isNotChecked(page, ONLINE_SERVICE_CHECKBOX);
   });
 
   test("should deselect all add-ons after selecting them", async ({ page }) => {

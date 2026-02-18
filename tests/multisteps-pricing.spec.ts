@@ -2,6 +2,7 @@ import { expect, test } from "@playwright/test";
 import {
   ADVANCED_SELECTOR,
   ARCADE_SELECTOR,
+  CHANGE_BUTTON,
   clickBackButton,
   clickLabelInput,
   clickNextButton,
@@ -98,7 +99,7 @@ test.describe("Multi-step form - pricing", () => {
     await pickAddOns(page);
     await shouldSee(page, [FINISHING_UP_HEADING]);
 
-    const changeButtons = page.getByRole("button", { name: /change/i });
+    const changeButtons = page.getByRole("button", { name: CHANGE_BUTTON });
     const count = await changeButtons.count();
     expect(count).toBeGreaterThan(0);
   });
