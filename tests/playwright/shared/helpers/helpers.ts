@@ -1,7 +1,7 @@
 import type { Locator, Page } from "@playwright/test";
 import { expect } from "@playwright/test";
+import type { LABEL_LOCATOR, TEXT_MATCHER, TEXT_PATTERN } from "@tests/shared";
 import { GO_BACK_BUTTON, NEXT_BUTTON } from "@tests/shared";
-import type { LABEL_LOCATOR, TEXT_MATCHER, TEXT_PATTERN } from "./types";
 
 export async function shouldSee(page: Page, textes: TEXT_MATCHER[]) {
   for (const text of textes) {
@@ -76,4 +76,22 @@ export async function clickMultipleLabelInputs(
   for (const labelText of labelTexts) {
     await clickLabelInput(page, labelText);
   }
+}
+
+export async function isChecked(
+  page: Page,
+  selector: string,
+): Promise<Locator> {
+  const locator = page.locator(selector);
+  await expect(locator).toBeChecked();
+  return locator;
+}
+
+export async function isNotChecked(
+  page: Page,
+  selector: string,
+): Promise<Locator> {
+  const locator = page.locator(selector);
+  await expect(locator).not.toBeChecked();
+  return locator;
 }

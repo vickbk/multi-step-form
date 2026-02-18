@@ -8,7 +8,6 @@ import {
   clickNextButton,
   fillPersonalInfo,
   isChecked,
-  isFocused,
   MONTHLY_SELECTOR,
   NAME_INPUT,
   ONLINE_SERVICE_CHECKBOX,
@@ -22,6 +21,7 @@ import {
   YEARLY_RADIO_INPUT,
   YEARLY_SELECTOR,
 } from "@tests/playwright/shared";
+import { isFocused } from "../helpers/focus-helpers";
 
 test.describe("Multi-step form - Focus Management", () => {
   test("should focus first input on page load", async ({ page }) => {
