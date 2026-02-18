@@ -10,17 +10,18 @@ import {
   REQUIRED_FIELD_ERROR,
   VALID_EMAIL_LOCATOR,
 } from "@tests/shared";
-import { asUser } from "../../shared/helpers/as-user";
+
+import { clickNextButton } from "@tests/playwright/form";
 import {
-  clickNextButton,
+  asUser,
   setLocatorValue,
   setValueForLocators,
   shouldSee,
-} from "../../shared/helpers/helpers";
+} from "@tests/playwright/shared";
 
 export async function seePersonalInfoErrors(page: Page) {
   await asUser(page);
-  await page.locator("button", { hasText: /Next/i }).click();
+  await clickNextButton(page);
   await shouldSee(page, [
     INFO_TITLE,
     REQUIRED_FIELD_ERROR,
@@ -34,12 +35,12 @@ export async function seeEmailError(page: Page) {
 
   await setValueForLocators(page, [NAME_LOCATOR, PHONE_NUMBER_LOCATOR]);
 
-  await page.locator("button", { hasText: /Next/i }).click();
+  await clickNextButton(page);
   await shouldSee(page, [INFO_TITLE, INVALID_EMAIL_ERROR]);
 
   await setLocatorValue(page, INVALID_EMAIL_LOCATOR);
 
-  await page.locator("button", { hasText: /Next/i }).click();
+  await clickNextButton(page);
   await shouldSee(page, [INFO_TITLE, INVALID_EMAIL_ERROR]);
 }
 

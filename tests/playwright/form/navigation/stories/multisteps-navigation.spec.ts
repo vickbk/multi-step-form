@@ -5,7 +5,6 @@ import {
   pickAddOns,
 } from "@tests/playwright/form/helpers";
 import {
-  clickBackButton,
   clickLabelInput,
   clickMultipleLabelInputs,
   FINISHING_UP_HEADING,
@@ -20,6 +19,7 @@ import {
   shouldNotSee,
   shouldSee,
 } from "@tests/playwright/shared";
+import { clickBackButton } from "../helpers";
 
 test.describe("Multi-step form - navigation", () => {
   test("should navigate back through all steps using Go Back button", async ({

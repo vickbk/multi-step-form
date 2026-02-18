@@ -2,7 +2,6 @@ import type { Page } from "@playwright/test";
 import {
   asUser,
   clickMultipleLabelInputs,
-  clickNextButton,
   selectPlan,
   setValueForLocators,
   shouldNotSee,
@@ -26,6 +25,7 @@ import {
   VALID_EMAIL_LOCATOR,
   YEARLY_SELECTOR,
 } from "@tests/shared";
+import { clickNextButton } from "../navigation";
 
 const {
   TEST_NAME = NAME_LOCATOR[1],

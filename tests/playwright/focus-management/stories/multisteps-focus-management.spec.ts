@@ -1,12 +1,11 @@
 import { test } from "@playwright/test";
+import { clickBackButton, clickNextButton } from "@tests/playwright/form";
 import { fillPersonalInfo } from "@tests/playwright/form/helpers";
 import {
   ADVANCED_RADIO_INPUT,
   ADVANCED_SELECTOR,
   ARCADE_RADIO_INPUT,
-  clickBackButton,
   clickLabelInput,
-  clickNextButton,
   isChecked,
   MONTHLY_SELECTOR,
   NAME_INPUT,

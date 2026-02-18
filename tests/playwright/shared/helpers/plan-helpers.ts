@@ -1,4 +1,5 @@
 import type { Page } from "@playwright/test";
+import { clickNextButton } from "@tests/playwright/form";
 import {
   ADVANCED_SELECTOR,
   ARCADE_SELECTOR,
@@ -10,7 +11,7 @@ import {
 } from "@tests/shared";
 import { fillPersonalInfo } from "../../form/helpers/fill-steps";
 import type { PersonalInfoData, PlanOptions } from "../types";
-import { clickLabelInput, clickNextButton, shouldSee } from "./helpers";
+import { clickLabelInput, shouldSee } from "./helpers";
 
 export async function selectPlan(
   page: Page,

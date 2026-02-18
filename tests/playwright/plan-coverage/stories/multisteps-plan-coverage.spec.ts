@@ -1,10 +1,10 @@
 import { test } from "@playwright/test";
+import { clickNextButton } from "@tests/playwright/form";
 import {
   ADVANCED_PLAN_MONTHLY,
   ADVANCED_PLAN_YEARLY,
   ARCADE_PLAN_MONTHLY,
   ARCADE_PLAN_YEARLY,
-  clickNextButton,
   FINISHING_UP_HEADING,
   PRO_PLAN_MONTHLY,
   PRO_PLAN_YEARLY,

@@ -1,7 +1,6 @@
 import type { Locator, Page } from "@playwright/test";
 import { expect } from "@playwright/test";
 import type { LABEL_LOCATOR, TEXT_MATCHER, TEXT_PATTERN } from "@tests/shared";
-import { GO_BACK_BUTTON, NEXT_BUTTON } from "@tests/shared";
 
 export async function shouldSee(page: Page, textes: TEXT_MATCHER[]) {
   for (const text of textes) {
@@ -50,14 +49,6 @@ export async function setValueForLocators(
 
 export async function clickButton(page: Page, hasText: TEXT_PATTERN) {
   await page.locator("button", { hasText }).click();
-}
-
-export async function clickNextButton(page: Page) {
-  await clickButton(page, NEXT_BUTTON);
-}
-
-export async function clickBackButton(page: Page) {
-  await clickButton(page, GO_BACK_BUTTON);
 }
 
 export async function navigateToStep(page: Page, stepNumber: number) {

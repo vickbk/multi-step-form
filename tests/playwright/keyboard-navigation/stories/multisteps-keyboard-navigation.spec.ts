@@ -3,12 +3,12 @@ import {
   isFocused,
   onMultipleFocusFill,
 } from "@tests/playwright/focus-management/helpers";
+import { clickNextButton } from "@tests/playwright/form";
 import {
   ADVANCED_RADIO_INPUT,
   ARCADE_RADIO_INPUT,
   ARCADE_SELECTOR,
   clickLabelInput,
-  clickNextButton,
   EMAIL_INPUT,
   isChecked,
   isNotChecked,

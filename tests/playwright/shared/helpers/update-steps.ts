@@ -1,4 +1,5 @@
 import type { Page } from "@playwright/test";
+import { clickNextButton } from "@tests/playwright/form";
 import {
   ARCADE_SELECTOR,
   CUSTOMIZABLE_PROFILE,
@@ -17,12 +18,7 @@ import {
   UPDATED_PHONE,
 } from "@tests/shared";
 import { pickAddOns } from "../../form/helpers/fill-steps";
-import {
-  clickLabelInput,
-  clickNextButton,
-  setValueForLocators,
-  shouldSee,
-} from "./helpers";
+import { clickLabelInput, setValueForLocators, shouldSee } from "./helpers";
 
 export async function updatePersonalInfo(
   page: Page,

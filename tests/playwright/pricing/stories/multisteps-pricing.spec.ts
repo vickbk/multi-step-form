@@ -1,12 +1,11 @@
 import { expect, test } from "@playwright/test";
+import { clickBackButton, clickNextButton } from "@tests/playwright/form";
 import { fillPersonalInfo, pickAddOns } from "@tests/playwright/form/helpers";
 import {
   ADVANCED_SELECTOR,
   ARCADE_SELECTOR,
   CHANGE_BUTTON,
-  clickBackButton,
   clickLabelInput,
-  clickNextButton,
   CUSTOMIZABLE_PROFILE,
   FINISHING_UP_HEADING,
   LARGER_STORAGE,
