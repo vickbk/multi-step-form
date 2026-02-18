@@ -1,9 +1,27 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { NEXT_BUTTON } from "@tests/stories";
+import {
+  EMAIL_INPUT,
+  INVALID_EMAIL,
+  INVALID_EMAIL_ERROR,
+  INVALID_PHONE,
+  INVALID_PHONE_ERROR,
+  INVALID_SPACED_EMAIL,
+  NAME_INPUT,
+  NEXT_BUTTON,
+  PHONE_INPUT,
+  REQUIRED_FIELD_ERROR,
+  SELECT_PLAN_HEADING,
+  TEST_EMAIL,
+  TEST_NAME,
+  TEST_PHONE,
+  VALID_PHONES,
+  VALID_PLUS_EMAIL,
+} from "@tests/stories";
 import App from "./App";
 import { checkHeadingOrder } from "./shared/heading-manager/library/check-heading-order";
 import { drawRegion } from "./shared/heading-manager/library/region-drawer";
+import { getRandomElement } from "./shared/libs";
 
 type FormFieldTuple = [selector: string, value: string];
 
@@ -14,9 +32,8 @@ async function fillForm(
 ) {
   for (const [selector, value] of fields) {
     const input = container.querySelector(selector) as HTMLInputElement;
-    if (input) {
-      await userEvent.type(input, value);
-    }
+
+    await userEvent.type(input, value);
   }
 
   if (submit) {
@@ -61,15 +78,18 @@ describe("MultiStep form Tests", () => {
   test("should show error messages if navigating to step 2 without valid data", async () => {
     render(<App />);
     const nextButton = await screen.findByRole("button", {
-      name: /next step/i,
+      name: NEXT_BUTTON,
     });
     await userEvent.click(nextButton);
+    const errorsSelectors = [
+      REQUIRED_FIELD_ERROR,
+      INVALID_EMAIL_ERROR,
+      INVALID_PHONE_ERROR,
+    ]
+      .map(({ source }) => source)
+      .join("|");
     expect(
-      (
-        await screen.findAllByText(
-          /(This field is required)|(Please enter a valid phone number)|(Please enter a valid email address)/i,
-        )
-      ).length,
+      (await screen.findAllByText(new RegExp(errorsSelectors, "i"))).length,
     ).toBe(3);
   });
 });
@@ -81,9 +101,9 @@ describe("MultiStep form - Input Validation", () => {
     await fillForm(
       container,
       [
-        ['input[name="name"]', "Test User"],
-        ['input[name="email"]', "invalidemail.com"],
-        ['input[name="phone"]', "+1234567890"],
+        [NAME_INPUT, TEST_NAME],
+        [EMAIL_INPUT, INVALID_EMAIL],
+        [PHONE_INPUT, INVALID_PHONE],
       ],
       true,
     );
@@ -100,16 +120,14 @@ describe("MultiStep form - Input Validation", () => {
     await fillForm(
       container,
       [
-        ['input[name="name"]', "Test User"],
-        ['input[name="email"]', "test user@email.com"],
-        ['input[name="phone"]', "+1234567890"],
+        [NAME_INPUT, TEST_NAME],
+        [EMAIL_INPUT, INVALID_SPACED_EMAIL],
+        [PHONE_INPUT, TEST_PHONE],
       ],
       true,
     );
 
-    const emailInput = container.querySelector(
-      'input[name="email"]',
-    ) as HTMLInputElement;
+    const emailInput = container.querySelector(EMAIL_INPUT) as HTMLInputElement;
     expect(emailInput?.validationMessage).toBeTruthy();
   });
 
@@ -119,14 +137,14 @@ describe("MultiStep form - Input Validation", () => {
     await fillForm(
       container,
       [
-        ['input[name="name"]', "Test User"],
-        ['input[name="email"]', "test+tag@email.com"],
-        ['input[name="phone"]', "+1234567890"],
+        [NAME_INPUT, TEST_NAME],
+        [EMAIL_INPUT, VALID_PLUS_EMAIL],
+        [PHONE_INPUT, TEST_PHONE],
       ],
       true,
     );
 
-    await screen.findByText(/select your plan/i);
+    await screen.findByText(SELECT_PLAN_HEADING);
   });
 
   test("should handle very long name gracefully", async () => {
@@ -136,14 +154,14 @@ describe("MultiStep form - Input Validation", () => {
     await fillForm(
       container,
       [
-        ['input[name="name"]', longName],
-        ['input[name="email"]', "test@email.com"],
-        ['input[name="phone"]', "+1234567890"],
+        [NAME_INPUT, longName],
+        [EMAIL_INPUT, TEST_EMAIL],
+        [PHONE_INPUT, TEST_PHONE],
       ],
       true,
     );
 
-    await screen.findByText(/select your plan/i);
+    await screen.findByText(SELECT_PLAN_HEADING);
   });
 
   test("should handle phone number with various formats", async () => {
@@ -152,13 +170,13 @@ describe("MultiStep form - Input Validation", () => {
     await fillForm(
       container,
       [
-        ['input[name="name"]', "Test User"],
-        ['input[name="email"]', "test@email.com"],
-        ['input[name="phone"]', "123-456-7890"],
+        [NAME_INPUT, TEST_NAME],
+        [EMAIL_INPUT, TEST_EMAIL],
+        [PHONE_INPUT, getRandomElement(VALID_PHONES)],
       ],
       true,
     );
 
-    await screen.findByText(/select your plan/i);
+    await screen.findByText(SELECT_PLAN_HEADING);
   });
 });

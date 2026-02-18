@@ -5,13 +5,37 @@ export const NAME_SELECTOR = /Name/i;
 export const EMAIL_SELECTOR = /Email Address/i;
 export const PHONE_SELECTOR = /Phone Number/i;
 
-export const NAME: LABEL_LOCATOR = [NAME_SELECTOR, "Test User"];
-export const INVALID_EMAIL: LABEL_LOCATOR = [EMAIL_SELECTOR, "invalid-email"];
-export const PHONE_NUMBER: LABEL_LOCATOR = [PHONE_SELECTOR, "1234567890"];
-export const VALID_EMAIL: LABEL_LOCATOR = [EMAIL_SELECTOR, "test@example.com"];
-export const INVALID_PHONE_NUMBER: LABEL_LOCATOR = [
+export const TEST_NAME = "Test User";
+export const TEST_EMAIL = "test@email.com";
+export const TEST_PHONE = "1234567890";
+export const VALID_DASHED_PHONE = "123-456-7890";
+export const VALID_SPACED_PHONE = "123 456 7890";
+export const VALID_PARENTHESIZED_PHONE = "(123) 456-7890";
+export const VALID_PHONES = [
+  VALID_DASHED_PHONE,
+  VALID_SPACED_PHONE,
+  VALID_PARENTHESIZED_PHONE,
+  TEST_PHONE,
+];
+export const INVALID_EMAIL = "invalid-email";
+export const VALID_PLUS_EMAIL = "test+tag@email.com";
+export const INVALID_SPACED_EMAIL = "test test@email.com";
+export const INVALID_PHONE = "not-a-phone-number";
+
+export const NAME_LOCATOR: LABEL_LOCATOR = [NAME_SELECTOR, TEST_NAME];
+export const INVALID_EMAIL_LOCATOR: LABEL_LOCATOR = [
+  EMAIL_SELECTOR,
+  INVALID_EMAIL,
+];
+export const INVALID_SPACED_EMAIL_LOCATOR: LABEL_LOCATOR = [
+  EMAIL_SELECTOR,
+  INVALID_SPACED_EMAIL,
+];
+export const PHONE_NUMBER_LOCATOR: LABEL_LOCATOR = [PHONE_SELECTOR, TEST_PHONE];
+export const VALID_EMAIL_LOCATOR: LABEL_LOCATOR = [EMAIL_SELECTOR, TEST_EMAIL];
+export const INVALID_PHONE_NUMBER_LOCATOR: LABEL_LOCATOR = [
   PHONE_SELECTOR,
-  "not-a-phone-number",
+  INVALID_PHONE,
 ];
 
 export const UPDATED_NAME = "updated name";

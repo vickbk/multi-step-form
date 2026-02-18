@@ -7,7 +7,7 @@ import {
   EMAIL_SELECTOR,
   FINISHING_UP_HEADING,
   LARGER_STORAGE,
-  NAME,
+  NAME_LOCATOR,
   NAME_SELECTOR,
   NO_ADDONS_SELECTED,
   ONLINE_SERVICE,
@@ -17,7 +17,7 @@ import {
   SELECT_PLAN_HEADING,
   THANK_YOU_HEADING,
   UPDATED_PHONE,
-  VALID_EMAIL,
+  VALID_EMAIL_LOCATOR,
   YEARLY_SELECTOR,
 } from "./constant-helpers";
 import {
@@ -32,8 +32,8 @@ import { selectPlan } from "./plan-helpers";
 import type { PersonalInfoData } from "./types";
 
 const {
-  TEST_NAME = NAME[1],
-  EMAIL_ADDRESS = VALID_EMAIL[1],
+  TEST_NAME = NAME_LOCATOR[1],
+  EMAIL_ADDRESS = VALID_EMAIL_LOCATOR[1],
   PHONE_NUMBER = UPDATED_PHONE,
 } = process.env;
 

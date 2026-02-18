@@ -2,15 +2,15 @@ import type { Page } from "@playwright/test";
 import { asUser } from "./as-user";
 import {
   INFO_TITLE,
-  INVALID_EMAIL,
   INVALID_EMAIL_ERROR,
+  INVALID_EMAIL_LOCATOR,
   INVALID_PHONE_ERROR,
-  INVALID_PHONE_NUMBER,
-  NAME,
-  PHONE_NUMBER,
+  INVALID_PHONE_NUMBER_LOCATOR,
+  NAME_LOCATOR,
+  PHONE_NUMBER_LOCATOR,
   PLAN_ERROR,
   REQUIRED_FIELD_ERROR,
-  VALID_EMAIL,
+  VALID_EMAIL_LOCATOR,
 } from "./constant-helpers";
 import { fillPersonalInfo } from "./fill-steps";
 import {
@@ -34,12 +34,12 @@ export async function seePersonalInfoErrors(page: Page) {
 export async function seeEmailError(page: Page) {
   await seePersonalInfoErrors(page);
 
-  await setValueForLocators(page, [NAME, PHONE_NUMBER]);
+  await setValueForLocators(page, [NAME_LOCATOR, PHONE_NUMBER_LOCATOR]);
 
   await page.locator("button", { hasText: /Next/i }).click();
   await shouldSee(page, [INFO_TITLE, INVALID_EMAIL_ERROR]);
 
-  await setLocatorValue(page, INVALID_EMAIL);
+  await setLocatorValue(page, INVALID_EMAIL_LOCATOR);
 
   await page.locator("button", { hasText: /Next/i }).click();
   await shouldSee(page, [INFO_TITLE, INVALID_EMAIL_ERROR]);
@@ -50,11 +50,11 @@ export async function seePhoneNumberError(page: Page) {
 
   await clickNextButton(page);
 
-  await setValueForLocators(page, [NAME, VALID_EMAIL]);
+  await setValueForLocators(page, [NAME_LOCATOR, VALID_EMAIL_LOCATOR]);
   await clickNextButton(page);
   await shouldSee(page, [INFO_TITLE, INVALID_PHONE_ERROR]);
 
-  await setLocatorValue(page, INVALID_PHONE_NUMBER);
+  await setLocatorValue(page, INVALID_PHONE_NUMBER_LOCATOR);
   await clickNextButton(page);
   await shouldSee(page, [INFO_TITLE, INVALID_PHONE_ERROR]);
 }
