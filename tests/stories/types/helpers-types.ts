@@ -11,7 +11,7 @@ export type PersonalInfoData = {
 };
 
 export type PlanOptions = {
-  plan?: RegExp;
-  billing?: RegExp;
+  plan?: TEXT_PATTERN;
+  billing?: TEXT_PATTERN;
   personalInfo?: PersonalInfoData;
 };
