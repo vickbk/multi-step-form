@@ -8,8 +8,8 @@ import {
   SELECT_PLAN_HEADING,
   YEARLY_SELECTOR,
 } from "@tests/shared";
+import { fillPersonalInfo } from "../../form/helpers/fill-steps";
 import type { PersonalInfoData, PlanOptions } from "../types";
-import { fillPersonalInfo } from "./fill-steps";
 import { clickLabelInput, clickNextButton, shouldSee } from "./helpers";
 
 export async function selectPlan(

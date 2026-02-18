@@ -16,16 +16,16 @@ import {
   VALID_EMAIL_LOCATOR,
   YEARLY_SELECTOR,
 } from "@tests/shared";
-import type { PersonalInfoData } from "../types";
-import { asUser } from "./as-user";
+import { asUser } from "../../shared/helpers/as-user";
 import {
   clickMultipleLabelInputs,
   clickNextButton,
   setValueForLocators,
   shouldNotSee,
   shouldSee,
-} from "./helpers";
-import { selectPlan } from "./plan-helpers";
+} from "../../shared/helpers/helpers";
+import { selectPlan } from "../../shared/helpers/plan-helpers";
+import type { PersonalInfoData } from "../../shared/types";
 
 const {
   TEST_NAME = NAME_LOCATOR[1],

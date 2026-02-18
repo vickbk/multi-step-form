@@ -1,10 +1,13 @@
 import { expect, test } from "@playwright/test";
 import {
+  fillMonthlyPlanStep,
+  fillPersonalInfo,
+  pickAddOns,
+} from "@tests/playwright/form/helpers";
+import {
   clickBackButton,
   clickLabelInput,
   clickMultipleLabelInputs,
-  fillMonthlyPlanStep,
-  fillPersonalInfo,
   FINISHING_UP_HEADING,
   GO_BACK_BUTTON,
   INFO_TITLE,
@@ -12,7 +15,6 @@ import {
   navigateToStep,
   ONLINE_SERVICE,
   PICK_ADDONS_HEADING,
-  pickAddOns,
   PRO_SELECTOR,
   SELECT_PLAN_HEADING,
   shouldNotSee,

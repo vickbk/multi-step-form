@@ -1,4 +1,5 @@
 import { test } from "@playwright/test";
+import { fillPersonalInfo } from "@tests/playwright/form/helpers";
 import {
   ADVANCED_RADIO_INPUT,
   ADVANCED_SELECTOR,
@@ -6,7 +7,6 @@ import {
   clickBackButton,
   clickLabelInput,
   clickNextButton,
-  fillPersonalInfo,
   isChecked,
   MONTHLY_SELECTOR,
   NAME_INPUT,

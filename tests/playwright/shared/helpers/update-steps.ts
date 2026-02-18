@@ -16,7 +16,7 @@ import {
   UPDATED_NAME,
   UPDATED_PHONE,
 } from "@tests/shared";
-import { pickAddOns } from "./fill-steps";
+import { pickAddOns } from "../../form/helpers/fill-steps";
 import {
   clickLabelInput,
   clickNextButton,
