@@ -1,5 +1,15 @@
 import type { Page } from "@playwright/test";
 import {
+  asUser,
+  clickMultipleLabelInputs,
+  clickNextButton,
+  selectPlan,
+  setValueForLocators,
+  shouldNotSee,
+  shouldSee,
+} from "@tests/playwright/shared";
+import type { PersonalInfoData } from "@tests/playwright/shared/types";
+import {
   ADVANCED_SELECTOR,
   ARCADE_SELECTOR,
   EMAIL_SELECTOR,
@@ -16,16 +26,6 @@ import {
   VALID_EMAIL_LOCATOR,
   YEARLY_SELECTOR,
 } from "@tests/shared";
-import { asUser } from "../../shared/helpers/as-user";
-import {
-  clickMultipleLabelInputs,
-  clickNextButton,
-  setValueForLocators,
-  shouldNotSee,
-  shouldSee,
-} from "../../shared/helpers/helpers";
-import { selectPlan } from "../../shared/helpers/plan-helpers";
-import type { PersonalInfoData } from "../../shared/types";
 
 const {
   TEST_NAME = NAME_LOCATOR[1],
