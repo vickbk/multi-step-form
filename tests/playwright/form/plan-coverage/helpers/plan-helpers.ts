@@ -1,5 +1,5 @@
 import type { Page } from "@playwright/test";
-import { clickNextButton } from "@tests/playwright/form";
+
 import type { PersonalInfoData, PlanOptions } from "@tests/playwright/shared";
 import { clickLabelInput, shouldSee } from "@tests/playwright/shared";
 import {
@@ -12,6 +12,7 @@ import {
   YEARLY_SELECTOR,
 } from "@tests/shared";
 import { fillPersonalInfo } from "../../helpers/fill-steps";
+import { clickNextButton } from "../../navigation";
 
 export async function selectPlan(
   page: Page,
