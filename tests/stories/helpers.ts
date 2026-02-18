@@ -1,5 +1,7 @@
-import { expect, Locator, Page } from "@playwright/test";
-import { LABEL_LOCATOR, TEXT_MATCHER, TEXT_PATTERN } from "./types";
+import type { Locator, Page } from "@playwright/test";
+import { expect } from "@playwright/test";
+import { GO_BACK_BUTTON, NEXT_BUTTON } from "./constant-helpers";
+import type { LABEL_LOCATOR, TEXT_MATCHER, TEXT_PATTERN } from "./types";
 
 export async function shouldSee(page: Page, textes: TEXT_MATCHER[]) {
   for (const text of textes) {
@@ -46,16 +48,20 @@ export async function setValueForLocators(
   }
 }
 
+export async function clickButton(page: Page, hasText: TEXT_PATTERN) {
+  await page.locator("button", { hasText }).click();
+}
+
 export async function clickNextButton(page: Page) {
-  await page.locator("button", { hasText: /Next/i }).click();
+  await clickButton(page, NEXT_BUTTON);
 }
 
 export async function clickBackButton(page: Page) {
-  await page.getByRole("button", { name: /go back/i }).click();
+  await clickButton(page, GO_BACK_BUTTON);
 }
 
 export async function navigateToStep(page: Page, stepNumber: number) {
-  await page.getByRole("button", { name: stepNumber.toString() }).click();
+  await clickButton(page, stepNumber.toString());
 }
 
 export async function clickLabelInput(page: Page, labelText: TEXT_PATTERN) {
@@ -63,7 +69,10 @@ export async function clickLabelInput(page: Page, labelText: TEXT_PATTERN) {
   await label.click();
 }
 
-export async function clickMultipleLabelInputs(page: Page, labelTexts: TEXT_PATTERN[]) {
+export async function clickMultipleLabelInputs(
+  page: Page,
+  labelTexts: TEXT_PATTERN[],
+) {
   for (const labelText of labelTexts) {
     await clickLabelInput(page, labelText);
   }
