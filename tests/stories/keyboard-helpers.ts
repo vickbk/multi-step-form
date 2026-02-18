@@ -1,7 +1,7 @@
 import type { Locator, Page } from "@playwright/test";
 import { expect } from "@playwright/test";
 
-export async function onLoadFocus(
+export async function isFocused(
   page: Page,
   selector: string,
 ): Promise<Locator> {
@@ -56,26 +56,6 @@ export async function onTabCheck(
 ): Promise<Locator> {
   const locator = await onTabNavigate(page, selector);
   await page.keyboard.press("Space");
-  return locator;
-}
-
-export async function isAutoFocused(
-  page: Page,
-  selector: string,
-  waitTime = 100,
-): Promise<Locator> {
-  const locator = page.locator(selector);
-  // Use Playwright's auto-waiting instead of a hard timeout; wait up to `waitTime` for focus.
-  await expect(locator).toBeFocused({ timeout: waitTime });
-  return locator;
-}
-
-export async function isFocused(
-  page: Page,
-  selector: string,
-): Promise<Locator> {
-  const locator = page.locator(selector);
-  await expect(locator).toBeFocused();
   return locator;
 }
 

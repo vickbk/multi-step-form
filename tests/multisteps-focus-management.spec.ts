@@ -7,7 +7,6 @@ import {
   clickLabelInput,
   clickNextButton,
   fillPersonalInfo,
-  isAutoFocused,
   isChecked,
   isFocused,
   MONTHLY_SELECTOR,
@@ -16,9 +15,9 @@ import {
   PICK_ADDONS_HEADING,
   PRO_RADIO_INPUT,
   PRO_SELECTOR,
+  SELECT_PLAN_HEADING,
   selectArcadeMonthly,
   selectPlan,
-  SELECT_PLAN_HEADING,
   shouldSee,
   YEARLY_RADIO_INPUT,
   YEARLY_SELECTOR,
@@ -28,7 +27,7 @@ test.describe("Multi-step form - Focus Management", () => {
   test("should focus first input on page load", async ({ page }) => {
     await page.goto("/");
 
-    await isAutoFocused(page, NAME_INPUT);
+    await isFocused(page, NAME_INPUT);
   });
 
   test("should focus first plan option when navigating to plan step", async ({
@@ -37,7 +36,7 @@ test.describe("Multi-step form - Focus Management", () => {
     await fillPersonalInfo(page);
     await shouldSee(page, [SELECT_PLAN_HEADING]);
 
-    await isAutoFocused(page, ARCADE_RADIO_INPUT);
+    await isFocused(page, ARCADE_RADIO_INPUT);
   });
 
   test("should focus first add-on when navigating to add-ons step", async ({
@@ -45,7 +44,7 @@ test.describe("Multi-step form - Focus Management", () => {
   }) => {
     await selectArcadeMonthly(page);
 
-    await isAutoFocused(page, ONLINE_SERVICE_CHECKBOX);
+    await isFocused(page, ONLINE_SERVICE_CHECKBOX);
   });
 
   test("should maintain focus on selected plan when switching billing period", async ({
@@ -75,7 +74,7 @@ test.describe("Multi-step form - Focus Management", () => {
     await clickBackButton(page);
     await shouldSee(page, [SELECT_PLAN_HEADING]);
 
-    await isAutoFocused(page, PRO_RADIO_INPUT);
+    await isFocused(page, PRO_RADIO_INPUT);
     await isChecked(page, PRO_RADIO_INPUT);
   });
 

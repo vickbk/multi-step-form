@@ -6,13 +6,12 @@ import {
   clickLabelInput,
   clickNextButton,
   EMAIL_INPUT,
-  isAutoFocused,
   isChecked,
+  isFocused,
   isNotChecked,
   NAME_INPUT,
   NEXT_BUTTON,
   ONLINE_SERVICE_CHECKBOX,
-  onLoadFocus,
   onMultipleFocusFill,
   onTabNavigate,
   PHONE_INPUT,
@@ -30,7 +29,7 @@ test.describe("Multi-step form - Keyboard Navigation", () => {
   test("should navigate through form using Tab key", async ({ page }) => {
     await page.goto("/");
 
-    await onLoadFocus(page, NAME_INPUT);
+    await isFocused(page, NAME_INPUT);
 
     await onTabNavigate(page, EMAIL_INPUT);
 
@@ -51,7 +50,7 @@ test.describe("Multi-step form - Keyboard Navigation", () => {
 
     await shouldSee(page, [SELECT_PLAN_HEADING]);
 
-    await isAutoFocused(page, ARCADE_RADIO_INPUT);
+    await isFocused(page, ARCADE_RADIO_INPUT);
 
     await page.keyboard.press("Space");
     await isChecked(page, ARCADE_RADIO_INPUT);
