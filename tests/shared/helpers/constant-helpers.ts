@@ -1,4 +1,4 @@
-import { LABEL_LOCATOR } from "./types";
+import { LABEL_LOCATOR } from "../../playwright/types";
 
 export const NAME_SELECTOR = /Name/i;
 export const EMAIL_SELECTOR = /Email Address/i;

@@ -15,9 +15,9 @@ import {
   UPDATED_EMAIL,
   UPDATED_NAME,
   UPDATED_PHONE,
-} from "./constant-helpers";
+} from "../../shared/helpers";
 import { pickAddOns } from "./fill-steps";
-import { clickLabelInput, clickNextButton, setValueForLocators, shouldSee } from "./helpers";
+import { clickLabelInput, clickNextButton, setValueForLocators, shouldSee } from "../helpers";
 
 export async function updatePersonalInfo(
   page: Page,

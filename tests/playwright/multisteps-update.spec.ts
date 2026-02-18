@@ -17,7 +17,7 @@ import {
   updatePersonalInfo,
   updatePlan,
   YEARLY_SELECTOR,
-} from "./stories";
+} from ".";
 
 test.describe("Multi-step form - update", () => {
   test("should update the personal information and reflect the changes in the summary step", async ({

@@ -8,7 +8,7 @@ import {
   seePersonalInfoErrors,
   seePhoneNumberError,
   shouldSee,
-} from "./stories";
+} from ".";
 
 test.describe("Multi-step form - errors", () => {
   test("should not navigate to the second step without filling required fields and see error messages", async ({

@@ -1,5 +1,5 @@
 import { Page } from "@playwright/test";
-import { asUser } from "./as-user";
+import { asUser } from "../helpers";
 import {
   FINISHING_UP_HEADING,
   LARGER_STORAGE,
@@ -10,14 +10,14 @@ import {
   SELECT_PLAN_HEADING,
   UPDATED_PHONE,
   VALID_EMAIL,
-} from "./constant-helpers";
+} from "../../shared/helpers";
 import {
   clickLabelInput,
   clickNextButton,
   fillLocatorWith,
   shouldNotSee,
   shouldSee,
-} from "./helpers";
+} from "../helpers";
 
 const {
   TEST_NAME = NAME[1],
