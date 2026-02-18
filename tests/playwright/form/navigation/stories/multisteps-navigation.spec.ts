@@ -9,10 +9,10 @@ import {
   INFO_TITLE,
   isChecked,
   LARGER_STORAGE,
-  LARGER_STORAGE_CHECKBOX,
+  LARGER_STORAGE_VALUE,
   NAME_INPUT,
   ONLINE_SERVICE,
-  ONLINE_SERVICE_CHECKBOX,
+  ONLINE_SERVICE_VALUE,
   PICK_ADDONS_HEADING,
   PRO_RADIO_INPUT,
   PRO_SELECTOR,
@@ -100,8 +100,8 @@ test.describe("Multi-step form - navigation", () => {
     await shouldSee(page, [PICK_ADDONS_HEADING]);
 
     await expectInputsChecked(page, [
-      ONLINE_SERVICE_CHECKBOX,
-      LARGER_STORAGE_CHECKBOX,
+      ONLINE_SERVICE_VALUE,
+      LARGER_STORAGE_VALUE,
     ]);
   });
 });
