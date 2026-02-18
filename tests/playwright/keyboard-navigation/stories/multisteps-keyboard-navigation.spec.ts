@@ -2,7 +2,7 @@ import { test } from "@playwright/test";
 import {
   isFocused,
   onMultipleFocusFill,
-} from "@tests/playwright/focus-management/helpers/focus-helpers";
+} from "@tests/playwright/focus-management/helpers";
 import {
   ADVANCED_RADIO_INPUT,
   ARCADE_RADIO_INPUT,
